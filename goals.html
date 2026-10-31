@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS | Goals & Productivity</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.goals-page{padding-bottom:40px}
+.goal-hero{
+ position:relative;overflow:hidden;padding:35px;border-radius:24px;
+ background:linear-gradient(115deg,#211746,#172d50,#10404a);
+ border:1px solid #9875ff55;margin-bottom:25px
+}
+.goal-hero:after{
+ content:"";position:absolute;width:280px;height:280px;
+ right:5%;top:-170px;background:#895cff;
+ filter:blur(90px);opacity:.32;border-radius:50%
+}
+.goal-label{color:#bca6ff;font-size:11px;font-weight:800;letter-spacing:2px}
+.goal-hero h1{font-size:clamp(27px,4vw,40px);margin:13px 0}
+.goal-hero p{color:#c4cce0;max-width:650px;line-height:1.8}
+.goal-btn{
+ border:0;border-radius:11px;padding:12px 17px;
+ color:white;background:linear-gradient(100deg,#8859f4,#397de7);
+ cursor:pointer;font-weight:700
+}
+.goal-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.goal-stats{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+ gap:16px;margin:22px 0
+}
+.goal-card,.goal-panel{
+ background:#ffffff08;border:1px solid #ffffff16;
+ border-radius:18px;padding:21px;backdrop-filter:blur(12px)
+}
+.goal-icon{
+ width:43px;height:43px;border-radius:13px;
+ display:grid;place-items:center;background:#9875ff22;
+ color:#c2aaff;margin-bottom:14px
+}
+.goal-card h2{font-size:27px;margin:6px 0}
+.goal-muted{font-size:13px;color:#a3abc1}
+.goal-heading{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:12px;margin:29px 0 16px
+}
+.goal-heading h2{font-size:21px;margin:0}
+.goal-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:18px}
+.goal-form{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:17px
+}
+.goal-input{
+ width:100%;padding:13px;border-radius:10px;
+ background:#151a2b;color:white;border:1px solid #ffffff24;
+ outline:none;min-width:0
+}
+.goal-input:focus{border-color:#9674ff}
+.goal-form .full{grid-column:1/-1}
+.goal-list{display:grid;gap:13px;margin-top:17px}
+.goal-task{
+ display:flex;align-items:center;gap:13px;padding:16px;
+ border:1px solid #ffffff12;border-radius:14px;
+ background:#ffffff05
+}
+.goal-task.done{opacity:.65}
+.goal-task.done .task-name{text-decoration:line-through}
+.task-check{
+ width:20px;height:20px;accent-color:#9c7aff;cursor:pointer;flex-shrink:0
+}
+.task-info{flex:1;min-width:0}
+.task-name{font-weight:700;overflow-wrap:anywhere}
+.task-sub{font-size:12px;color:#a3abc1;margin-top:5px}
+.task-delete{
+ border:0;background:transparent;color:#e78b9b;
+ cursor:pointer;padding:8px
+}
+.task-progress{
+ height:9px;background:#ffffff13;border-radius:20px;overflow:hidden;margin-top:14px
+}
+.task-progress-fill{
+ height:100%;background:linear-gradient(90deg,#9160f4,#43cce5);
+ border-radius:20px;transition:width .3s
+}
+.goal-filter{
+ padding:9px 13px;border-radius:9px;border:1px solid #ffffff20;
+ background:#171b2e;color:white;cursor:pointer
+}
+.goal-progress-row{
+ display:flex;justify-content:space-between;font-size:13px;margin-bottom:9px
+}
+.goal-quote{
+ margin-top:18px;padding:19px;border-radius:15px;
+ background:linear-gradient(110deg,#302252,#153c4b);
+ border:1px solid #ffffff12
+}
+.goal-quote p{color:#c2c9da;line-height:1.7;font-size:13px}
+.empty-state{
+ text-align:center;padding:35px 12px;color:#a3abc1;
+ border:1px dashed #ffffff25;border-radius:14px
+}
+@media(max-width:750px){
+ .goal-layout{grid-template-columns:1fr}
+ .goal-hero{padding:24px}
+}
+@media(max-width:480px){
+ .goal-form{grid-template-columns:1fr}
+ .goal-form .full{grid-column:auto}
+ .goal-heading{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><span class="brand-icon">N</span><span>NEXUS</span></div>
+ <div class="nav-menu">
+  <p class="goal-muted">MAIN MENU</p>
+  <a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+  <a href="profile.html" class="nav-link"><i data-lucide="user-round"></i> My Profile</a>
+  <a href="learning.html" class="nav-link"><i data-lucide="book-open"></i> Learning Hub</a>
+  <a href="career.html" class="nav-link"><i data-lucide="brain-circuit"></i> AI Career Guide</a>
+  <a href="analytics.html" class="nav-link"><i data-lucide="chart-no-axes-combined"></i> Analytics</a>
+  <a href="goals.html" class="nav-link active"><i data-lucide="target"></i> My Goals</a>
+  <a href="index.html" class="nav-link"><i data-lucide="folder-kanban"></i> Projects</a>
+ </div>
+ <div class="sidebar-bottom">
+  <a href="index.html" class="nav-link"><i data-lucide="arrow-left"></i> Back to Dashboard</a>
+ </div>
+</aside>
+
+<main class="main-content goals-page">
+<header class="topbar">
+ <div><p class="goal-muted">NEXUS / PRODUCTIVITY</p><h2>My Goals</h2></div>
+ <span class="goal-muted">Personal Growth Center</span>
+</header>
+
+<section class="goal-hero">
+ <span class="goal-label">✦ PERSONAL PRODUCTIVITY INTELLIGENCE</span>
+ <h1>Dream Big. Set Goals. Make It Happen. 🚀</h1>
+ <p>Transform your ambitions into achievable milestones. Plan your learning, track your progress and celebrate every step forward.</p>
+ <button class="goal-btn" onclick="document.getElementById('goalName').focus()">+ Create Your First Goal</button>
+</section>
+
+<section class="goal-stats">
+ <div class="goal-card">
+  <div class="goal-icon"><i data-lucide="target"></i></div>
+  <p class="goal-muted">Total Goals</p><h2 id="totalGoals">0</h2>
+  <span class="goal-muted">Goals created</span>
+ </div>
+ <div class="goal-card">
+  <div class="goal-icon"><i data-lucide="check-circle-2"></i></div>
+  <p class="goal-muted">Completed</p><h2 id="completedGoals">0</h2>
+  <span class="goal-muted">Goals achieved</span>
+ </div>
+ <div class="goal-card">
+  <div class="goal-icon"><i data-lucide="activity"></i></div>
+  <p class="goal-muted">In Progress</p><h2 id="activeGoals">0</h2>
+  <span class="goal-muted">Active goals</span>
+ </div>
+ <div class="goal-card">
+  <div class="goal-icon"><i data-lucide="trophy"></i></div>
+  <p class="goal-muted">Completion</p><h2 id="completionRate">0%</h2>
+  <span class="goal-muted">Overall progress</span>
+ </div>
+</section>
+
+<div class="goal-heading">
+ <h2>Create a New Goal</h2><span class="goal-muted">Turn plans into action</span>
+</div>
+
+<section class="goal-layout">
+ <div class="goal-panel">
+  <span class="goal-label">GOAL CREATION STUDIO</span>
+  <h3 style="margin:10px 0">Define Your Next Milestone</h3>
+  <form id="goalForm" class="goal-form">
+   <input id="goalName" class="goal-input full" placeholder="Enter your goal..." maxlength="90" required>
+   <select id="goalCategory" class="goal-input">
+    <option value="Study">📚 Study</option>
+    <option value="Skills">💻 Skills</option>
+    <option value="Career">🚀 Career</option>
+    <option value="Personal">🌱 Personal</option>
+   </select>
+   <select id="goalPeriod" class="goal-input">
+    <option value="Daily">Daily</option>
+    <option value="Weekly">Weekly</option>
+    <option value="Monthly">Monthly</option>
+    <option value="Long-term">Long-term</option>
+   </select>
+   <button class="goal-btn full" type="submit">+ Add Goal</button>
+  </form>
+  <p class="goal-muted" style="margin-top:14px">Your goals are saved in this browser.</p>
+ </div>
+
+ <div class="goal-panel">
+  <span class="goal-label">YOUR PROGRESS</span>
+  <h3 style="margin:10px 0">Achievement Overview</h3>
+  <div class="goal-progress-row"><span>Overall Completion</span><strong id="progressLabel">0%</strong></div>
+  <div class="task-progress"><div class="task-progress-fill" id="overallBar" style="width:0%"></div></div>
+  <div class="goal-quote">
+   <span class="goal-label">NEXUS MINDSET</span>
+   <p>Success is built through consistent action. Every small milestone moves you closer to your bigger vision.</p>
+  </div>
+ </div>
+</section>
+
+<div class="goal-heading">
+ <h2>Your Goal Workspace</h2>
+ <select class="goal-filter" id="goalFilter" aria-label="Filter goals">
+  <option value="All">All Goals</option>
+  <option value="Active">Active</option>
+  <option value="Completed">Completed</option>
+ </select>
+</div>
+
+<section class="goal-panel">
+ <div id="goalList" class="goal-list">
+  <div class="empty-state">
+   <i data-lucide="target" size="30"></i>
+   <h3>No goals yet</h3>
+   <p>Create your first goal to start tracking your progress.</p>
+  </div>
+ </div>
+</section>
+
+<footer style="text-align:center;padding:35px 10px;color:#8992aa;font-size:12px">
+ NEXUS PRODUCTIVITY SYSTEM · PLAN. EXECUTE. ACHIEVE.
+</footer>
+</main>
+</div>
+
+<script>
+lucide.createIcons();
+
+const STORAGE_KEY = "nexusGoals";
+let goals = [];
+
+try {
+ const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+ goals = Array.isArray(saved) ? saved.filter(g =>
+  g && typeof g.id === "string" &&
+  typeof g.name === "string" &&
+  typeof g.done === "boolean"
+ ) : [];
+} catch {
+ goals = [];
+}
+
+const form = document.getElementById("goalForm");
+const list = document.getElementById("goalList");
+const filter = document.getElementById("goalFilter");
+
+function saveGoals(){
+ localStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
+}
+
+function addGoal(event){
+ event.preventDefault();
+
+ const name = document.getElementById("goalName").value.trim();
+ const category = document.getElementById("goalCategory").value;
+ const period = document.getElementById("goalPeriod").value;
+
+ if(!name) return;
+
+ goals.unshift({
+  id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+  name, category, period, done:false
+ });
+
+ saveGoals();
+ form.reset();
+ renderGoals();
+}
+
+function toggleGoal(id){
+ goals = goals.map(g => g.id === id ? {...g,done:!g.done} : g);
+ saveGoals();
+ renderGoals();
+}
+
+function deleteGoal(id){
+ if(!confirm("Delete this goal?")) return;
+ goals = goals.filter(g => g.id !== id);
+ saveGoals();
+ renderGoals();
+}
+
+function renderGoals(){
+ const total = goals.length;
+ const completed = goals.filter(g=>g.done).length;
+ const active = total - completed;
+ const rate = total ? Math.round(completed/total*100) : 0;
+
+ document.getElementById("totalGoals").textContent = total;
+ document.getElementById("completedGoals").textContent = completed;
+ document.getElementById("activeGoals").textContent = active;
+ document.getElementById("completionRate").textContent = rate+"%";
+ document.getElementById("progressLabel").textContent = rate+"%";
+ document.getElementById("overallBar").style.width = rate+"%";
+
+ const currentFilter = filter.value;
+ const visible = goals.filter(g =>
+  currentFilter === "All" ||
+  (currentFilter === "Active" && !g.done) ||
+  (currentFilter === "Completed" && g.done)
+ );
+
+ if(!visible.length){
+  list.innerHTML = `<div class="empty-state">
+   <h3>${total ? "Nothing here yet" : "No goals yet"}</h3>
+   <p>${total ? "Try another filter." : "Create your first goal to start tracking your progress."}</p>
+  </div>`;
+  return;
+ }
+
+ list.innerHTML = visible.map(g => `
+  <article class="goal-task ${g.done ? "done" : ""}">
+   <input class="task-check" type="checkbox"
+    aria-label="Mark ${escapeHTML(g.name)} completed"
+    ${g.done ? "checked" : ""}
+    onchange="toggleGoal('${g.id}')">
+   <div class="task-info">
+    <div class="task-name">${escapeHTML(g.name)}</div>
+    <div class="task-sub">${escapeHTML(g.category)} · ${escapeHTML(g.period)} Goal · ${g.done ? "Completed" : "In Progress"}</div>
+   </div>
+   <button class="task-delete" aria-label="Delete goal"
+    onclick="deleteGoal('${g.id}')"><i data-lucide="trash-2"></i></button>
+  </article>
+ `).join("");
+
+ lucide.createIcons();
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+form.addEventListener("submit",addGoal);
+filter.addEventListener("change",renderGoals);
+renderGoals();
+</script>
+</body>
+</html>

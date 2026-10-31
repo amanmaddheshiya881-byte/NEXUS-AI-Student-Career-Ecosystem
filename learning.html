@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS | 3D Learning Hub</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ===== LEARNING HUB 3D DESIGN ===== */
+
+.learning-page {
+    padding-bottom: 60px;
+    perspective: 1200px;
+    overflow-x: hidden;
+}
+
+.learning-page * {
+    box-sizing: border-box;
+}
+
+.learning-hero {
+    min-height: 330px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 45px;
+    border-radius: 28px;
+    border: 1px solid #9272ff55;
+    background:
+      radial-gradient(circle at 80% 30%,#7145e855,transparent 35%),
+      radial-gradient(circle at 20% 100%,#168bc455,transparent 40%),
+      linear-gradient(120deg,#11152e,#1b2050,#102c48);
+    box-shadow: 0 25px 65px #05081688,
+                inset 0 1px 1px #ffffff22;
+    margin-bottom: 32px;
+}
+
+.learning-hero::before,
+.learning-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+.learning-hero::before {
+    width: 300px;
+    height: 300px;
+    right: 5%;
+    top: -140px;
+    background: #8b5cf633;
+    animation: floatGlow 7s ease-in-out infinite;
+}
+
+.learning-hero::after {
+    width: 220px;
+    height: 220px;
+    left: 40%;
+    bottom: -150px;
+    background: #06b6d433;
+}
+
+.hero-content {
+    max-width: 590px;
+    z-index: 2;
+}
+
+.eyebrow {
+    color: #b9a4ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.learning-hero h1 {
+    font-size: clamp(30px,4vw,48px);
+    line-height: 1.15;
+    margin: 18px 0;
+    color: white;
+}
+
+.learning-hero h1 span {
+    background: linear-gradient(90deg,#b69aff,#65d9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.learning-hero p {
+    color: #bdc7e1;
+    line-height: 1.8;
+    max-width: 520px;
+}
+
+.primary-btn {
+    border: 0;
+    border-radius: 12px;
+    padding: 14px 21px;
+    color: white;
+    background: linear-gradient(110deg,#8755ed,#397eea);
+    box-shadow: 0 8px 25px #7355e955;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 13px 30px #7355e977;
+}
+
+/* 3D floating illustration */
+
+.hero-visual {
+    width: 260px;
+    height: 230px;
+    flex-shrink: 0;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transform-style: preserve-3d;
+    animation: heroFloat 5s ease-in-out infinite;
+}
+
+.hero-orbit {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border: 1px solid #a78bfa66;
+    border-radius: 50%;
+    transform: rotateX(65deg) rotateZ(-20deg);
+    box-shadow: 0 0 30px #8b5cf633;
+}
+
+.hero-orbit.two {
+    width: 170px;
+    height: 170px;
+    border-color: #38bdf866;
+    transform: rotateX(65deg) rotateZ(35deg);
+}
+
+.hero-book {
+    width: 115px;
+    height: 145px;
+    border-radius: 10px 18px 18px 10px;
+    background: linear-gradient(135deg,#a78bfa,#5535b9 70%);
+    box-shadow: 12px 15px 0 #30205f,
+                18px 22px 30px #0008,
+                inset 4px 0 5px #ffffff55;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    transform: rotateY(-22deg) rotateX(8deg);
+    z-index: 2;
+}
+
+.hero-book i {
+    width: 38px;
+    height: 38px;
+}
+
+.hero-book strong {
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.floating-icon {
+    position: absolute;
+    width: 53px;
+    height: 53px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #ffffff33;
+    border-radius: 15px;
+    color: white;
+    background: linear-gradient(145deg,#ffffff25,#ffffff08);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 25px #0006;
+    animation: iconFloat 4s ease-in-out infinite;
+}
+
+.floating-icon.one {
+    top: 15px;
+    right: 10px;
+    color: #67e8f9;
+}
+
+.floating-icon.two {
+    bottom: 15px;
+    left: 8px;
+    color: #c4b5fd;
+    animation-delay: 1s;
+}
+
+.floating-icon.three {
+    top: 55px;
+    left: 0;
+    color: #fbbf24;
+    animation-delay: 2s;
+}
+
+@keyframes heroFloat {
+    0%,100% { transform: translateY(0) rotateY(-5deg); }
+    50% { transform: translateY(-13px) rotateY(5deg); }
+}
+
+@keyframes iconFloat {
+    0%,100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-12px) rotate(8deg); }
+}
+
+@keyframes floatGlow {
+    0%,100% { transform: translate(0,0); }
+    50% { transform: translate(-25px,25px); }
+}
+
+/* Stats */
+
+.learning-stats {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 19px;
+    margin-bottom: 40px;
+}
+
+.learning-card,
+.course-card,
+.subject-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg,#ffffff0d,#ffffff04);
+    border: 1px solid #ffffff14;
+    border-radius: 20px;
+    padding: 23px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 12px 30px #0003,
+                inset 0 1px 0 #ffffff0c;
+}
+
+.learning-card {
+    transition: transform .35s, border-color .35s;
+}
+
+.learning-card:hover {
+    transform: translateY(-7px) rotateX(3deg);
+    border-color: #9775ff88;
+}
+
+.stat-icon {
+    width: 47px;
+    height: 47px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    color: #c4b5fd;
+    background: linear-gradient(135deg,#8b5cf633,#38bdf822);
+    box-shadow: 0 6px 18px #8b5cf622;
+    margin-bottom: 17px;
+}
+
+.stat-icon i {
+    width: 22px;
+    height: 22px;
+}
+
+.learning-card h2 {
+    font-size: 28px;
+    margin: 7px 0;
+    color: white;
+}
+
+.muted {
+    color: #a7b1ca;
+    font-size: 13px;
+}
+
+/* Sections */
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 38px 0 20px;
+}
+
+.section-heading h2 {
+    color: white;
+    font-size: 22px;
+    margin: 0;
+}
+
+/* Course cards */
+
+.course-grid,
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 22px;
+}
+
+.course-card {
+    transform-style: preserve-3d;
+    transition: transform .25s ease, border-color .3s, box-shadow .3s;
+    will-change: transform;
+}
+
+.course-card:hover {
+    border-color: #8b5cf688;
+    box-shadow: 0 25px 45px #0005,0 0 25px #8b5cf622;
+}
+
+.course-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-icon {
+    width: 53px;
+    height: 53px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    background: linear-gradient(145deg,#8b5cf633,#38bdf822);
+    box-shadow: 0 8px 20px #0003;
+}
+
+.course-tag {
+    color: #c4b5fd;
+    background: #8b5cf622;
+    border: 1px solid #8b5cf644;
+    border-radius: 30px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.course-card h3,
+.subject-card h3 {
+    color: white;
+    margin: 19px 0 8px;
+    font-size: 18px;
+}
+
+.progress-track {
+    height: 8px;
+    background: #ffffff13;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 18px 0 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg,#a78bfa,#38bdf8);
+    box-shadow: 0 0 12px #8b5cf688;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: #aab0c5;
+    font-size: 12px;
+}
+
+.course-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    margin-top: 16px;
+    color: white;
+    border: 1px solid #9a80ff55;
+    border-radius: 10px;
+    background: #8057e522;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.course-button:hover {
+    background: #8057e555;
+    transform: translateY(-2px);
+}
+
+/* Subjects */
+
+.subject-card {
+    transition: transform .3s,border-color .3s;
+}
+
+.subject-card:hover {
+    transform: translateY(-7px) rotateX(3deg);
+    border-color: #38bdf877;
+}
+
+.subject-card p {
+    color: #aab0c5;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+/* Goal panel */
+
+.goal-panel {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.goal-number {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 12px 0;
+    color: #c4b5fd;
+}
+
+.goal-tip {
+    color: #c1c6d9;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+/* Mobile */
+
+@media(max-width:950px) {
+    .learning-stats {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media(max-width:650px) {
+    .learning-hero {
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-visual {
+        align-self: center;
+        transform: scale(.85);
+        margin-top: 5px;
+    }
+
+    .course-grid,
+    .subject-grid,
+    .goal-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .learning-stats {
+        gap: 12px;
+    }
+
+    .learning-card {
+        padding: 17px;
+    }
+
+    .section-heading h2 {
+        font-size: 18px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+    <div class="brand">
+        <span class="brand-icon">N</span>
+        <span>NEXUS</span>
+    </div>
+
+    <div class="nav-menu">
+        <p class="muted">MAIN MENU</p>
+        <a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="profile.html" class="nav-link"><i data-lucide="user-round"></i> My Profile</a>
+        <a href="learning.html" class="nav-link active"><i data-lucide="book-open"></i> Learning Hub</a>
+        <a href="career.html" class="nav-link"><i data-lucide="brain"></i> AI Career Guide</a>
+        <a href="analytics.html" class="nav-link"><i data-lucide="chart-no-axes-combined"></i> Analytics</a>
+        <a href="goals.html" class="nav-link"><i data-lucide="target"></i> My Goals</a>
+        <a href="projects.html" class="nav-link"><i data-lucide="folder-kanban"></i> Projects</a>
+    </div>
+
+    <div class="sidebar-bottom">
+        <a href="index.html" class="nav-link"><i data-lucide="arrow-left"></i> Back to Dashboard</a>
+    </div>
+</aside>
+
+<main class="main-content learning-page">
+
+<header class="topbar">
+    <div>
+        <p class="muted">NEXUS / LEARNING</p>
+        <h2>Learning Hub</h2>
+    </div>
+    <span class="muted">Your learning space ✨</span>
+</header>
+
+<!-- HERO -->
+<section class="learning-hero">
+
+    <div class="hero-content">
+        <span class="eyebrow">✦ YOUR FUTURE STARTS HERE</span>
+        <h1>Learn. Practice.<br><span>Grow Beyond Limits.</span></h1>
+        <p>Explore new subjects, develop powerful skills and build your future with an intelligent learning experience.</p>
+
+        <button class="primary-btn" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+            Explore Courses →
+        </button>
+    </div>
+
+    <div class="hero-visual">
+        <div class="hero-orbit"></div>
+        <div class="hero-orbit two"></div>
+
+        <div class="hero-book">
+            <i data-lucide="book-open"></i>
+            <strong>LEARN</strong>
+        </div>
+
+        <div class="floating-icon one"><i data-lucide="brain-circuit"></i></div>
+        <div class="floating-icon two"><i data-lucide="graduation-cap"></i></div>
+        <div class="floating-icon three"><i data-lucide="sparkles"></i></div>
+    </div>
+
+</section>
+
+<!-- STATS -->
+<section class="learning-stats">
+
+    <div class="learning-card">
+        <div class="stat-icon"><i data-lucide="book-open"></i></div>
+        <p class="muted">My Courses</p>
+        <h2>04</h2>
+        <span class="muted">Learning tracks</span>
+    </div>
+
+    <div class="learning-card">
+        <div class="stat-icon"><i data-lucide="clock"></i></div>
+        <p class="muted">Study Hours</p>
+        <h2>00</h2>
+        <span class="muted">Hours recorded</span>
+    </div>
+
+    <div class="learning-card">
+        <div class="stat-icon"><i data-lucide="trophy"></i></div>
+        <p class="muted">Completed</p>
+        <h2>00</h2>
+        <span class="muted">Courses completed</span>
+    </div>
+
+    <div class="learning-card">
+        <div class="stat-icon"><i data-lucide="flame"></i></div>
+        <p class="muted">Study Streak</p>
+        <h2>00</h2>
+        <span class="muted">Days in a row</span>
+    </div>
+
+</section>
+
+<!-- COURSES -->
+<div class="section-heading" id="courses">
+    <h2>Continue Learning 🚀</h2>
+    <span class="muted">Your learning tracks</span>
+</div>
+
+<section class="course-grid">
+
+    <article class="course-card">
+        <div class="course-top">
+            <div class="course-icon">💻</div>
+            <span class="course-tag">BCA</span>
+        </div>
+        <h3>C Programming</h3>
+        <p class="muted">Build programming fundamentals and logical thinking.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="course-meta"><span>Not started</span><span>0%</span></div>
+        <button class="course-button" onclick="openCourse('C Programming')">Start Learning →</button>
+    </article>
+
+    <article class="course-card">
+        <div class="course-top">
+            <div class="course-icon">🐍</div>
+            <span class="course-tag">CODING</span>
+        </div>
+        <h3>Python Programming</h3>
+        <p class="muted">Explore Python, data types and problem solving.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="course-meta"><span>Not started</span><span>0%</span></div>
+        <button class="course-button" onclick="openCourse('Python Programming')">Start Learning →</button>
+    </article>
+
+    <article class="course-card">
+        <div class="course-top">
+            <div class="course-icon">🗄️</div>
+            <span class="course-tag">DATABASE</span>
+        </div>
+        <h3>DBMS Fundamentals</h3>
+        <p class="muted">Understand databases and data management.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="course-meta"><span>Not started</span><span>0%</span></div>
+        <button class="course-button" onclick="openCourse('DBMS Fundamentals')">Start Learning →</button>
+    </article>
+
+    <article class="course-card">
+        <div class="course-top">
+            <div class="course-icon">🌐</div>
+            <span class="course-tag">WEB</span>
+        </div>
+        <h3>Web Development</h3>
+        <p class="muted">Master HTML, CSS and JavaScript fundamentals.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="course-meta"><span>Not started</span><span>0%</span></div>
+        <button class="course-button" onclick="openCourse('Web Development')">Start Learning →</button>
+    </article>
+
+</section>
+
+<!-- SUBJECTS -->
+<div class="section-heading">
+    <h2>Explore Subjects 📚</h2>
+    <span class="muted">Expand your knowledge</span>
+</div>
+
+<section class="subject-grid">
+
+    <article class="subject-card">
+        <div class="course-icon">📐</div>
+        <h3>Mathematics</h3>
+        <p>Practice mathematical concepts, formulas and problem solving.</p>
+        <button class="course-button" onclick="showSubject('Mathematics')">Explore Subject →</button>
+    </article>
+
+    <article class="subject-card">
+        <div class="course-icon">⚙️</div>
+        <h3>Operating Systems</h3>
+        <p>Learn processes, memory management and OS concepts.</p>
+        <button class="course-button" onclick="showSubject('Operating Systems')">Explore Subject →</button>
+    </article>
+
+    <article class="subject-card">
+        <div class="course-icon">📊</div>
+        <h3>Management</h3>
+        <p>Understand planning, organizing and management principles.</p>
+        <button class="course-button" onclick="showSubject('Management')">Explore Subject →</button>
+    </article>
+
+    <article class="subject-card">
+        <div class="course-icon">🧠</div>
+        <h3>Computer Fundamentals</h3>
+        <p>Discover computer systems, hardware and software basics.</p>
+        <button class="course-button" onclick="showSubject('Computer Fundamentals')">Explore Subject →</button>
+    </article>
+
+</section>
+
+<!-- GOALS -->
+<section class="goal-panel">
+
+    <div class="learning-card">
+        <span class="eyebrow">✦ DAILY CONSISTENCY</span>
+        <h2>Today's Study Goal 🎯</h2>
+        <div class="goal-number">2 Hours</div>
+        <p class="goal-tip">Create a focused study routine. Small steps every day can lead to big achievements.</p>
+    </div>
+
+    <div class="learning-card">
+        <span class="eyebrow">✦ LEARNING MINDSET</span>
+        <h2>Keep Growing 🚀</h2>
+        <p class="goal-tip">Stay curious, practice regularly and keep building your skills. Your future is shaped by what you learn today.</p>
+    </div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+lucide.createIcons();
+
+function openCourse(course) {
+    alert(course + " course selected! Course lessons will be added in the next development step.");
+}
+
+function showSubject(subject) {
+    alert(subject + " selected! Learning materials will be added in the next development step.");
+}
+
+/* Mouse based 3D tilt */
+const cards = document.querySelectorAll(".course-card");
+
+cards.forEach(card => {
+    card.addEventListener("mousemove", event => {
+        if (window.matchMedia("(max-width: 650px)").matches) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const rotateY = ((x / rect.width) - 0.5) * 9;
+        const rotateX = ((0.5 - y / rect.height)) * 9;
+
+        card.style.transform =
+            `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings & Personalization | NEXUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+--bg:#080d18;--panel:#101827;--panel2:#141f31;--text:#edf3ff;
+--muted:#91a0b7;--border:rgba(148,163,184,.15);
+--blue:#658cff;--cyan:#35d5e8;--green:#35d69a;--red:#ff7180;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:.25s}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{width:245px;position:fixed;inset:0 auto 0 0;background:#0b1220;border-right:1px solid var(--border);padding:28px 17px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;padding:0 12px 35px}
+.brand-icon{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#648bff,#36d5e8);display:grid;place-items:center;font-weight:800;font-size:20px}
+.brand h2{font-size:19px;letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:4px}
+.nav-label{font-size:10px;color:#65748c;font-weight:700;letter-spacing:1.5px;padding:12px}
+.nav-link{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#9eabc0;text-decoration:none;border-radius:10px;font-size:13px;margin:3px 0;transition:.2s}
+.nav-link:hover,.nav-link.active{background:rgba(101,140,255,.14);color:white}
+.nav-link.active{border:1px solid rgba(101,140,255,.2)}
+.nav-link i{width:17px}
+.sidebar-bottom{margin-top:auto;padding:15px 12px;border-top:1px solid var(--border);color:var(--muted);font-size:11px;line-height:1.8}
+.main{margin-left:245px;width:calc(100% - 245px);padding:35px 42px 60px;max-width:1500px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.breadcrumb span{color:var(--text)}
+.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#648bff,#35d5e8);font-weight:800}
+.hero{padding:30px;border:1px solid var(--border);border-radius:18px;background:radial-gradient(ellipse at 85% 10%,rgba(62,119,255,.2),transparent 40%),linear-gradient(130deg,#121e32,#101827);margin-bottom:25px}
+.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:13px}
+.hero h1{font-size:clamp(27px,4vw,36px);letter-spacing:-1px;margin-bottom:10px}
+.hero p{font-size:12px;line-height:1.8;color:#a4b2c8;max-width:650px}
+.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:19px;align-items:start}
+.settings-nav,.content-card{background:var(--panel);border:1px solid var(--border);border-radius:14px}
+.settings-nav{padding:12px;position:sticky;top:20px}
+.settings-tab{width:100%;border:0;background:transparent;color:#9eabc0;padding:13px 12px;border-radius:8px;text-align:left;display:flex;align-items:center;gap:11px;font-size:11px;margin:2px 0}
+.settings-tab i{width:16px}
+.settings-tab:hover,.settings-tab.active{background:rgba(101,140,255,.14);color:white}
+.settings-content{min-width:0}
+.panel-section{display:none}
+.panel-section.active{display:block}
+.content-card{padding:23px;margin-bottom:17px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.card-head h2{font-size:16px}
+.card-head p{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.6}
+.section-icon{width:37px;height:37px;border-radius:10px;background:rgba(101,140,255,.13);display:grid;place-items:center;color:#91adff;flex-shrink:0}
+.section-icon i{width:18px}
+.field{margin-bottom:17px}
+.field label{display:block;font-size:11px;color:#b8c4d7;margin-bottom:8px;font-weight:600}
+.field input,.field select{width:100%;padding:12px;background:#0b1423;border:1px solid var(--border);border-radius:8px;color:white;outline:none;font-size:12px}
+.field input:focus,.field select:focus{border-color:var(--blue)}
+.field small{display:block;color:var(--muted);font-size:10px;margin-top:7px;line-height:1.6}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.preference{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid var(--border)}
+.preference:last-child{border-bottom:0}
+.preference strong{font-size:12px;display:block;margin-bottom:5px}
+.preference p{font-size:10px;color:var(--muted);line-height:1.6}
+.toggle{width:42px;height:23px;border-radius:20px;background:#334155;position:relative;border:0;flex-shrink:0;transition:.2s}
+.toggle:after{content:"";position:absolute;left:3px;top:3px;width:17px;height:17px;border-radius:50%;background:white;transition:.2s}
+.toggle.on{background:#648bff}
+.toggle.on:after{left:22px}
+.theme-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.theme-option{padding:15px;border:1px solid var(--border);border-radius:10px;background:transparent;color:white;text-align:left}
+.theme-option.selected{border-color:#668bff;background:rgba(101,140,255,.09)}
+.theme-preview{height:65px;border-radius:7px;margin-bottom:10px;display:flex;gap:5px;padding:8px}
+.theme-preview.dark{background:#0a1220}
+.theme-preview.light{background:#e8edf5}
+.theme-preview span{border-radius:4px;background:#233653;flex:1}
+.theme-preview.light span{background:#fff}
+.theme-option strong{font-size:11px}
+.theme-option small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
+.primary-btn{border:0;background:linear-gradient(110deg,#668bff,#438be9);color:white;padding:11px 17px;border-radius:8px;font-size:11px;font-weight:700}
+.secondary-btn{padding:10px 15px;border:1px solid var(--border);border-radius:8px;background:transparent;color:#b8c4d7;font-size:11px}
+.danger-btn{padding:10px 15px;border:1px solid rgba(255,113,128,.3);border-radius:8px;background:rgba(255,113,128,.08);color:#ff8995;font-size:11px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.info-box{padding:14px;border:1px solid rgba(101,140,255,.2);background:rgba(101,140,255,.07);border-radius:9px;color:#a9bcde;font-size:10px;line-height:1.7;margin-top:15px}
+.danger-zone{border-color:rgba(255,113,128,.25)}
+.footer{text-align:center;margin-top:35px;padding-top:20px;border-top:1px solid var(--border);color:#697991;font-size:10px}
+body.light-mode{--bg:#edf2fa;--panel:#fff;--panel2:#f3f6fc;--text:#172338;--muted:#63728a;--border:rgba(31,50,80,.15)}
+body.light-mode .sidebar{background:#fff}
+body.light-mode .hero{background:linear-gradient(130deg,#e0eaff,#f5f8ff)}
+body.light-mode .hero p{color:#566780}
+body.light-mode .settings-tab{color:#53637c}
+body.light-mode .settings-tab.active{color:#254a9d}
+body.light-mode .field input,body.light-mode .field select{background:#f6f8fc;color:#172338}
+body.light-mode .theme-option{color:#172338}
+@media(max-width:900px){.main{padding:25px}.layout{grid-template-columns:190px minmax(0,1fr)}}
+@media(max-width:700px){.sidebar{width:65px;padding:20px 8px}.brand{padding:0 5px 30px}.brand h2,.brand small,.nav-label,.nav-link span,.sidebar-bottom{display:none}.brand-icon{width:42px}.nav-link{justify-content:center;padding:13px 8px}.main{margin-left:65px;width:calc(100% - 65px);padding:20px 13px}.layout{grid-template-columns:1fr}.settings-nav{position:static;display:flex;overflow-x:auto;gap:4px}.settings-tab{white-space:nowrap;width:auto;flex-shrink:0}.two-col{grid-template-columns:1fr}.content-card{padding:17px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brand-icon">N</div><div><h2>NEXUS</h2><small>STUDENT ECOSYSTEM</small></div></div>
+<div class="nav-label">WORKSPACE</div>
+<a class="nav-link" href="index.html"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
+<a class="nav-link" href="profile.html"><i data-lucide="user-round"></i><span>My Profile</span></a>
+<a class="nav-link" href="learning.html"><i data-lucide="book-open"></i><span>Learning Hub</span></a>
+<a class="nav-link" href="career.html"><i data-lucide="compass"></i><span>AI Career Guide</span></a>
+<a class="nav-link" href="analytics.html"><i data-lucide="chart-no-axes-combined"></i><span>Analytics</span></a>
+<a class="nav-link" href="goals.html"><i data-lucide="target"></i><span>My Goals</span></a>
+<a class="nav-link" href="projects.html"><i data-lucide="folder-kanban"></i><span>Projects</span></a>
+<a class="nav-link active" href="settings.html"><i data-lucide="settings"></i><span>Settings</span></a>
+<div class="sidebar-bottom">NEXUS Workspace<br>Build • Learn • Create</div>
+</aside>
+
+<main class="main">
+<div class="topbar">
+<div class="breadcrumb">Workspace / <span>Settings</span></div>
+<div class="avatar">A</div>
+</div>
+
+<section class="hero">
+<div class="eyebrow">✦ PERSONAL CONTROL CENTER</div>
+<h1>Settings & Personalization<span style="color:#6f9aff">.</span></h1>
+<p>Make NEXUS your own. Customize your workspace, manage preferences, and control how your learning ecosystem works.</p>
+</section>
+
+<div class="layout">
+<nav class="settings-nav">
+<button class="settings-tab active" data-tab="account"><i data-lucide="user-round"></i> Account</button>
+<button class="settings-tab" data-tab="appearance"><i data-lucide="palette"></i> Appearance</button>
+<button class="settings-tab" data-tab="notifications"><i data-lucide="bell"></i> Notifications</button>
+<button class="settings-tab" data-tab="language"><i data-lucide="languages"></i> Language</button>
+<button class="settings-tab" data-tab="privacy"><i data-lucide="shield-check"></i> Privacy & Security</button>
+</nav>
+
+<div class="settings-content">
+
+<section class="panel-section active" id="account">
+<div class="content-card">
+<div class="card-head"><div><h2>Account Information</h2><p>Manage your personal workspace details.</p></div><div class="section-icon"><i data-lucide="user-round"></i></div></div>
+<div class="two-col">
+<div class="field"><label for="displayName">Display Name</label><input id="displayName" maxlength="50" placeholder="Your name"></div>
+<div class="field"><label for="displayEmail">Email Address</label><input id="displayEmail" type="email" maxlength="100" placeholder="Your email"></div>
+</div>
+<div class="field"><label for="displayCourse">Course / Program</label><input id="displayCourse" maxlength="70" placeholder="e.g. BCA"></div>
+<div class="actions"><button class="primary-btn" id="saveAccount">Save Changes</button></div>
+</div>
+<div class="content-card">
+<div class="card-head"><div><h2>Workspace Identity</h2><p>Your personal NEXUS workspace.</p></div><div class="section-icon"><i data-lucide="fingerprint"></i></div></div>
+<div class="preference"><div><strong>Workspace</strong><p>NEXUS Student Ecosystem</p></div><span style="font-size:10px;color:#35d69a">Active</span></div>
+<div class="preference"><div><strong>Account Type</strong><p>Personal learning workspace</p></div><span style="font-size:10px;color:#91a0b7">Local Demo</span></div>
+</div>
+</section>
+
+<section class="panel-section" id="appearance">
+<div class="content-card">
+<div class="card-head"><div><h2>Appearance & Theme</h2><p>Choose the look that feels right for your workspace.</p></div><div class="section-icon"><i data-lucide="palette"></i></div></div>
+<div class="theme-options">
+<button class="theme-option selected" data-theme="dark"><div class="theme-preview dark"><span></span><span></span><span></span></div><strong>Dark Mode</strong><small>Focused, modern interface</small></button>
+<button class="theme-option" data-theme="light"><div class="theme-preview light"><span></span><span></span><span></span></div><strong>Light Mode</strong><small>Bright, clean interface</small></button>
+</div>
+</div>
+<div class="content-card">
+<div class="card-head"><div><h2>Interface Preferences</h2><p>Adjust small details of your experience.</p></div><div class="section-icon"><i data-lucide="sliders-horizontal"></i></div></div>
+<div class="preference"><div><strong>Compact Layout</strong><p>Keep interface spacing comfortable and minimal.</p></div><button class="toggle" data-setting="compact" aria-label="Compact layout"></button></div>
+<div class="preference"><div><strong>Animations</strong><p>Enable interface transition effects.</p></div><button class="toggle on" data-setting="animations" aria-label="Animations"></button></div>
+</div>
+</section>
+
+<section class="panel-section" id="notifications">
+<div class="content-card">
+<div class="card-head"><div><h2>Notification Preferences</h2><p>Choose which reminders you want to see.</p></div><div class="section-icon"><i data-lucide="bell"></i></div></div>
+<div class="preference"><div><strong>Study Reminders</strong><p>Reminders for your learning sessions.</p></div><button class="toggle on" data-setting="study" aria-label="Study reminders"></button></div>
+<div class="preference"><div><strong>Goal Updates</strong><p>Updates about your goal progress.</p></div><button class="toggle on" data-setting="goals" aria-label="Goal updates"></button></div>
+<div class="preference"><div><strong>Career Updates</strong><p>Reminders about your career planning.</p></div><button class="toggle" data-setting="career" aria-label="Career updates"></button></div>
+<div class="preference"><div><strong>Product Announcements</strong><p>News about workspace features.</p></div><button class="toggle" data-setting="announcements" aria-label="Product announcements"></button></div>
+<div class="info-box">These preferences are saved locally. This demo does not send real push notifications or emails.</div>
+</div>
+</section>
+
+<section class="panel-section" id="language">
+<div class="content-card">
+<div class="card-head"><div><h2>Language & Region</h2><p>Choose your preferred display language.</p></div><div class="section-icon"><i data-lucide="languages"></i></div></div>
+<div class="field"><label for="languageSelect">Preferred Language</label><select id="languageSelect"><option value="English">English</option><option value="Hindi">Hindi</option></select><small>Language preference is saved locally. Full translation of every page is not included yet.</small></div>
+<div class="field"><label for="regionSelect">Region</label><select id="regionSelect"><option value="India">India</option><option value="Other">Other</option></select></div>
+<div class="actions"><button class="primary-btn" id="saveLanguage">Save Preferences</button></div>
+</div>
+</section>
+
+<section class="panel-section" id="privacy">
+<div class="content-card">
+<div class="card-head"><div><h2>Privacy & Data</h2><p>Understand how this demo stores your preferences.</p></div><div class="section-icon"><i data-lucide="shield-check"></i></div></div>
+<div class="preference"><div><strong>Local Data Storage</strong><p>Preferences are stored in this browser using localStorage.</p></div><span style="color:#35d69a;font-size:10px">Enabled</span></div>
+<div class="preference"><div><strong>Cloud Synchronization</strong><p>No cloud account or remote synchronization is connected.</p></div><span style="color:#ffb45e;font-size:10px">Not connected</span></div>
+<div class="info-box">Do not store passwords, banking details, or other sensitive information in this demo. These settings are not an authentication or security system.</div>
+</div>
+<div class="content-card danger-zone">
+<div class="card-head"><div><h2>Reset Preferences</h2><p>Restore this page's settings to their original defaults.</p></div><div class="section-icon" style="color:#ff8995;background:rgba(255,113,128,.1)"><i data-lucide="refresh-ccw"></i></div></div>
+<button class="danger-btn" id="resetSettings">Reset Preferences</button>
+</div>
+</section>
+
+</div>
+</div>
+<div class="footer">NEXUS © 2026 · Your workspace. Your preferences. Your journey.</div>
+</main>
+</div>
+
+<script>
+const KEY = "nexusSettings";
+const defaults = {
+name:"",email:"",course:"",theme:"dark",
+compact:false,animations:true,
+study:true,goals:true,career:false,announcements:false,
+language:"English",region:"India"
+};
+let settings = {...defaults};
+
+function loadSettings(){
+ try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"{}");
+ if(saved && typeof saved==="object" && !Array.isArray(saved)) settings={...defaults,...saved};
+ }catch{settings={...defaults};}
+}
+function saveSettings(){
+ try{
+ localStorage.setItem(KEY,JSON.stringify(settings));
+ return true;
+ }catch{
+ alert("Could not save settings. Please check browser storage.");
+ return false;
+ }
+}
+function applySettings(){
+ document.body.classList.toggle("light-mode",settings.theme==="light");
+ document.querySelectorAll(".theme-option").forEach(btn=>btn.classList.toggle("selected",btn.dataset.theme===settings.theme));
+ document.querySelectorAll(".toggle").forEach(btn=>btn.classList.toggle("on",!!settings[btn.dataset.setting]));
+ document.body.classList.toggle("compact-mode",!!settings.compact);
+ document.body.classList.toggle("no-animations",!settings.animations);
+}
+function fillFields(){
+ document.getElementById("displayName").value=settings.name;
+ document.getElementById("displayEmail").value=settings.email;
+ document.getElementById("displayCourse").value=settings.course;
+ document.getElementById("languageSelect").value=settings.language;
+ document.getElementById("regionSelect").value=settings.region;
+ applySettings();
+}
+document.querySelectorAll(".settings-tab").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  document.querySelectorAll(".settings-tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".panel-section").forEach(s=>s.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById(btn.dataset.tab).classList.add("active");
+ });
+});
+document.getElementById("saveAccount").addEventListener("click",()=>{
+ const email=document.getElementById("displayEmail").value.trim();
+ if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+  alert("Please enter a valid email address.");return;
+ }
+ settings.name=document.getElementById("displayName").value.trim();
+ settings.email=email;
+ settings.course=document.getElementById("displayCourse").value.trim();
+ if(saveSettings()) alert("Account preferences saved successfully!");
+});
+document.querySelectorAll(".theme-option").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  settings.theme=btn.dataset.theme;
+  if(saveSettings()) applySettings();
+ });
+});
+document.querySelectorAll(".toggle").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  const key=btn.dataset.setting;
+  settings[key]=!settings[key];
+  if(saveSettings()) applySettings();
+ });
+});
+document.getElementById("saveLanguage").addEventListener("click",()=>{
+ settings.language=document.getElementById("languageSelect").value;
+ settings.region=document.getElementById("regionSelect").value;
+ if(saveSettings()) alert("Language preferences saved!");
+});
+document.getElementById("resetSettings").addEventListener("click",()=>{
+ if(confirm("Reset all NEXUS settings to default?")){
+  settings={...defaults};
+  if(saveSettings()) fillFields();
+ }
+});
+loadSettings();
+fillFields();
+if(window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>

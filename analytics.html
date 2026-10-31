@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS | Analytics Intelligence</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+.analytics-page{padding-bottom:40px}
+.analytics-hero{
+ padding:32px;border-radius:23px;margin-bottom:25px;
+ background:linear-gradient(115deg,#201644,#172b4d,#123d4a);
+ border:1px solid #9272ef55;position:relative;overflow:hidden
+}
+.analytics-hero:after{
+ content:"";position:absolute;width:260px;height:260px;
+ right:5%;top:-150px;background:#805bff;
+ filter:blur(90px);opacity:.3;border-radius:50%
+}
+.analytics-label{color:#b9a3ff;font-size:11px;font-weight:800;letter-spacing:2px}
+.analytics-hero h1{font-size:clamp(27px,4vw,40px);margin:13px 0}
+.analytics-hero p{color:#c2c9dc;line-height:1.7;max-width:650px}
+.analytics-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:16px;margin:22px 0
+}
+.metric-card,.analytics-panel{
+ padding:21px;border:1px solid #ffffff16;
+ border-radius:18px;background:#ffffff08;
+ backdrop-filter:blur(12px)
+}
+.metric-icon{
+ width:43px;height:43px;border-radius:13px;
+ display:grid;place-items:center;background:#9065f522;
+ color:#c3aaff;margin-bottom:14px
+}
+.metric-card h2{font-size:28px;margin:6px 0}
+.metric-muted{color:#a3abc1;font-size:13px}
+.analytics-section{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:12px;margin:29px 0 16px
+}
+.analytics-section h2{font-size:21px;margin:0}
+.analytics-columns{
+ display:grid;grid-template-columns:1.35fr 1fr;gap:17px
+}
+.analytics-panel h3{margin:0 0 7px}
+.chart-wrap{height:260px;position:relative;margin-top:20px}
+.chart-wrap.small{height:230px}
+.analytics-bottom{
+ display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:18px
+}
+.activity-row{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:14px 0;border-bottom:1px solid #ffffff12;
+ font-size:13px
+}
+.activity-dot{
+ width:9px;height:9px;border-radius:50%;
+ background:#a58aff;display:inline-block;margin-right:9px
+}
+.goal-item{margin:19px 0}
+.goal-heading{display:flex;justify-content:space-between;font-size:13px;margin-bottom:9px}
+.goal-track{height:8px;border-radius:20px;background:#ffffff14;overflow:hidden}
+.goal-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#8b5cf6,#42cde4)}
+.insight-card{
+ margin-top:20px;padding:22px;border-radius:18px;
+ background:linear-gradient(120deg,#35245f55,#16435a55);
+ border:1px solid #8f76ed44
+}
+.insight-card p{color:#bbc4d8;line-height:1.7;font-size:13px}
+@media(max-width:750px){
+ .analytics-columns,.analytics-bottom{grid-template-columns:1fr}
+ .analytics-hero{padding:24px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><span class="brand-icon">N</span><span>NEXUS</span></div>
+ <div class="nav-menu">
+  <p class="metric-muted">MAIN MENU</p>
+  <a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+  <a href="profile.html" class="nav-link"><i data-lucide="user-round"></i> My Profile</a>
+  <a href="learning.html" class="nav-link"><i data-lucide="book-open"></i> Learning Hub</a>
+  <a href="career.html" class="nav-link"><i data-lucide="brain-circuit"></i> AI Career Guide</a>
+  <a href="analytics.html" class="nav-link active"><i data-lucide="chart-no-axes-combined"></i> Analytics</a>
+  <a href="index.html" class="nav-link"><i data-lucide="target"></i> My Goals</a>
+  <a href="index.html" class="nav-link"><i data-lucide="folder-kanban"></i> Projects</a>
+ </div>
+ <div class="sidebar-bottom">
+  <a href="index.html" class="nav-link"><i data-lucide="arrow-left"></i> Back to Dashboard</a>
+ </div>
+</aside>
+
+<main class="main-content analytics-page">
+<header class="topbar">
+ <div>
+  <p class="metric-muted">NEXUS / ANALYTICS</p>
+  <h2>Analytics Center</h2>
+ </div>
+ <span class="metric-muted">Performance Intelligence</span>
+</header>
+
+<section class="analytics-hero">
+ <span class="analytics-label">✦ STUDENT PERFORMANCE INTELLIGENCE</span>
+ <h1>Measure Progress. Discover Potential.</h1>
+ <p>Understand your learning patterns, explore performance trends and make smarter decisions for your academic and professional growth.</p>
+</section>
+
+<section class="analytics-grid">
+ <div class="metric-card">
+  <div class="metric-icon"><i data-lucide="book-open"></i></div>
+  <p class="metric-muted">Courses Enrolled</p>
+  <h2>04</h2><span class="metric-muted">Learning tracks</span>
+ </div>
+ <div class="metric-card">
+  <div class="metric-icon"><i data-lucide="clock"></i></div>
+  <p class="metric-muted">Study Hours</p>
+  <h2 id="studyHours">00</h2><span class="metric-muted">Demo activity</span>
+ </div>
+ <div class="metric-card">
+  <div class="metric-icon"><i data-lucide="trophy"></i></div>
+  <p class="metric-muted">Achievements</p>
+  <h2>00</h2><span class="metric-muted">Milestones earned</span>
+ </div>
+ <div class="metric-card">
+  <div class="metric-icon"><i data-lucide="target"></i></div>
+  <p class="metric-muted">Goals Completed</p>
+  <h2>00</h2><span class="metric-muted">Demo overview</span>
+ </div>
+</section>
+
+<div class="analytics-section">
+ <h2>Performance Overview</h2>
+ <span class="metric-muted">Illustrative sample data</span>
+</div>
+
+<section class="analytics-columns">
+ <div class="analytics-panel">
+  <h3>Weekly Learning Activity</h3>
+  <p class="metric-muted">Example study hours across the week</p>
+  <div class="chart-wrap"><canvas id="weeklyChart"></canvas></div>
+ </div>
+ <div class="analytics-panel">
+  <h3>Learning Distribution</h3>
+  <p class="metric-muted">Example time allocation</p>
+  <div class="chart-wrap small"><canvas id="distributionChart"></canvas></div>
+ </div>
+</section>
+
+<div class="analytics-section">
+ <h2>Learning Goals</h2>
+ <span class="metric-muted">Example targets</span>
+</div>
+
+<section class="analytics-panel">
+ <div class="goal-item">
+  <div class="goal-heading"><span>Programming Fundamentals</span><span>60%</span></div>
+  <div class="goal-track"><div class="goal-fill" style="width:60%"></div></div>
+ </div>
+ <div class="goal-item">
+  <div class="goal-heading"><span>Web Development</span><span>40%</span></div>
+  <div class="goal-track"><div class="goal-fill" style="width:40%"></div></div>
+ </div>
+ <div class="goal-item">
+  <div class="goal-heading"><span>Problem Solving</span><span>30%</span></div>
+  <div class="goal-track"><div class="goal-fill" style="width:30%"></div></div>
+ </div>
+ <div class="goal-item">
+  <div class="goal-heading"><span>Communication Skills</span><span>25%</span></div>
+  <div class="goal-track"><div class="goal-fill" style="width:25%"></div></div>
+ </div>
+</section>
+
+<section class="analytics-bottom">
+ <div class="analytics-panel">
+  <h3>Activity Highlights</h3>
+  <div class="activity-row"><span><i class="activity-dot"></i>Programming</span><span>Learning track</span></div>
+  <div class="activity-row"><span><i class="activity-dot"></i>Web Development</span><span>Learning track</span></div>
+  <div class="activity-row"><span><i class="activity-dot"></i>Mathematics</span><span>Academic subject</span></div>
+  <div class="activity-row"><span><i class="activity-dot"></i>Communication</span><span>Skill development</span></div>
+ </div>
+ <div class="analytics-panel">
+  <h3>Performance Focus</h3>
+  <p class="metric-muted" style="line-height:1.8;margin-top:16px">
+   Consistency is the foundation of meaningful progress. Set achievable goals, practice regularly and review your learning every week.
+  </p>
+  <div class="insight-card">
+   <span class="analytics-label">NEXUS INSIGHT</span>
+   <p>Focus on understanding concepts and building practical projects instead of only tracking numbers.</p>
+  </div>
+ </div>
+</section>
+
+<footer style="text-align:center;padding:35px 10px;color:#8992aa;font-size:12px">
+ NEXUS ANALYTICS · DATA INSIGHTS FOR CONTINUOUS GROWTH
+</footer>
+</main>
+</div>
+
+<script>
+lucide.createIcons();
+
+Chart.defaults.color = "#aab2c7";
+Chart.defaults.font.family = "Arial";
+
+new Chart(document.getElementById("weeklyChart"),{
+ type:"line",
+ data:{
+  labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+  datasets:[{
+   label:"Study Hours",
+   data:[1,2,1.5,3,2.5,4,2],
+   borderColor:"#9b7aff",
+   backgroundColor:"rgba(139,92,246,.15)",
+   fill:true,tension:.4,
+   pointRadius:4
+  }]
+ },
+ options:{
+  responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false}},
+  scales:{
+   y:{beginAtZero:true,grid:{color:"rgba(255,255,255,.07)"}},
+   x:{grid:{display:false}}
+  }
+ }
+});
+
+new Chart(document.getElementById("distributionChart"),{
+ type:"doughnut",
+ data:{
+  labels:["Programming","Web Development","Mathematics","Other"],
+  datasets:[{
+   data:[35,25,20,20],
+   backgroundColor:["#9470f5","#43c9e4","#46b89b","#e3a75c"],
+   borderColor:"#171a2b",borderWidth:3
+  }]
+ },
+ options:{
+  responsive:true,maintainAspectRatio:false,
+  cutout:"68%",
+  plugins:{legend:{position:"bottom",labels:{padding:15,boxWidth:9}}}
+ }
+});
+</script>
+</body>
+</html>

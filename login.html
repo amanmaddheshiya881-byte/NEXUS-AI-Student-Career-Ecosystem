@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to NEXUS | Student Ecosystem</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+ --bg:#080d18;--panel:#101a2b;--border:rgba(148,163,184,.16);
+ --text:#edf3ff;--muted:#92a1b8;--blue:#668bff;--cyan:#35d5e8;
+ --green:#35d69a;--red:#ff7585;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.page{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr}
+.visual{
+ position:relative;overflow:hidden;display:flex;flex-direction:column;
+ justify-content:space-between;padding:38px 7%;border-right:1px solid var(--border);
+ background:radial-gradient(ellipse at 20% 30%,rgba(70,111,255,.2),transparent 45%),
+ radial-gradient(ellipse at 85% 80%,rgba(53,213,232,.12),transparent 40%),#0a1323;
+}
+.visual:before,.visual:after{content:"";position:absolute;border:1px solid rgba(101,140,255,.14);border-radius:50%;width:400px;height:400px;right:-180px;top:20%;pointer-events:none}
+.visual:after{width:300px;height:300px;right:-130px;top:26%}
+.brand{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.brand-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#668bff,#35d5e8);display:grid;place-items:center;font-size:22px;font-weight:800;box-shadow:0 8px 28px rgba(80,130,255,.3)}
+.brand h2{font-size:20px;letter-spacing:3px}
+.brand small{display:block;color:#8c9db8;font-size:9px;letter-spacing:2px;margin-top:4px}
+.visual-content{max-width:530px;position:relative;z-index:1;padding:45px 0}
+.eyebrow{color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:2.5px;margin-bottom:22px}
+.visual h1{font-size:clamp(35px,5vw,61px);line-height:1.12;letter-spacing:-2.5px;margin-bottom:22px}
+.gradient{background:linear-gradient(100deg,#80a2ff,#48d9e8);background-clip:text;color:transparent}
+.visual-content>p{font-size:13px;color:#a2b0c6;line-height:1.9;max-width:440px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.feature{padding:14px;border:1px solid var(--border);background:rgba(255,255,255,.025);border-radius:11px;display:flex;align-items:center;gap:10px;font-size:11px;color:#c0cce0}
+.feature i{color:#82a5ff;width:17px}
+.visual-footer{position:relative;z-index:1;font-size:10px;color:#7788a3}
+.auth-side{display:flex;align-items:center;justify-content:center;padding:35px 8%;background:var(--bg)}
+.auth-wrap{width:100%;max-width:440px}
+.mobile-brand{display:none}
+.auth-heading{margin-bottom:26px}
+.auth-heading .tag{color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:13px}
+.auth-heading h2{font-size:29px;letter-spacing:-.8px;margin-bottom:9px}
+.auth-heading p{font-size:12px;color:var(--muted);line-height:1.7}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#111b2b;padding:5px;border-radius:10px;margin-bottom:24px}
+.tab{border:0;background:transparent;color:#91a0b7;padding:12px;border-radius:7px;font-size:11px;font-weight:700}
+.tab.active{background:#263a5d;color:white;box-shadow:0 3px 12px rgba(0,0,0,.15)}
+.form{display:none}
+.form.active{display:block}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:11px;color:#c1ccdc;font-weight:600;margin-bottom:8px}
+.input-wrap{position:relative}
+.input-wrap>i{position:absolute;left:13px;top:13px;width:16px;color:#8191aa}
+.input-wrap input{width:100%;padding:13px 43px 13px 40px;background:#101a2b;border:1px solid var(--border);border-radius:9px;color:white;font-size:12px;outline:none;transition:.2s}
+.input-wrap input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(102,139,255,.1)}
+.input-wrap input::placeholder{color:#61728c}
+.eye{position:absolute;right:12px;top:10px;background:none;border:0;color:#8292aa;padding:3px}
+.eye i{width:17px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-options{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 20px;font-size:10px;color:var(--muted)}
+.check{display:flex;align-items:center;gap:7px;cursor:pointer}
+.check input{accent-color:var(--blue)}
+.text-btn{border:0;background:none;color:#8eaaff;font-size:10px}
+.submit{width:100%;border:0;padding:14px;border-radius:9px;background:linear-gradient(110deg,#668bff,#398de9);color:white;font-size:12px;font-weight:800;box-shadow:0 9px 25px rgba(65,118,255,.2);display:flex;justify-content:center;align-items:center;gap:10px;transition:.2s}
+.submit:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.divider{display:flex;align-items:center;gap:12px;margin:22px 0;color:#70809a;font-size:9px}
+.divider:before,.divider:after{content:"";height:1px;background:var(--border);flex:1}
+.demo-note{padding:12px;background:rgba(101,140,255,.07);border:1px solid rgba(101,140,255,.17);border-radius:8px;font-size:10px;color:#9eafd0;line-height:1.7}
+.bottom-text{text-align:center;font-size:10px;color:var(--muted);margin-top:20px;line-height:1.8}
+.bottom-text a{color:#8eaaff;text-decoration:none}
+.strength{height:4px;border-radius:5px;background:#263448;margin-top:9px;overflow:hidden}
+.strength span{display:block;height:100%;width:0;transition:.2s;background:var(--red)}
+.strength-label{font-size:9px;color:var(--muted);margin-top:6px}
+.message{display:none;padding:11px;border-radius:8px;font-size:10px;line-height:1.6;margin-bottom:14px}
+.message.error{display:block;background:rgba(255,117,133,.08);border:1px solid rgba(255,117,133,.2);color:#ff9ba7}
+.message.success{display:block;background:rgba(53,214,154,.08);border:1px solid rgba(53,214,154,.2);color:#72e7b6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.visual{display:none}.auth-side{min-height:100vh;padding:30px 22px}.mobile-brand{display:flex;margin-bottom:35px}.auth-wrap{max-width:460px}}
+@media(max-width:430px){.two-col{grid-template-columns:1fr}.auth-heading h2{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<section class="visual">
+ <div class="brand">
+  <div class="brand-icon">N</div>
+  <div><h2>NEXUS</h2><small>STUDENT & CAREER ECOSYSTEM</small></div>
+ </div>
+ <div class="visual-content">
+  <div class="eyebrow">✦ YOUR FUTURE STARTS HERE</div>
+  <h1>Learn Today.<br><span class="gradient">Lead Tomorrow.</span></h1>
+  <p>One intelligent ecosystem for learning, skill development, career exploration and academic growth. Build your potential with NEXUS.</p>
+  <div class="features">
+   <div class="feature"><i data-lucide="brain-circuit"></i> AI Career Guidance</div>
+   <div class="feature"><i data-lucide="graduation-cap"></i> Learning Roadmaps</div>
+   <div class="feature"><i data-lucide="chart-no-axes-combined"></i> Progress Analytics</div>
+   <div class="feature"><i data-lucide="folder-kanban"></i> Project Workspace</div>
+  </div>
+ </div>
+ <div class="visual-footer">NEXUS © 2026 · Empowering the next generation.</div>
+</section>
+
+<section class="auth-side">
+<div class="auth-wrap">
+
+ <div class="brand mobile-brand">
+  <div class="brand-icon">N</div>
+  <div><h2>NEXUS</h2><small>STUDENT ECOSYSTEM</small></div>
+ </div>
+
+ <div class="auth-heading">
+  <div class="tag">WELCOME TO NEXUS</div>
+  <h2 id="heading">Welcome back.</h2>
+  <p id="subheading">Enter your details to access your student workspace.</p>
+ </div>
+
+ <div class="tabs">
+  <button class="tab active" data-mode="login">Sign In</button>
+  <button class="tab" data-mode="signup">Create Account</button>
+ </div>
+
+ <div id="message" class="message" role="status" aria-live="polite"></div>
+
+ <form class="form active" id="loginForm">
+  <div class="field">
+   <label for="loginEmail">Email Address</label>
+   <div class="input-wrap"><i data-lucide="mail"></i><input id="loginEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+  </div>
+  <div class="field">
+   <label for="loginPassword">Password</label>
+   <div class="input-wrap"><i data-lucide="lock-keyhole"></i><input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Enter your password"><button class="eye" type="button" data-eye="loginPassword" aria-label="Show password"><i data-lucide="eye"></i></button></div>
+  </div>
+  <div class="form-options">
+   <label class="check"><input type="checkbox" id="remember"> Remember me</label>
+   <button type="button" class="text-btn" id="forgotBtn">Forgot password?</button>
+  </div>
+  <button class="submit" type="submit">Sign In <i data-lucide="arrow-right"></i></button>
+ </form>
+
+ <form class="form" id="signupForm">
+  <div class="two-col">
+   <div class="field">
+    <label for="fullName">Full Name</label>
+    <div class="input-wrap"><i data-lucide="user-round"></i><input id="fullName" maxlength="60" required autocomplete="name" placeholder="Your name"></div>
+   </div>
+   <div class="field">
+    <label for="course">Course</label>
+    <div class="input-wrap"><i data-lucide="graduation-cap"></i><input id="course" maxlength="40" required placeholder="e.g. BCA"></div>
+   </div>
+  </div>
+  <div class="field">
+   <label for="signupEmail">Email Address</label>
+   <div class="input-wrap"><i data-lucide="mail"></i><input id="signupEmail" type="email" maxlength="100" required autocomplete="email" placeholder="you@example.com"></div>
+  </div>
+  <div class="field">
+   <label for="signupPassword">Create Password</label>
+   <div class="input-wrap"><i data-lucide="lock-keyhole"></i><input id="signupPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="At least 8 characters"><button class="eye" type="button" data-eye="signupPassword" aria-label="Show password"><i data-lucide="eye"></i></button></div>
+   <div class="strength"><span id="strengthBar"></span></div>
+   <div class="strength-label" id="strengthLabel">Password strength</div>
+  </div>
+  <div class="field">
+   <label for="confirmPassword">Confirm Password</label>
+   <div class="input-wrap"><i data-lucide="shield-check"></i><input id="confirmPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="Enter password again"><button class="eye" type="button" data-eye="confirmPassword" aria-label="Show password"><i data-lucide="eye"></i></button></div>
+  </div>
+  <div class="form-options">
+   <label class="check"><input type="checkbox" id="terms" required> I agree to the demo terms</label>
+  </div>
+  <button class="submit" type="submit">Create Account <i data-lucide="arrow-right"></i></button>
+ </form>
+
+ <div class="divider">NEXUS STUDENT ECOSYSTEM</div>
+ <div class="demo-note">This is a frontend demonstration. It does not create a secure account, send verification emails, or authenticate users. Do not enter a real password or sensitive personal information.</div>
+ <div class="bottom-text">By continuing, you acknowledge that this is a project prototype.<br><a href="index.html">← Back to NEXUS Dashboard</a></div>
+</div>
+</section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const message = $("message");
+
+function showMessage(text,type){
+ message.textContent=text;
+ message.className="message "+type;
+}
+function clearMessage(){
+ message.textContent="";
+ message.className="message";
+}
+
+function setMode(mode){
+ clearMessage();
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+ $("loginForm").classList.toggle("active",mode==="login");
+ $("signupForm").classList.toggle("active",mode==="signup");
+ $("heading").textContent=mode==="login"?"Welcome back.":"Create your account.";
+ $("subheading").textContent=mode==="login"?"Enter your details to access your student workspace.":"Start your learning and career journey with NEXUS.";
+}
+document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>setMode(btn.dataset.mode)));
+
+document.querySelectorAll("[data-eye]").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  const input=$(btn.dataset.eye);
+  input.type=input.type==="password"?"text":"password";
+  btn.innerHTML="";
+  const icon=document.createElement("i");
+  icon.setAttribute("data-lucide",input.type==="password"?"eye":"eye-off");
+  btn.appendChild(icon);
+  if(window.lucide)lucide.createIcons();
+ });
+});
+
+$("signupPassword").addEventListener("input",()=>{
+ const p=$("signupPassword").value;
+ let score=0;
+ if(p.length>=8)score++;
+ if(/[A-Z]/.test(p))score++;
+ if(/[0-9]/.test(p))score++;
+ if(/[^A-Za-z0-9]/.test(p))score++;
+ const widths=["0%","25%","50%","75%","100%"];
+ const labels=["Password strength","Weak","Fair","Good","Strong"];
+ $("strengthBar").style.width=widths[score];
+ $("strengthLabel").textContent=labels[score];
+ $("strengthBar").style.background=score<2?"#ff7585":score<4?"#ffb45e":"#35d69a";
+});
+
+$("signupForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=$("fullName").value.trim();
+ const course=$("course").value.trim();
+ const email=$("signupEmail").value.trim().toLowerCase();
+ const password=$("signupPassword").value;
+ const confirm=$("confirmPassword").value;
+
+ if(password.length<8){
+  showMessage("Password must contain at least 8 characters.","error");return;
+ }
+ if(password!==confirm){
+  showMessage("Passwords do not match. Please check again.","error");return;
+ }
+ if(!$("terms").checked){
+  showMessage("Please accept the demo terms to continue.","error");return;
+ }
+
+ // No password is stored. This only demonstrates form validation.
+ showMessage("Registration form validated successfully! Real account creation will be available after backend integration.","success");
+ $("signupForm").reset();
+ $("strengthBar").style.width="0%";
+ $("strengthLabel").textContent="Password strength";
+});
+
+$("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ showMessage("Login interface is ready. Real sign-in requires a secure backend and registered account.","success");
+});
+
+$("forgotBtn").addEventListener("click",()=>{
+ const email=$("loginEmail").value.trim();
+ if(!email){
+  showMessage("Please enter your email address first. Password recovery will be enabled with the backend.","error");
+ }else{
+  showMessage("Password recovery is a frontend preview. No email has been sent.","success");
+ }
+});
+
+if(window.lucide)lucide.createIcons();
+</script>
+</body>
+</html>

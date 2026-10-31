@@ -4,60 +4,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS | Smart Student Ecosystem</title>
+    <meta name="description" content="NEXUS - AI Student and Career Ecosystem">
+    <meta name="theme-color" content="#080d19">
+    <title>NEXUS | Student & Career Ecosystem</title>
+
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container">
+<div class="app">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-        <h2>🚀 NEXUS</h2>
-        <p class="menu-title">MAIN MENU</p>
-        <a class="active" href="#">🏠 Dashboard</a>
-        <a href="#">🎓 My Profile</a>
-        <a href="#">📚 Learning</a>
-        <a href="#">🤖 AI Career</a>
-        <a href="#">📊 Analytics</a>
-        <a href="#">⚙️ Settings</a>
+
+        <a class="brand" href="index.html">
+            <span class="brand-icon">N</span>
+            <span>NEXUS<small>STUDENT ECOSYSTEM</small></span>
+        </a>
+
+        <p class="nav-label">WORKSPACE</p>
+
+        <nav>
+            <a class="active" href="index.html">◈ Dashboard</a>
+            <a href="learning.html">▤ Learning Hub</a>
+            <a href="career.html">✧ Career Intelligence</a>
+            <a href="goals.html">◇ Skill Development</a>
+            <a href="projects.html">▣ Projects</a>
+            <a href="analytics.html">▥ Analytics</a>
+            <a href="profile.html">👤 My Profile</a>
+            <a href="settings.html">⚙ Settings</a>
+            <a href="assistant.html">✦ AI Assistant</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="profile-mini">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Student Workspace</strong>
+                    <small>Personal Account</small>
+                </div>
+            </div>
+
+            <button id="themeToggle">☀️ Switch Theme</button>
+
+        </div>
     </aside>
 
-    <main class="main-content">
-        <header>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="main-content" id="dashboard">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
             <div>
-                <h1>Dashboard</h1>
-                <p>Welcome to your future. Let's achieve something great!</p>
+                <p class="eyebrow">PERSONAL INTELLIGENCE PLATFORM</p>
+                <h1>Welcome to NEXUS<span>.</span></h1>
+                <p class="subtitle">
+                    Think bigger. Learn smarter. Build your future.
+                </p>
             </div>
-            <div class="profile">👤 Student</div>
+
+            <div class="top-actions">
+                <span id="nexusClock"></span>
+                <div class="avatar">A</div>
+            </div>
+
         </header>
 
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    ✦ YOUR FUTURE. YOUR ECOSYSTEM.
+                </span>
+
+                <h2>
+                    Turn your ambition<br>
+                    into achievement.
+                </h2>
+
+                <p>
+                    One connected workspace to learn new skills,
+                    explore career paths and build meaningful projects.
+                </p>
+
+                <button id="welcomeButton">
+                    Explore Your Ecosystem →
+                </button>
+
+            </div>
+
+            <div class="hero-art">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="core">N</div>
+                <span class="orbit-label">
+                    LEARN • BUILD • EVOLVE
+                </span>
+            </div>
+
+        </section>
+
+
+        <!-- COMMAND CENTER -->
+        <section class="command-center" id="commandCenter">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">NEXUS INTELLIGENCE</p>
+                    <h2>Performance Command Center</h2>
+                    <p class="subtitle">
+                        Track your learning journey and development.
+                    </p>
+                </div>
+
+                <span class="live-status">
+                    ● SYSTEM ACTIVE
+                </span>
+
+            </div>
+
+
+            <!-- PERFORMANCE CARDS -->
+            <div class="performance-grid">
+
+                <article class="panel performance-card">
+
+                    <p class="eyebrow">LEARNING PROGRESS</p>
+
+                    <h2 id="learningProgress">35%</h2>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             id="learningBar"
+                             style="width:35%">
+                        </div>
+                    </div>
+
+                    <p>Learning journey</p>
+
+                </article>
+
+
+                <article class="panel performance-card">
+
+                    <p class="eyebrow">SKILLS DEVELOPMENT</p>
+
+                    <h2 id="skillsProgress">20%</h2>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             id="skillsBar"
+                             style="width:20%">
+                        </div>
+                    </div>
+
+                    <p>Skill-building journey</p>
+
+                </article>
+
+
+                <article class="panel performance-card">
+
+                    <p class="eyebrow">PROJECT ACTIVITY</p>
+
+                    <h2 id="projectProgress">10%</h2>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             id="projectBar"
+                             style="width:10%">
+                        </div>
+                    </div>
+
+                    <p>Project development</p>
+
+                </article>
+
+            </div>
+
+
+            <!-- GOALS AND QUICK ACTIONS -->
+            <div class="content-grid">
+
+
+                <!-- DAILY GOALS -->
+                <article class="panel">
+
+                    <p class="eyebrow">DAILY PRODUCTIVITY</p>
+
+                    <h2>My Daily Goals</h2>
+
+                    <label class="goal-item">
+                        <input type="checkbox" class="nexus-goal">
+                        Study programming
+                    </label>
+
+                    <label class="goal-item">
+                        <input type="checkbox" class="nexus-goal">
+                        Practice English
+                    </label>
+
+                    <label class="goal-item">
+                        <input type="checkbox" class="nexus-goal">
+                        Learn a new technology
+                    </label>
+
+                    <p id="goalCounter">
+                        0 of 3 goals completed
+                    </p>
+
+                </article>
+
+
+                <!-- QUICK ACTIONS -->
+                <article class="panel">
+
+                    <p class="eyebrow">QUICK ACCESS</p>
+
+                    <h2>Quick Actions</h2>
+
+                    <div class="quick-actions">
+
+                        <a href="learning.html">
+                            📚 Learning Hub →
+                        </a>
+
+                        <a href="career.html">
+                            🚀 Explore Careers →
+                        </a>
+
+                        <a href="projects.html">
+                            💻 My Projects →
+                        </a>
+
+                        <a href="goals.html">
+                            🎯 Skill Development →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+            <article class="panel activity-panel">
+
+                <p class="eyebrow">WORKSPACE ACTIVITY</p>
+
+                <h2>Recent Activity</h2>
+
+                <ul id="activityList">
+                    <li>NEXUS dashboard opened</li>
+                    <li>Welcome to your productivity workspace</li>
+                </ul>
+
+            </article>
+<!-- NEXUS REWARDS 3D SECTION -->
+<section class="rewards-section">
+
+    <div class="rewards-heading">
+        <p class="eyebrow">NEXUS GAMIFICATION</p>
+        <h2>🏆 NEXUS REWARDS</h2>
+        <p>Learn • Earn • Achieve • Grow</p>
+    </div>
+<div class="reward-stats">
+
+    <article class="reward-card xp-stat">
+        <div class="reward-icon">⭐</div>
+        <h2>0 XP</h2>
+        <p>Total Experience</p>
+    </article>
+
+    <article class="reward-card streak-stat">
+        <div class="reward-icon">🔥</div>
+        <h2>2 Days</h2>
+        <p>Learning Streak</p>
+    </article>
+
+    <article class="reward-card level-stat">
+        <div class="reward-icon">🏅</div>
+        <h2>Level 1</h2>
+        <p>Current Level</p>
+    </article>
+
+</div>
+
+    <div class="unlocked-section">
+
+        <h3>🎖️ Unlocked Achievements</h3>
+
+        <div class="locked-achievement">
+            <div class="locked-icon">🔒</div>
+            <div>
+                <strong>Achievements Waiting for You</strong>
+                <p>Complete your goals to unlock badges!</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- WORKSPACE OVERVIEW -->
+        <section class="section-heading" id="analytics">
+
+            <div>
+                <p class="eyebrow">YOUR COMMAND CENTER</p>
+                <h2>Workspace Overview</h2>
+                <p class="subtitle">
+                    Everything you need to move forward.
+                </p>
+            </div>
+
+            <span class="live-status">
+                ● PERSONAL WORKSPACE
+            </span>
+
+        </section>
+
+
+        <!-- SEARCH -->
+        <input
+            type="search"
+            id="nexusSearch"
+            placeholder="⌕ Search your workspace..."
+        >
+
+
+        <!-- MAIN CARDS -->
         <section class="cards">
-            <div class="card">
-                <h3>📚 Courses</h3>
-                <h2>00</h2>
-                <p>Courses enrolled</p>
-            </div>
 
-            <div class="card">
-                <h3>🎯 Skills</h3>
-                <h2>00</h2>
-                <p>Skills developed</p>
-            </div>
+            <article class="card">
 
-            <div class="card">
-                <h3>🚀 Career Goals</h3>
-                <h2>00</h2>
-                <p>Goals created</p>
-            </div>
+                <div class="card-icon blue">▤</div>
+
+                <p>01 / LEARNING</p>
+
+                <h3>Learning Hub</h3>
+
+                <span>
+                    Explore learning resources and strengthen your knowledge.
+                </span>
+
+                <a href="learning.html">
+                    Explore Learning →
+                </a>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon purple">✧</div>
+
+                <p>02 / CAREER</p>
+
+                <h3>Career Intelligence</h3>
+
+                <span>
+                    Discover career paths and understand industry opportunities.
+                </span>
+
+                <a href="career.html">
+                    Explore Careers →
+                </a>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon green">◇</div>
+
+                <p>03 / SKILLS</p>
+
+                <h3>Skill Development</h3>
+
+                <span>
+                    Build practical technical and professional abilities.
+                </span>
+
+                <a href="goals.html">
+                    Develop Skills →
+                </a>
+
+            </article>
+
         </section>
 
-        <section class="card welcome">
-            <h2>Welcome to NEXUS ✨</h2>
-            <p>Your learning journey and career growth start here.</p>
+
+        <!-- CAREER AND LEARNING -->
+        <section class="content-grid">
+
+            <article class="panel" id="career">
+
+                <p class="eyebrow">CAREER INTELLIGENCE</p>
+
+                <h2>Discover New Possibilities</h2>
+
+                <p>
+                    Explore a sample technology career idea
+                    and learn about different professional fields.
+                </p>
+
+                <button id="careerButton">
+                    Generate Career Idea ✦
+                </button>
+
+                <div id="careerResult">
+                    Your sample career idea will appear here.
+                </div>
+
+            </article>
+
+
+            <article class="panel" id="learning">
+
+                <p class="eyebrow">CONTINUOUS DEVELOPMENT</p>
+
+                <h2>Keep Learning. Keep Growing.</h2>
+
+                <p>
+                    Explore programming, computer science,
+                    emerging technologies and practical learning resources.
+                </p>
+
+                <a href="learning.html">
+                    Open Learning Hub →
+                </a>
+
+            </article>
+
         </section>
+
+
+        <!-- SKILLS -->
+        <section class="panel skills-panel" id="skills">
+
+            <p class="eyebrow">BUILD YOUR FUTURE</p>
+
+            <h2>Technology & Innovation</h2>
+
+            <p>
+                Explore software development, artificial intelligence,
+                data analytics and other technology domains.
+            </p>
+
+            <a href="projects.html">
+                Explore Projects →
+            </a>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <strong>NEXUS</strong>
+            — Student & Career Ecosystem
+
+            <span>
+                Designed for learning, building and growing.
+            </span>
+
+        </footer>
+
     </main>
 
 </div>
+
+<<<<<<< HEAD
+<script src="script.js"></script>
+=======
+
+<!-- NOTIFICATION -->
+<div id="nexusNotification"></div>
 
 <script src="script.js"></script>
 </body>

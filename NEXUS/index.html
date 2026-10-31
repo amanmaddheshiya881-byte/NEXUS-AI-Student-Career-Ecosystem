@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEXUS - Student and Career Ecosystem">
+    <title>NEXUS | Intelligent Student Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a class="brand" href="#dashboard">
+            <span class="brand-icon">N</span>
+            <span>NEXUS<small>STUDENT ECOSYSTEM</small></span>
+        </a>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav>
+            <a class="active" href="#dashboard">◈ Dashboard</a>
+            <a href="#learning">▤ Learning Hub</a>
+            <a href="#career">✧ Career Intelligence</a>
+            <a href="#skills">◇ Skill Development</a>
+            <a href="#analytics">▥ Analytics</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="profile-mini">
+                <div class="avatar">A</div>
+                <div><strong>Student Workspace</strong><small>Personal Account</small></div>
+            </div>
+            <button id="themeToggle">☀️ Switch Theme</button>
+        </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR DIGITAL FUTURE STARTS HERE</p>
+                <h1>Welcome to NEXUS<span>.</span></h1>
+                <p class="subtitle">One ecosystem. Endless possibilities.</p>
+            </div>
+            <div class="top-actions">
+                <span id="nexusClock"></span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">✦ THE FUTURE OF LEARNING</span>
+                <h2>Discover your potential.<br>Build your future.</h2>
+                <p>Connect your education, skills and career goals in one intelligent platform.</p>
+                <button id="welcomeButton">Explore Your Ecosystem →</button>
+            </div>
+            <div class="hero-art">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="core">N</div>
+                <span class="orbit-label">LEARN • GROW • LEAD</span>
+            </div>
+        </section>
+
+        <section class="section-heading" id="analytics">
+            <div>
+                <p class="eyebrow">YOUR OVERVIEW</p>
+                <h2>Workspace Overview</h2>
+            </div>
+            <span class="live-status">● PLATFORM PREVIEW</span>
+        </section>
+
+        <input type="search" id="nexusSearch"
+               placeholder="⌕  Search your workspace...">
+
+        <section class="cards">
+            <article class="card">
+                <div class="card-icon blue">▤</div>
+                <p>LEARNING HUB</p>
+                <h3>Smart Learning</h3>
+                <span>Explore educational resources and learning paths.</span>
+                <a href="#learning">Explore →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon purple">✧</div>
+                <p>CAREER INTELLIGENCE</p>
+                <h3>Career Discovery</h3>
+                <span>Explore career options and future opportunities.</span>
+                <a href="#career">Discover →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon green">◇</div>
+                <p>SKILL DEVELOPMENT</p>
+                <h3>Build Your Skills</h3>
+                <span>Develop technical and professional abilities.</span>
+                <a href="#skills">Start Exploring →</a>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="panel" id="career">
+                <p class="eyebrow">CAREER INTELLIGENCE</p>
+                <h2>Explore Your Career Path</h2>
+                <p>Get a sample career suggestion and discover different technology fields.</p>
+                <button id="careerButton">Generate Career Idea ✦</button>
+                <div id="careerResult">Your career idea will appear here.</div>
+            </article>
+
+            <article class="panel" id="learning">
+                <p class="eyebrow">CONTINUOUS GROWTH</p>
+                <h2>Learning Hub</h2>
+                <p>Build knowledge, practice coding and explore new technologies.</p>
+                <a href="#skills">Explore learning →</a>
+            </article>
+        </section>
+
+        <section class="panel skills-panel" id="skills">
+            <p class="eyebrow">BUILD YOUR FUTURE</p>
+            <h2>Technology & Innovation</h2>
+            <p>Explore programming, artificial intelligence, data and software development.</p>
+        </section>
+
+        <footer>
+            <strong>NEXUS</strong> — Student & Career Ecosystem
+            <span>Built with curiosity and innovation.</span>
+        </footer>
+    </main>
+
+    <div id="nexusNotification"></div>
+    <script src="script.js"></script>
+</body>
+</html>

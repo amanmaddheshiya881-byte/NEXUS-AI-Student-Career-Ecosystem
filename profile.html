@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | Student Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-page { max-width: 1200px; margin: auto; padding: 35px 42px; }
+        .profile-banner {
+            padding: 28px; border-radius: 16px;
+            background: linear-gradient(120deg,#292052,#173c5b);
+            border: 1px solid #9175ff50; margin: 25px 0;
+            display: flex; align-items: center; gap: 22px;
+        }
+        .profile-avatar {
+            width: 85px; height: 85px; border-radius: 25px;
+            display: grid; place-items: center; font-size: 35px;
+            font-weight: 800; background: linear-gradient(135deg,#9b7bff,#397bff);
+        }
+        .profile-banner h2 { font-size: 24px; margin-bottom: 8px; }
+        .profile-banner p { color: #b4bfd4; font-size: 12px; }
+        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .profile-box {
+            background: #141c2d; border: 1px solid #ffffff12;
+            border-radius: 13px; padding: 22px;
+        }
+        .profile-box h3 { font-size: 15px; margin-bottom: 20px; }
+        .field { margin-bottom: 16px; }
+        .field label { display: block; color: #9da9c0; font-size: 10px; margin-bottom: 8px; }
+        .field input, .field select, .field textarea {
+            width: 100%; padding: 12px; border-radius: 8px;
+            background: #0d1423; color: white;
+            border: 1px solid #ffffff18; outline: none;
+            font: inherit; font-size: 12px;
+        }
+        .field input:focus, .field textarea:focus { border-color: #9275ff; }
+        .field textarea { resize: vertical; min-height: 80px; }
+        .save-btn {
+            border: 0; padding: 12px 20px; border-radius: 8px;
+            color: white; background: linear-gradient(100deg,#7954e8,#477df4);
+            font-size: 11px; font-weight: 600;
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+        .skill-tags span {
+            padding: 9px 13px; border-radius: 20px;
+            background: #8d65ff18; border: 1px solid #8d65ff40;
+            color: #c4b4ff; font-size: 10px;
+        }
+        .completion { height: 8px; background: #293247; border-radius: 10px; overflow: hidden; margin: 14px 0; }
+        .completion div { width: 25%; height: 100%; background: linear-gradient(90deg,#8b5cf6,#479bff); }
+        @media(max-width:700px) {
+            .profile-page { padding: 22px 14px; }
+            .profile-grid { grid-template-columns: 1fr; }
+            .profile-banner { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">N</div>
+            <div><h2>NEXUS</h2><span>STUDENT ECOSYSTEM</span></div>
+        </div>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">🏠 Dashboard</a>
+            <a href="profile.html" class="nav-link active">🎓 My Profile</a>
+            <a href="#" class="nav-link">📚 Learning Hub</a>
+            <a href="#" class="nav-link">🤖 AI Career Guide</a>
+            <a href="#" class="nav-link">📊 Analytics</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb">Workspace <span>/</span> <strong>My Profile</strong></div>
+            <div class="top-avatar">A</div>
+        </header>
+
+        <div class="profile-page">
+            <span class="date-label">PERSONAL WORKSPACE</span>
+            <h1 style="margin-top:10px;">Student Profile</h1>
+            <p style="color:#8993a9;font-size:12px;margin-top:8px;">Manage your academic and professional identity.</p>
+
+            <section class="profile-banner">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <h2 id="displayName">Your Name</h2>
+                    <p id="displayCourse">BCA Student · Undergraduate</p>
+                    <p style="margin-top:8px;">✦ Building skills for tomorrow</p>
+                </div>
+            </section>
+
+            <section class="profile-box" style="margin-bottom:18px;">
+                <h3>Profile Completion</h3>
+                <strong id="completionText">25%</strong>
+                <div class="completion"><div id="completionBar"></div></div>
+                <p style="color:#8993a9;font-size:10px;">Complete your details to build your student profile.</p>
+            </section>
+
+            <form id="profileForm">
+                <div class="profile-grid">
+                    <section class="profile-box">
+                        <h3>👤 Personal Information</h3>
+                        <div class="field">
+                            <label>Full Name</label>
+                            <input id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="field">
+                            <label>Email Address</label>
+                            <input id="email" type="email" placeholder="Enter your email">
+                        </div>
+                        <div class="field">
+                            <label>Location</label>
+                            <input id="location" placeholder="City, State">
+                        </div>
+                    </section>
+
+                    <section class="profile-box">
+                        <h3>🎓 Education Details</h3>
+                        <div class="field">
+                            <label>Course</label>
+                            <input id="course" value="BCA" placeholder="Your course">
+                        </div>
+                        <div class="field">
+                            <label>Academic Level</label>
+                            <select id="level">
+                                <option>Undergraduate</option>
+                                <option>Graduate</option>
+                                <option>Postgraduate</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>University / College</label>
+                            <input id="college" placeholder="Enter college name">
+                        </div>
+                    </section>
+
+                    <section class="profile-box">
+                        <h3>💻 Technical Skills</h3>
+                        <div class="field">
+                            <label>Your Skills</label>
+                            <textarea id="skills" placeholder="Example: C, Python, HTML, CSS, JavaScript"></textarea>
+                        </div>
+                        <div class="skill-tags">
+                            <span>C Programming</span><span>Python</span><span>HTML</span><span>CSS</span>
+                        </div>
+                    </section>
+
+                    <section class="profile-box">
+                        <h3>🚀 Career Interests</h3>
+                        <div class="field">
+                            <label>Interested Career</label>
+                            <select id="career">
+                                <option value="">Choose your interest</option>
+                                <option>Software Developer</option>
+                                <option>Web Developer</option>
+                                <option>Data Analyst</option>
+                                <option>AI / Machine Learning</option>
+                                <option>Cybersecurity</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>About Yourself</label>
+                            <textarea id="about" placeholder="Write a short introduction..."></textarea>
+                        </div>
+                    </section>
+                </div>
+
+                <div style="margin-top:20px;">
+                    <button type="submit" class="save-btn">Save My Profile →</button>
+                    <span id="saveMessage" style="color:#69dbad;font-size:11px;margin-left:12px;"></span>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<script>
+const form = document.getElementById("profileForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const fields = ["name","email","location","course","college","skills","career","about"];
+    const data = {};
+
+    fields.forEach(id => {
+        data[id] = document.getElementById(id).value.trim();
+    });
+
+    data.level = document.getElementById("level").value;
+
+    localStorage.setItem("nexusStudentProfile", JSON.stringify(data));
+
+    document.getElementById("displayName").textContent = data.name || "Your Name";
+    document.getElementById("displayCourse").textContent = data.course + " Student · " + data.level;
+
+    const filled = fields.filter(id => data[id]).length;
+    const percent = Math.round(filled / fields.length * 100);
+
+    document.getElementById("completionText").textContent = percent + "%";
+    document.getElementById("completionBar").style.width = percent + "%";
+    document.getElementById("saveMessage").textContent = "Profile saved successfully!";
+});
+
+const saved = JSON.parse(localStorage.getItem("nexusStudentProfile") || "null");
+
+if (saved) {
+    Object.keys(saved).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = saved[id];
+    });
+
+    document.getElementById("displayName").textContent = saved.name || "Your Name";
+    document.getElementById("displayCourse").textContent = (saved.course || "BCA") + " Student · " + (saved.level || "Undergraduate");
+
+    const fields = ["name","email","location","course","college","skills","career","about"];
+    const filled = fields.filter(id => saved[id]).length;
+    const percent = Math.round(filled / fields.length * 100);
+
+    document.getElementById("completionText").textContent = percent + "%";
+    document.getElementById("completionBar").style.width = percent + "%";
+}
+</script>
+</body>
+</html>

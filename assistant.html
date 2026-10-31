@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS | AI Assistant</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--bg:#070a18;
+--panel:#11182f;
+--border:rgba(255,255,255,.1);
+--text:#f4f5ff;
+--muted:#9ba5c5;
+--purple:#9867ff;
+--blue:#3988ff;
+}
+
+body{
+font-family:Inter,Segoe UI,Arial,sans-serif;
+background:
+radial-gradient(circle at 15% 15%,#30205f 0%,transparent 32%),
+radial-gradient(circle at 85% 80%,#102e65 0%,transparent 35%),
+#070a18;
+color:var(--text);
+min-height:100vh;
+perspective:1200px;
+}
+
+.layout{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+
+.sidebar{
+width:245px;
+background:linear-gradient(160deg,#171d3b,#090d1d);
+border-right:1px solid rgba(155,120,255,.2);
+padding:28px 18px;
+display:flex;
+flex-direction:column;
+box-shadow:12px 0 40px rgba(0,0,0,.4);
+}
+
+.brand{
+font-size:25px;
+font-weight:900;
+letter-spacing:3px;
+margin:5px 10px 40px;
+background:linear-gradient(90deg,#a78bfa,#54a6ff);
+background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 25px #8b5cf6;
+}
+
+.nav-label{
+font-size:10px;
+letter-spacing:2px;
+color:#687493;
+margin:0 12px 15px;
+}
+
+.nav a{
+display:block;
+text-decoration:none;
+color:var(--muted);
+padding:13px 14px;
+border-radius:12px;
+margin-bottom:7px;
+transition:.3s;
+}
+
+.nav a:hover,.nav a.active{
+background:linear-gradient(100deg,rgba(139,92,246,.3),rgba(57,136,255,.15));
+color:white;
+transform:translateX(6px) translateZ(15px);
+box-shadow:0 8px 25px rgba(120,75,255,.22);
+}
+
+.sidebar-bottom{
+margin-top:auto;
+color:var(--muted);
+font-size:12px;
+line-height:1.8;
+padding:15px;
+}
+
+/* MAIN */
+
+.main{
+flex:1;
+padding:35px 5%;
+max-width:1500px;
+margin:auto;
+width:100%;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:35px;
+}
+
+.topbar h2{font-size:22px}
+
+.status{
+font-size:12px;
+color:#69e6b0;
+background:rgba(35,190,130,.1);
+border:1px solid rgba(35,190,130,.2);
+padding:9px 14px;
+border-radius:30px;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:25px;
+padding:35px;
+border:1px solid rgba(155,120,255,.25);
+border-radius:25px;
+background:linear-gradient(125deg,rgba(100,65,190,.35),rgba(25,85,170,.18));
+margin-bottom:28px;
+overflow:hidden;
+transform-style:preserve-3d;
+box-shadow:0 25px 55px rgba(0,0,0,.4);
+transition:.4s;
+}
+
+.hero:hover{
+transform:rotateX(2deg) rotateY(-2deg) translateY(-5px);
+box-shadow:0 30px 65px rgba(73,60,180,.25);
+}
+
+.hero h1{
+font-size:clamp(25px,4vw,38px);
+margin-bottom:12px;
+}
+
+.hero p{
+color:#b7c1df;
+line-height:1.7;
+max-width:600px;
+}
+
+/* 3D AI ORB */
+
+.orb{
+width:110px;
+height:110px;
+flex-shrink:0;
+position:relative;
+border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#e5d9ff,#9867ff 40%,#182a70 78%);
+box-shadow:0 0 35px #8b5cf6,0 0 75px rgba(57,136,255,.5),inset -15px -15px 25px #10153c;
+animation:orbFloat 5s ease-in-out infinite;
+transform-style:preserve-3d;
+}
+
+.orb:before,.orb:after{
+content:"";
+position:absolute;
+inset:-18px;
+border:2px solid rgba(160,130,255,.65);
+border-radius:50%;
+transform:rotateX(70deg);
+animation:orbit 7s linear infinite;
+}
+
+.orb:after{
+inset:-28px;
+border-color:rgba(60,150,255,.5);
+animation-duration:10s;
+}
+
+@keyframes orbFloat{
+0%,100%{transform:translateY(0) rotateY(0)}
+50%{transform:translateY(-15px) rotateY(180deg)}
+}
+
+@keyframes orbit{
+to{transform:rotateX(70deg) rotateZ(360deg)}
+}
+
+/* CHAT PANEL */
+
+.chat-shell{
+border:1px solid rgba(151,120,255,.25);
+background:linear-gradient(145deg,#151c35,#0b1021);
+border-radius:22px;
+overflow:hidden;
+min-height:570px;
+display:flex;
+flex-direction:column;
+box-shadow:0 25px 70px rgba(0,0,0,.5),inset 0 1px 1px rgba(255,255,255,.08);
+transform-style:preserve-3d;
+}
+
+.chat-head{
+padding:18px 22px;
+border-bottom:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(100deg,rgba(120,80,220,.15),rgba(40,110,220,.10));
+}
+
+.chat-head strong{font-size:15px}
+
+.chat-head small{
+color:var(--muted);
+display:block;
+margin-top:5px;
+}
+
+.clear{
+background:#252c47;
+color:#dce2ff;
+border:1px solid var(--border);
+padding:9px 13px;
+border-radius:9px;
+cursor:pointer;
+transition:.3s;
+}
+
+.clear:hover{
+transform:translateY(-3px);
+border-color:#9b7aff;
+}
+
+/* MESSAGES */
+
+.messages{
+flex:1;
+padding:25px;
+display:flex;
+flex-direction:column;
+gap:18px;
+min-height:340px;
+max-height:490px;
+overflow-y:auto;
+}
+
+.message{
+display:flex;
+gap:12px;
+max-width:85%;
+align-items:flex-start;
+}
+
+.message.user{
+align-self:flex-end;
+flex-direction:row-reverse;
+}
+
+.avatar{
+width:36px;
+height:36px;
+flex-shrink:0;
+border-radius:11px;
+background:linear-gradient(135deg,#8b5cf6,#3988ff);
+display:grid;
+place-items:center;
+font-size:14px;
+box-shadow:0 0 20px rgba(130,90,255,.35);
+}
+
+.message.user .avatar{background:#263452}
+
+.bubble{
+background:#1a2340;
+border:1px solid var(--border);
+padding:13px 16px;
+border-radius:5px 15px 15px 15px;
+line-height:1.65;
+color:#e5eaff;
+font-size:14px;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+box-shadow:0 10px 25px rgba(0,0,0,.22);
+transition:.3s;
+}
+
+.message:hover .bubble{
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(80,80,180,.2);
+}
+
+.message.user .bubble{
+background:linear-gradient(120deg,#5940a7,#315da5);
+border-radius:15px 5px 15px 15px;
+}
+
+/* SUGGESTIONS */
+
+.suggestions{
+padding:0 24px 18px;
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+}
+
+.suggestion{
+background:#171f39;
+color:#c9d3f3;
+border:1px solid var(--border);
+border-radius:20px;
+padding:9px 13px;
+cursor:pointer;
+font-size:12px;
+transition:.3s;
+}
+
+.suggestion:hover{
+transform:translateY(-5px) scale(1.04);
+background:linear-gradient(110deg,#6240ae,#285b9c);
+box-shadow:0 10px 25px rgba(120,80,255,.3);
+color:white;
+}
+
+/* INPUT */
+
+.composer{
+padding:18px 22px;
+border-top:1px solid var(--border);
+display:flex;
+gap:12px;
+align-items:flex-end;
+}
+
+#prompt{
+flex:1;
+resize:none;
+min-height:48px;
+max-height:120px;
+background:#0b1125;
+border:1px solid #303958;
+color:white;
+border-radius:13px;
+padding:14px;
+font:inherit;
+outline:none;
+transition:.3s;
+}
+
+#prompt:focus{
+border-color:#8b5cf6;
+transform:translateY(-2px);
+box-shadow:0 0 25px rgba(139,92,246,.22);
+}
+
+.send{
+height:48px;
+padding:0 20px;
+border:0;
+border-radius:12px;
+background:linear-gradient(110deg,#8755ef,#347fe8);
+color:white;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 6px 22px rgba(100,75,255,.35);
+transition:.3s;
+}
+
+.send:hover{
+transform:translateY(-4px) scale(1.04);
+box-shadow:0 12px 30px rgba(100,100,255,.55);
+}
+
+.note{
+text-align:center;
+color:#7783a5;
+font-size:11px;
+padding:0 15px 15px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px){
+.sidebar{width:72px;padding:20px 9px}
+.brand{font-size:13px;letter-spacing:0;margin:10px 0 35px;text-align:center}
+.nav-label,.nav a span,.sidebar-bottom{display:none}
+.nav a{text-align:center;padding:14px 5px;font-size:17px}
+.main{padding:20px 13px}
+.hero{padding:23px}
+.orb{width:65px;height:65px}
+.messages{padding:17px}
+.composer{padding:13px}
+.message{max-width:95%}
+}
+
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{
+animation-duration:.01ms!important;
+animation-iteration-count:1!important;
+transition-duration:.01ms!important;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+<div class="brand">NEXUS</div>
+<div class="nav-label">WORKSPACE</div>
+
+<nav class="nav">
+<a href="index.html">◈ Dashboard</a>
+<a href="learning.html">▤ Learning Hub</a>
+<a href="career.html">✧ Career Intelligence</a>
+<a href="goals.html">◇ Skill Development</a>
+<a href="projects.html">▣ Projects</a>
+<a href="analytics.html">▥ Analytics</a>
+<a href="profile.html">👤 My Profile</a>
+<a href="settings.html">⚙ Settings</a>
+<a href="assistant.html" class="active">✦ AI Assistant</a>
+</nav>
+
+<div class="sidebar-bottom">
+NEXUS AI Ecosystem<br>
+Learn • Grow • Succeed
+</div>
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+<h2>🤖 AI Assistant</h2>
+<div class="status">● Demo Mode</div>
+</div>
+
+<section class="hero">
+<div>
+<h1>Your Personal AI Study Partner ✨</h1>
+<p>Ask questions, explore programming concepts, plan your learning journey and get guidance for your career. Your growth starts with one question.</p>
+</div>
+<div class="orb"></div>
+</section>
+
+<section class="chat-shell">
+
+<div class="chat-head">
+<div>
+<strong>✦ NEXUS Intelligence</strong>
+<small>Your student support assistant</small>
+</div>
+<button class="clear" id="clearChat">Clear Chat</button>
+</div>
+
+<div class="messages" id="messages" aria-live="polite">
+<div class="message">
+<div class="avatar">✦</div>
+<div class="bubble">Hello! 👋 Welcome to NEXUS AI.
+
+I can help you with BCA subjects, programming basics, study planning and career guidance.
+
+What would you like to learn today?</div>
+</div>
+</div>
+
+<div class="suggestions">
+<button class="suggestion">Explain Python basics</button>
+<button class="suggestion">Create a study plan</button>
+<button class="suggestion">What is DBMS?</button>
+<button class="suggestion">Give me career guidance</button>
+</div>
+
+<form class="composer" id="chatForm">
+<textarea id="prompt" placeholder="Ask anything about your studies..." rows="1"></textarea>
+<button class="send" type="submit">Send ➤</button>
+</form>
+
+<div class="note">NEXUS AI demo interface • Responses are predefined, not generated by a live AI model.</div>
+
+</section>
+</main>
+</div>
+
+<script>
+const messages=document.getElementById("messages");
+const promptBox=document.getElementById("prompt");
+const form=document.getElementById("chatForm");
+
+function addMessage(text,sender){
+const message=document.createElement("div");
+message.className="message "+sender;
+
+const avatar=document.createElement("div");
+avatar.className="avatar";
+avatar.textContent=sender==="user"?"You":"✦";
+
+const bubble=document.createElement("div");
+bubble.className="bubble";
+bubble.textContent=text;
+
+message.append(avatar,bubble);
+messages.appendChild(message);
+messages.scrollTop=messages.scrollHeight;
+}
+
+function getReply(question){
+const q=question.toLowerCase();
+
+if(q.includes("python")){
+return "Python is a beginner-friendly programming language.\n\nExample:\nprint('Hello World')\n\nIt is used in web development, automation, data science and AI.";
+}
+
+if(q.includes("study")||q.includes("plan")){
+return "Here is a simple study routine:\n\n1. Revise one topic.\n2. Practise programming questions.\n3. Write short notes.\n4. Revise what you learned.\n5. Take a small self-test.\n\nConsistency is more important than studying everything at once.";
+}
+
+if(q.includes("dbms")){
+return "DBMS stands for Database Management System.\n\nIt is software used to store, manage and retrieve data.\n\nExamples include MySQL, Oracle and PostgreSQL.";
+}
+
+if(q.includes("career")||q.includes("job")){
+return "Start by building strong basics in programming, databases and problem-solving.\n\nExplore areas such as web development, software development and data analytics. Build small projects and learn step by step.";
+}
+
+if(q.includes("hello")||q.includes("hi")){
+return "Hello! Welcome to NEXUS. What topic would you like to explore today?";
+}
+
+return "Thanks for your question! I am currently running in demo mode, so I can answer a few sample topics only.\n\nTry asking about Python, DBMS, study planning or career guidance. A live AI backend can be connected in a future development step.";
+}
+
+function sendMessage(text){
+const question=text.trim();
+if(!question)return;
+
+addMessage(question,"user");
+promptBox.value="";
+
+const typing=document.createElement("div");
+typing.className="message";
+typing.id="typing";
+
+const avatar=document.createElement("div");
+avatar.className="avatar";
+avatar.textContent="✦";
+
+const bubble=document.createElement("div");
+bubble.className="bubble";
+bubble.textContent="NEXUS is thinking...";
+
+typing.append(avatar,bubble);
+messages.appendChild(typing);
+messages.scrollTop=messages.scrollHeight;
+
+setTimeout(()=>{
+typing.remove();
+addMessage(getReply(question),"bot");
+},650);
+}
+
+form.addEventListener("submit",function(event){
+event.preventDefault();
+sendMessage(promptBox.value);
+});
+
+promptBox.addEventListener("keydown",function(event){
+if(event.key==="Enter"&&!event.shiftKey){
+event.preventDefault();
+form.requestSubmit();
+}
+});
+
+document.querySelectorAll(".suggestion").forEach(button=>{
+button.addEventListener("click",()=>{
+sendMessage(button.textContent);
+});
+});
+
+document.getElementById("clearChat").addEventListener("click",()=>{
+messages.replaceChildren();
+addMessage("Chat cleared! 👋 What would you like to learn today?","bot");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS | AI Career Intelligence</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+:root{
+  --violet:#9875ff;
+  --cyan:#45d8e8;
+  --muted:#a3abc1;
+}
+.career-page{padding-bottom:40px}
+.career-hero{
+  position:relative;overflow:hidden;padding:38px;
+  border-radius:25px;
+  background:linear-gradient(115deg,#211746,#172e50 65%,#123b4b);
+  border:1px solid rgba(151,117,255,.28);
+  margin-bottom:25px;
+}
+.career-hero:before{
+  content:"";position:absolute;width:300px;height:300px;
+  right:5%;top:-180px;border-radius:50%;
+  background:#875bff;filter:blur(90px);opacity:.35;
+}
+.career-hero h1{
+  font-size:clamp(28px,4vw,43px);
+  max-width:700px;line-height:1.2;margin:15px 0;
+}
+.career-hero p{color:#c0c9dc;max-width:650px;line-height:1.8}
+.career-label{
+  color:#b9a2ff;font-size:11px;font-weight:800;
+  letter-spacing:2px;
+}
+.career-btn{
+  border:0;border-radius:11px;padding:13px 19px;
+  color:white;font-weight:700;cursor:pointer;
+  background:linear-gradient(100deg,#895cf6,#397ee9);
+  margin-top:14px;
+}
+.career-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.career-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:17px;margin:23px 0;
+}
+.career-card,.career-panel{
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:19px;padding:22px;
+  backdrop-filter:blur(14px);
+}
+.career-icon{
+  width:45px;height:45px;border-radius:14px;
+  display:grid;place-items:center;
+  background:rgba(139,92,246,.18);
+  color:#c2aaff;margin-bottom:15px;
+}
+.career-card h2{font-size:27px;margin:7px 0}
+.career-muted{font-size:13px;color:var(--muted)}
+.career-section{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;margin:30px 0 17px;
+}
+.career-section h2{font-size:21px;margin:0}
+.career-columns{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:19px;
+}
+.career-select{
+  width:100%;padding:13px;border-radius:10px;
+  color:white;background:#171b2e;
+  border:1px solid rgba(255,255,255,.16);
+  margin:9px 0 17px;
+}
+.career-select option{background:#171b2e;color:white}
+.career-result{
+  margin-top:17px;padding:17px;border-radius:13px;
+  background:rgba(139,92,246,.1);
+  border:1px solid rgba(139,92,246,.24);
+  line-height:1.7;
+}
+.role-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+.role-card{
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.035);
+  padding:20px;border-radius:17px;transition:.25s;
+}
+.role-card:hover{transform:translateY(-4px);border-color:#9274ef}
+.role-card h3{margin:12px 0 7px}
+.role-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.role-tag{
+  display:inline-block;padding:5px 9px;border-radius:20px;
+  background:rgba(69,216,232,.1);color:#69dce9;font-size:11px;
+}
+.roadmap-item{
+  display:flex;gap:15px;padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.roadmap-number{
+  min-width:35px;height:35px;border-radius:11px;
+  display:grid;place-items:center;
+  background:rgba(139,92,246,.2);color:#c5adff;font-weight:800;
+}
+.roadmap-item p{color:var(--muted);font-size:13px;line-height:1.5;margin:5px 0}
+.skill-row{margin:19px 0}
+.skill-head{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
+.skill-track{height:8px;border-radius:20px;background:#ffffff14;overflow:hidden}
+.skill-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#8c5cf6,#42cde4)}
+.career-note{color:var(--muted);font-size:12px;line-height:1.6;margin-top:18px}
+@media(max-width:750px){
+ .career-columns{grid-template-columns:1fr}
+ .career-hero{padding:25px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="brand-icon">N</span><span>NEXUS</span>
+  </div>
+  <div class="nav-menu">
+    <p class="career-muted">MAIN MENU</p>
+    <a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="profile.html" class="nav-link"><i data-lucide="user-round"></i> My Profile</a>
+    <a href="learning.html" class="nav-link"><i data-lucide="book-open"></i> Learning Hub</a>
+    <a href="career.html" class="nav-link active"><i data-lucide="brain-circuit"></i> AI Career Guide</a>
+    <a href="index.html" class="nav-link"><i data-lucide="chart-no-axes-combined"></i> Analytics</a>
+    <a href="index.html" class="nav-link"><i data-lucide="target"></i> My Goals</a>
+    <a href="index.html" class="nav-link"><i data-lucide="folder-kanban"></i> Projects</a>
+  </div>
+  <div class="sidebar-bottom">
+    <a href="index.html" class="nav-link"><i data-lucide="arrow-left"></i> Back to Dashboard</a>
+  </div>
+</aside>
+
+<main class="main-content career-page">
+<header class="topbar">
+  <div>
+    <p class="career-muted">NEXUS / INTELLIGENCE</p>
+    <h2>AI Career Guide</h2>
+  </div>
+  <span class="career-muted">Career Intelligence Center</span>
+</header>
+
+<section class="career-hero">
+  <span class="career-label">✦ NEXT-GENERATION CAREER INTELLIGENCE</span>
+  <h1>Turn Your Ambition Into a Career. <span style="color:#b69aff">Build Your Future.</span></h1>
+  <p>Discover career possibilities, identify essential skills and create a learning roadmap designed to help you move forward with confidence.</p>
+  <button class="career-btn" onclick="document.getElementById('career-builder').scrollIntoView({behavior:'smooth'})">
+    Explore My Career <i data-lucide="arrow-up-right"></i>
+  </button>
+</section>
+
+<section class="career-grid">
+  <div class="career-card">
+    <div class="career-icon"><i data-lucide="compass"></i></div>
+    <p class="career-muted">Career Paths</p>
+    <h2>06+</h2>
+    <p class="career-muted">Explore technology domains</p>
+  </div>
+  <div class="career-card">
+    <div class="career-icon"><i data-lucide="brain"></i></div>
+    <p class="career-muted">Skill Intelligence</p>
+    <h2>12+</h2>
+    <p class="career-muted">Skills to explore</p>
+  </div>
+  <div class="career-card">
+    <div class="career-icon"><i data-lucide="route"></i></div>
+    <p class="career-muted">Learning Roadmap</p>
+    <h2>04</h2>
+    <p class="career-muted">Career development stages</p>
+  </div>
+  <div class="career-card">
+    <div class="career-icon"><i data-lucide="rocket"></i></div>
+    <p class="career-muted">Your Potential</p>
+    <h2>∞</h2>
+    <p class="career-muted">Keep learning and growing</p>
+  </div>
+</section>
+
+<div class="career-section" id="career-builder">
+  <h2>Build Your Career Direction</h2>
+  <span class="career-muted">Interactive career explorer</span>
+</div>
+
+<section class="career-columns">
+  <div class="career-panel">
+    <span class="career-label">CAREER DISCOVERY ENGINE</span>
+    <h2 style="margin:12px 0">Find Your Direction</h2>
+    <p class="career-muted">Choose your interests and explore a possible career direction.</p>
+
+    <label class="career-muted" for="interest">Your Area of Interest</label>
+    <select id="interest" class="career-select">
+      <option value="web">Web Development</option>
+      <option value="python">Python & Software Development</option>
+      <option value="data">Data Science & Analytics</option>
+      <option value="cyber">Cybersecurity</option>
+      <option value="ai">Artificial Intelligence</option>
+      <option value="cloud">Cloud Computing</option>
+    </select>
+
+    <label class="career-muted" for="level">Your Current Level</label>
+    <select id="level" class="career-select">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+
+    <button class="career-btn" onclick="generateCareer()">Generate Career Insight →</button>
+    <div id="career-result" class="career-result" aria-live="polite">
+      <strong>Your career insight will appear here.</strong>
+      <p class="career-muted">Select your interests and generate your career direction.</p>
+    </div>
+    <p class="career-note">This is an educational demo, not a real AI assessment or a guarantee of employment.</p>
+  </div>
+
+  <div class="career-panel">
+    <span class="career-label">YOUR DEVELOPMENT ROADMAP</span>
+    <h2 style="margin:12px 0">The Growth Framework</h2>
+    <div class="roadmap-item">
+      <div class="roadmap-number">01</div>
+      <div><strong>Foundation</strong><p>Build programming fundamentals and logical thinking.</p></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-number">02</div>
+      <div><strong>Core Skills</strong><p>Learn tools, technologies and practical concepts.</p></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-number">03</div>
+      <div><strong>Build Projects</strong><p>Create useful projects and develop a portfolio.</p></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-number">04</div>
+      <div><strong>Career Readiness</strong><p>Practice interviews and explore opportunities.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="career-section">
+  <h2>Explore Technology Careers</h2>
+  <span class="career-muted">Discover your possibilities</span>
+</div>
+
+<section class="role-grid">
+  <article class="role-card">
+    <span class="role-tag">DEVELOPMENT</span>
+    <div class="career-icon"><i data-lucide="code-2"></i></div>
+    <h3>Software Developer</h3>
+    <p>Design and build applications using programming languages and software engineering principles.</p>
+  </article>
+  <article class="role-card">
+    <span class="role-tag">WEB TECHNOLOGY</span>
+    <div class="career-icon"><i data-lucide="globe"></i></div>
+    <h3>Web Developer</h3>
+    <p>Create responsive websites and interactive digital experiences using modern web technologies.</p>
+  </article>
+  <article class="role-card">
+    <span class="role-tag">ARTIFICIAL INTELLIGENCE</span>
+    <div class="career-icon"><i data-lucide="bot"></i></div>
+    <h3>AI / ML Engineer</h3>
+    <p>Explore intelligent systems, machine learning concepts and data-driven applications.</p>
+  </article>
+  <article class="role-card">
+    <span class="role-tag">DATA TECHNOLOGY</span>
+    <div class="career-icon"><i data-lucide="chart-no-axes-combined"></i></div>
+    <h3>Data Analyst</h3>
+    <p>Use data, analytical thinking and visualization to help solve real-world problems.</p>
+  </article>
+  <article class="role-card">
+    <span class="role-tag">SECURITY</span>
+    <div class="career-icon"><i data-lucide="shield-check"></i></div>
+    <h3>Cybersecurity Analyst</h3>
+    <p>Learn how to protect systems, understand security risks and strengthen digital safety.</p>
+  </article>
+  <article class="role-card">
+    <span class="role-tag">CLOUD TECHNOLOGY</span>
+    <div class="career-icon"><i data-lucide="cloud"></i></div>
+    <h3>Cloud Engineer</h3>
+    <p>Work with cloud platforms, infrastructure concepts and scalable digital services.</p>
+  </article>
+</section>
+
+<div class="career-section">
+  <h2>Core Skills Overview</h2>
+  <span class="career-muted">Illustrative skill map</span>
+</div>
+
+<section class="career-panel">
+  <div class="skill-row">
+    <div class="skill-head"><span>Programming Fundamentals</span><span>Explore</span></div>
+    <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+  </div>
+  <div class="skill-row">
+    <div class="skill-head"><span>Problem Solving</span><span>Explore</span></div>
+    <div class="skill-track"><div class="skill-fill" style="width:75%"></div></div>
+  </div>
+  <div class="skill-row">
+    <div class="skill-head"><span>Web Technologies</span><span>Explore</span></div>
+    <div class="skill-track"><div class="skill-fill" style="width:65%"></div></div>
+  </div>
+  <p class="career-note">These bars represent example learning priorities, not your measured skill levels.</p>
+</section>
+
+<footer style="text-align:center;padding:35px 10px;color:#8992aa;font-size:12px">
+  NEXUS CAREER INTELLIGENCE · LEARN TODAY. BUILD TOMORROW.
+</footer>
+</main>
+</div>
+
+<script>
+lucide.createIcons();
+
+const careerData = {
+  web:{
+    title:"Frontend / Web Developer",
+    skills:"HTML, CSS, JavaScript, Responsive Design, Git and React",
+    next:"Build a personal portfolio and 2–3 responsive web projects."
+  },
+  python:{
+    title:"Software Developer",
+    skills:"Python, Data Structures, Algorithms, SQL and Git",
+    next:"Practice programming problems and build Python applications."
+  },
+  data:{
+    title:"Data Analyst",
+    skills:"Python, SQL, Excel, Statistics and Data Visualization",
+    next:"Work on beginner-friendly datasets and create dashboards."
+  },
+  cyber:{
+    title:"Cybersecurity Learner",
+    skills:"Networking, Linux, Security Fundamentals and Programming",
+    next:"Study ethical security concepts in authorized practice labs."
+  },
+  ai:{
+    title:"AI / Machine Learning Learner",
+    skills:"Python, Mathematics, Statistics and Machine Learning",
+    next:"Start with Python and basic data analysis before ML projects."
+  },
+  cloud:{
+    title:"Cloud Computing Learner",
+    skills:"Networking, Linux, Cloud Fundamentals and Databases",
+    next:"Learn cloud architecture concepts and build a small practice project."
+  }
+};
+
+function generateCareer(){
+  const interest=document.getElementById("interest").value;
+  const level=document.getElementById("level").value;
+  const data=careerData[interest];
+
+  document.getElementById("career-result").innerHTML=`
+    <span class="career-label">YOUR CAREER EXPLORATION RESULT</span>
+    <h3>${data.title}</h3>
+    <p><strong>Skills to explore:</strong><br>${data.skills}</p>
+    <p><strong>Your next step:</strong><br>${data.next}</p>
+    <p class="career-muted">Current level selected: ${level}. This is a general suggestion, not an AI-generated personal assessment.</p>
+  `;
+}
+</script>
+</body>
+</html>

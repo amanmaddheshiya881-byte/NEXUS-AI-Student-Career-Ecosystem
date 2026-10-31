@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects Workspace | NEXUS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --bg:#080d18; --panel:#101827; --panel2:#141f31;
+  --border:rgba(148,163,184,.15); --muted:#91a0b7;
+  --text:#edf3ff; --blue:#658cff; --cyan:#35d5e8;
+  --green:#35d69a; --orange:#ffb45e; --red:#ff6b78;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{width:245px;background:#0b1220;border-right:1px solid var(--border);padding:28px 17px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;padding:0 12px 35px}
+.brand-icon{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#648bff,#36d5e8);display:grid;place-items:center;color:white;font-weight:800;font-size:20px}
+.brand h2{font-size:19px;letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:4px}
+.nav-label{font-size:10px;color:#65748c;font-weight:700;letter-spacing:1.5px;padding:12px}
+.nav-link{display:flex;align-items:center;gap:13px;padding:13px 14px;color:#9eabc0;text-decoration:none;border-radius:10px;font-size:13px;margin:3px 0;transition:.2s}
+.nav-link:hover,.nav-link.active{background:linear-gradient(90deg,rgba(101,140,255,.18),rgba(53,213,232,.06));color:white}
+.nav-link.active{border:1px solid rgba(101,140,255,.2)}
+.nav-link i{width:17px}
+.sidebar-bottom{margin-top:auto;padding:15px 12px;border-top:1px solid var(--border);color:var(--muted);font-size:11px;line-height:1.8}
+.main{margin-left:245px;width:calc(100% - 245px);padding:35px 42px 60px;max-width:1600px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;gap:15px}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.breadcrumb span{color:var(--text)}
+.top-right{display:flex;align-items:center;gap:12px}
+.status-pill{border:1px solid var(--border);padding:9px 13px;border-radius:30px;font-size:11px;color:var(--green);background:rgba(53,214,154,.06)}
+.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#648bff,#35d5e8);font-weight:800}
+.hero{padding:32px;border:1px solid var(--border);border-radius:19px;background:radial-gradient(ellipse at 85% 10%,rgba(62,119,255,.19),transparent 40%),linear-gradient(130deg,#121e32,#101827 70%);position:relative;overflow:hidden;margin-bottom:25px}
+.hero:after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(101,140,255,.15);border-radius:50%;right:-65px;top:-85px;box-shadow:0 0 0 28px rgba(101,140,255,.025),0 0 0 58px rgba(101,140,255,.02)}
+.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(27px,4vw,38px);letter-spacing:-1.3px;margin-bottom:12px}
+.hero p{color:#a4b2c8;font-size:13px;line-height:1.8;max-width:620px}
+.hero-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:25px;flex-wrap:wrap}
+.hero-note{font-size:11px;color:#91a0b7}
+.primary-btn{border:0;background:linear-gradient(110deg,#668bff,#438be9);color:white;padding:12px 17px;border-radius:9px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:9px;box-shadow:0 8px 24px rgba(72,117,255,.2)}
+.primary-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:29px}
+.stat{padding:20px;border:1px solid var(--border);background:var(--panel);border-radius:14px}
+.stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.stat-icon{width:35px;height:35px;border-radius:10px;background:rgba(101,140,255,.13);display:grid;place-items:center;color:#8eacff}
+.stat-icon i{width:17px}
+.stat small{font-size:11px;color:var(--muted)}
+.stat h2{font-size:27px;margin-top:5px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:17px;flex-wrap:wrap}
+.section-head h2{font-size:17px}
+.section-head p{font-size:11px;color:var(--muted);margin-top:6px}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.filter{border:1px solid var(--border);background:var(--panel);color:#9baac0;padding:9px 13px;border-radius:8px;font-size:11px}
+.filter.active{background:rgba(101,140,255,.15);border-color:rgba(101,140,255,.5);color:white}
+.toolbar{display:flex;gap:10px;margin-bottom:18px}
+.search{flex:1;position:relative}
+.search i{position:absolute;left:13px;top:12px;color:var(--muted);width:16px}
+.search input{width:100%;padding:12px 14px 12px 39px;background:var(--panel);border:1px solid var(--border);border-radius:9px;color:white;outline:none;font-size:12px}
+.search input:focus,.field input:focus,.field textarea:focus,.field select:focus{border-color:#668bff}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.project-card{background:linear-gradient(145deg,#121e30,#0e1726);border:1px solid var(--border);border-radius:15px;padding:20px;transition:.25s;min-width:0}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(101,140,255,.45);box-shadow:0 12px 35px rgba(0,0,0,.2)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:19px}
+.project-symbol{width:42px;height:42px;border-radius:12px;background:rgba(101,140,255,.13);display:grid;place-items:center;color:#8eacff}
+.project-symbol i{width:20px}
+.card-actions{display:flex;gap:6px}
+.icon-btn{width:30px;height:30px;border:1px solid var(--border);border-radius:8px;background:transparent;color:#9eabc0;display:grid;place-items:center}
+.icon-btn:hover{color:white;background:var(--panel2)}
+.icon-btn i{width:14px}
+.project-card h3{font-size:15px;margin-bottom:9px;overflow-wrap:anywhere}
+.project-desc{font-size:11px;line-height:1.7;color:#9aa9be;min-height:39px;overflow-wrap:anywhere}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.tag{font-size:9px;padding:6px 8px;border-radius:5px;background:rgba(101,140,255,.1);color:#a9bdff}
+.status{font-size:9px;padding:6px 9px;border-radius:20px;font-weight:700}
+.status.Planning{background:rgba(255,180,94,.1);color:var(--orange)}
+.status.In-Progress{background:rgba(101,140,255,.14);color:#9bb5ff}
+.status.Completed{background:rgba(53,214,154,.1);color:var(--green)}
+.card-footer{border-top:1px solid var(--border);padding-top:13px;margin-top:15px;display:flex;justify-content:space-between;align-items:center}
+.card-footer span{font-size:10px;color:var(--muted)}
+.repo-link{font-size:10px;color:#8eacff;text-decoration:none;display:flex;align-items:center;gap:5px}
+.repo-link:hover{color:white}
+.repo-link i{width:13px}
+.empty{grid-column:1/-1;text-align:center;padding:55px 20px;background:var(--panel);border:1px dashed var(--border);border-radius:15px}
+.empty i{width:35px;height:35px;color:#7185a6;margin-bottom:15px}
+.empty h3{font-size:15px;margin-bottom:8px}
+.empty p{font-size:11px;color:var(--muted);line-height:1.7}
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,15,.78);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:18px;z-index:10}
+.modal-backdrop.show{display:flex}
+.modal{width:100%;max-width:540px;background:#111c2d;border:1px solid var(--border);border-radius:17px;padding:25px;max-height:90vh;overflow:auto;box-shadow:0 25px 90px rgba(0,0,0,.5)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}
+.modal-head h2{font-size:18px}
+.close-btn{background:none;border:0;color:#aab6c9;font-size:23px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:15px}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;color:#b3bfd1;font-weight:600}
+.field input,.field textarea,.field select{width:100%;padding:12px;background:#0b1423;border:1px solid var(--border);border-radius:8px;color:white;outline:none;font-size:12px}
+.field textarea{resize:vertical;min-height:90px;line-height:1.6}
+.field select option{background:#101827}
+.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:10px}
+.secondary-btn{padding:11px 15px;border:1px solid var(--border);border-radius:8px;background:transparent;color:#b8c4d7;font-size:11px}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--border);color:#697991;font-size:10px}
+@media(max-width:1100px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.main{padding:28px}}
+@media(max-width:760px){.sidebar{width:65px;padding:20px 8px}.brand{padding:0 5px 30px}.brand h2,.brand small,.nav-label,.nav-link span,.sidebar-bottom{display:none}.brand-icon{width:42px}.nav-link{justify-content:center;padding:13px 8px}.main{margin-left:65px;width:calc(100% - 65px);padding:22px 14px}.stats{grid-template-columns:repeat(2,1fr)}.project-grid{grid-template-columns:1fr}.hero{padding:23px}.topbar{margin-bottom:22px}.status-pill{display:none}}
+@media(max-width:420px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats{gap:9px}.stat{padding:14px}.stat h2{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">N</div>
+    <div><h2>NEXUS</h2><small>STUDENT ECOSYSTEM</small></div>
+  </div>
+  <div class="nav-label">WORKSPACE</div>
+  <a class="nav-link" href="index.html"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
+  <a class="nav-link" href="profile.html"><i data-lucide="user-round"></i><span>My Profile</span></a>
+  <a class="nav-link" href="learning.html"><i data-lucide="book-open"></i><span>Learning Hub</span></a>
+  <a class="nav-link" href="career.html"><i data-lucide="compass"></i><span>AI Career Guide</span></a>
+  <a class="nav-link" href="analytics.html"><i data-lucide="chart-no-axes-combined"></i><span>Analytics</span></a>
+  <a class="nav-link" href="goals.html"><i data-lucide="target"></i><span>My Goals</span></a>
+  <a class="nav-link active" href="projects.html"><i data-lucide="folder-kanban"></i><span>Projects</span></a>
+  <a class="nav-link" href="index.html"><i data-lucide="settings"></i><span>Settings</span></a>
+  <div class="sidebar-bottom">NEXUS Workspace<br>Build • Learn • Create</div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="breadcrumb">Workspace / <span>Projects</span></div>
+    <div class="top-right">
+      <div class="status-pill">● Workspace Active</div>
+      <div class="avatar">A</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">✦ YOUR CREATION SPACE</div>
+    <h1>Projects Workspace<span style="color:#6f9aff">.</span></h1>
+    <p>Turn your ideas into real-world solutions. Organize your work, track development progress, and showcase your GitHub repositories in one professional workspace.</p>
+    <div class="hero-bottom">
+      <div class="hero-note">Think bigger. Build smarter. Ship better.</div>
+      <button class="primary-btn" id="addTop"><i data-lucide="plus"></i> Create New Project</button>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-top"><small>Total Projects</small><div class="stat-icon"><i data-lucide="folder"></i></div></div><h2 id="totalCount">0</h2></div>
+    <div class="stat"><div class="stat-top"><small>In Progress</small><div class="stat-icon"><i data-lucide="activity"></i></div></div><h2 id="progressCount">0</h2></div>
+    <div class="stat"><div class="stat-top"><small>Completed</small><div class="stat-icon"><i data-lucide="check-circle-2"></i></div></div><h2 id="completedCount">0</h2></div>
+    <div class="stat"><div class="stat-top"><small>GitHub Linked</small><div class="stat-icon"><i data-lucide="github"></i></div></div><h2 id="githubCount">0</h2></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><h2>My Projects</h2><p>Manage your ideas and development journey.</p></div>
+      <div class="filters">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Planning">Planning</button>
+        <button class="filter" data-filter="In Progress">In Progress</button>
+        <button class="filter" data-filter="Completed">Completed</button>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="search"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="Search projects..."></div>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <div class="footer">NEXUS © 2026 · Build your future, one project at a time.</div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Create New Project</h2>
+      <button class="close-btn" id="closeModal" aria-label="Close">&times;</button>
+    </div>
+    <form id="projectForm">
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <div class="field full">
+          <label for="projectName">Project Name *</label>
+          <input id="projectName" maxlength="60" required placeholder="e.g. Smart Student Dashboard">
+        </div>
+        <div class="field full">
+          <label for="projectDescription">Project Description *</label>
+          <textarea id="projectDescription" maxlength="350" required placeholder="What problem does your project solve?"></textarea>
+        </div>
+        <div class="field">
+          <label for="projectCategory">Category</label>
+          <select id="projectCategory">
+            <option>Web Development</option><option>Python</option><option>Artificial Intelligence</option><option>Data Science</option><option>App Development</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="projectStatus">Project Status</label>
+          <select id="projectStatus">
+            <option>Planning</option><option>In Progress</option><option>Completed</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="githubUrl">GitHub Repository URL (optional)</label>
+          <input id="githubUrl" type="url" placeholder="https://github.com/username/repository">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="secondary-btn" id="cancelModal">Cancel</button>
+        <button type="submit" class="primary-btn"><i data-lucide="save"></i> Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = "nexusProjects";
+let projects = [];
+let activeFilter = "All";
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[char]);
+}
+
+function loadProjects() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    projects = Array.isArray(saved) ? saved : [];
+  } catch {
+    projects = [];
+  }
+}
+
+function saveProjects() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    return true;
+  } catch {
+    alert("Projects could not be saved. Check your browser storage.");
+    return false;
+  }
+}
+
+function safeRepoUrl(value) {
+  if (!value.trim()) return "";
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" || url.hostname !== "github.com") return null;
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
+function updateStats() {
+  $("totalCount").textContent = projects.length;
+  $("progressCount").textContent = projects.filter(p => p.status === "In Progress").length;
+  $("completedCount").textContent = projects.filter(p => p.status === "Completed").length;
+  $("githubCount").textContent = projects.filter(p => p.github).length;
+}
+
+function renderProjects() {
+  updateStats();
+  const query = $("searchInput").value.trim().toLowerCase();
+
+  const filtered = projects.filter(p => {
+    const matchesFilter = activeFilter === "All" || p.status === activeFilter;
+    const matchesSearch = `${p.name} ${p.description} ${p.category}`.toLowerCase().includes(query);
+    return matchesFilter && matchesSearch;
+  });
+
+  if (!filtered.length) {
+    $("projectGrid").innerHTML = `
+      <div class="empty">
+        <i data-lucide="folder-plus"></i>
+        <h3>${projects.length ? "No matching projects" : "Your workspace is ready."}</h3>
+        <p>${projects.length ? "Try another search or filter." : "Create your first project and start building your portfolio."}</p>
+      </div>`;
+  } else {
+    $("projectGrid").innerHTML = filtered.map(p => {
+      const statusClass = p.status.replace(/\s/g, "-");
+      const repo = p.github ? `<a class="repo-link" href="${escapeHTML(p.github)}" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i> View Repository</a>` : `<span>No repository linked</span>`;
+      return `
+      <article class="project-card">
+        <div class="card-top">
+          <div class="project-symbol"><i data-lucide="code-2"></i></div>
+          <div class="card-actions">
+            <button class="icon-btn" data-edit="${escapeHTML(p.id)}" aria-label="Edit project"><i data-lucide="pencil"></i></button>
+            <button class="icon-btn" data-delete="${escapeHTML(p.id)}" aria-label="Delete project"><i data-lucide="trash-2"></i></button>
+          </div>
+        </div>
+        <h3>${escapeHTML(p.name)}</h3>
+        <p class="project-desc">${escapeHTML(p.description)}</p>
+        <div class="tags">
+          <span class="tag">${escapeHTML(p.category)}</span>
+          <span class="status ${statusClass}">${escapeHTML(p.status)}</span>
+        </div>
+        <div class="card-footer">
+          <span>Project workspace</span>
+          ${repo}
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  document.querySelectorAll(".filter").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.filter === activeFilter);
+  });
+  if (window.lucide) lucide.createIcons();
+}
+
+function openModal(project) {
+  $("projectForm").reset();
+  $("editId").value = project ? project.id : "";
+  $("modalTitle").textContent = project ? "Edit Project" : "Create New Project";
+  if (project) {
+    $("projectName").value = project.name;
+    $("projectDescription").value = project.description;
+    $("projectCategory").value = project.category;
+    $("projectStatus").value = project.status;
+    $("githubUrl").value = project.github || "";
+  }
+  $("modalBackdrop").classList.add("show");
+  $("projectName").focus();
+}
+
+function closeModal() {
+  $("modalBackdrop").classList.remove("show");
+}
+
+$("addTop").addEventListener("click", () => openModal(null));
+$("closeModal").addEventListener("click", closeModal);
+$("cancelModal").addEventListener("click", closeModal);
+$("modalBackdrop").addEventListener("click", e => {
+  if (e.target === $("modalBackdrop")) closeModal();
+});
+$("searchInput").addEventListener("input", renderProjects);
+
+document.querySelectorAll(".filter").forEach(btn => {
+  btn.addEventListener("click", () => {
+    activeFilter = btn.dataset.filter;
+    renderProjects();
+  });
+});
+
+$("projectForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = $("projectName").value.trim();
+  const description = $("projectDescription").value.trim();
+  const github = safeRepoUrl($("githubUrl").value.trim());
+
+  if (!name || !description) {
+    alert("Please fill in the project name and description.");
+    return;
+  }
+  if (github === null) {
+    alert("Please enter a valid GitHub repository URL starting with https://github.com/");
+    return;
+  }
+
+  const id = $("editId").value;
+  const project = {
+    id: id || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+    name,
+    description,
+    category: $("projectCategory").value,
+    status: $("projectStatus").value,
+    github
+  };
+
+  if (id) {
+    projects = projects.map(p => p.id === id ? project : p);
+  } else {
+    projects.unshift(project);
+  }
+
+  if (saveProjects()) {
+    closeModal();
+    renderProjects();
+  }
+});
+
+$("projectGrid").addEventListener("click", e => {
+  const editButton = e.target.closest("[data-edit]");
+  const deleteButton = e.target.closest("[data-delete]");
+
+  if (editButton) {
+    const project = projects.find(p => p.id === editButton.dataset.edit);
+    if (project) openModal(project);
+  }
+
+  if (deleteButton) {
+    const id = deleteButton.dataset.delete;
+    const project = projects.find(p => p.id === id);
+    if (project && confirm(`Delete "${project.name}" from your workspace?`)) {
+      projects = projects.filter(p => p.id !== id);
+      if (saveProjects()) renderProjects();
+    }
+  }
+});
+
+loadProjects();
+renderProjects();
+</script>
+</body>
+</html>
