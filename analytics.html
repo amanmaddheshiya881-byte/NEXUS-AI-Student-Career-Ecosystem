@@ -77,6 +77,109 @@
  .analytics-columns,.analytics-bottom{grid-template-columns:1fr}
  .analytics-hero{padding:24px}
 }
+
+/* NEXUS ANALYTICS PREMIUM SIDEBAR */
+
+.analytics-page .sidebar .nav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.sidebar .nav-menu > p {
+    margin: 0 0 4px;
+    color: #9caed0;
+    font-size: 13px;
+}
+
+.sidebar .nav-menu > a.nav-link,
+.sidebar .sidebar-bottom > a.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-height: 58px;
+    padding: 14px 16px;
+    margin: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+    background: linear-gradient(145deg, #263653, #151e32);
+    border: 1px solid #ffffff1c;
+    border-left: 5px solid #38bdf8;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 6px 0 #0b1220;
+    transition: .3s ease;
+}
+
+.sidebar .nav-menu > a.nav-link:nth-of-type(2) {
+    border-left-color: #a78bfa;
+}
+
+.sidebar .nav-menu > a.nav-link:nth-of-type(3) {
+    border-left-color: #34d399;
+}
+
+.sidebar .nav-menu > a.nav-link:nth-of-type(4) {
+    border-left-color: #fb923c;
+}
+
+.sidebar .nav-menu > a.nav-link:nth-of-type(5) {
+    border-left-color: #f472b6;
+}
+
+.sidebar .nav-menu > a.nav-link:nth-of-type(6) {
+    border-left-color: #facc15;
+}
+
+.sidebar .nav-menu > a.nav-link > i,
+.sidebar .sidebar-bottom > a.nav-link > i {
+    width: 21px;
+    height: 21px;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-menu > a.nav-link.active {
+    background: linear-gradient(110deg, #4338ca, #7c3aed);
+    border-color: #8b5cf6;
+    color: #ffffff;
+    box-shadow: 0 6px 0 #29206e, 0 10px 22px #7c3aed55;
+}
+
+.sidebar .nav-menu > a.nav-link:hover,
+.sidebar .sidebar-bottom > a.nav-link:hover {
+    color: #ffffff;
+    background: linear-gradient(145deg, #493b87, #253b61);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #11142b, 0 14px 25px #6366f155;
+}
+
+.sidebar .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+}
+/* ANALYTICS SIDEBAR SPACING FIX */
+
+.sidebar .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sidebar .nav-menu > p {
+    margin: 0 0 4px;
+}
+
+.sidebar .nav-menu .nav-link {
+    margin: 0;
+    flex-shrink: 0;
+}
 </style>
 </head>
 

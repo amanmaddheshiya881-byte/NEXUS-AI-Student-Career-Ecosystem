@@ -15,12 +15,19 @@
   --muted:#a3abc1;
 }
 .career-page{padding-bottom:40px}
-.career-hero{
-  position:relative;overflow:hidden;padding:38px;
-  border-radius:25px;
-  background:linear-gradient(115deg,#211746,#172e50 65%,#123b4b);
-  border:1px solid rgba(151,117,255,.28);
-  margin-bottom:25px;
+.career-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 38px;
+  border-radius: 25px;
+  background: linear-gradient(115deg, #211746, #172e50 65%, #123b4b);
+  border: 1px solid rgba(151,117,255,.28);
+  margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
 }
 .career-hero:before{
   content:"";position:absolute;width:300px;height:300px;
@@ -117,6 +124,153 @@
  .career-columns{grid-template-columns:1fr}
  .career-hero{padding:25px}
 }
+/* NEXUS PREMIUM 3D CAREER UPGRADE */
+
+.career-hero {
+    border: 1px solid #a78bfa66;
+    box-shadow: 0 15px 45px #00000055,
+                0 0 30px #8b5cf633;
+    transition: .4s ease;
+}
+
+.career-hero:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px #7954e855;
+}
+
+.career-card,
+.career-panel,
+.role-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(18px);
+    transition: transform .35s ease,
+                border-color .35s ease,
+                box-shadow .35s ease;
+}
+
+.career-card:hover,
+.career-panel:hover,
+.role-card:hover {
+    transform: translateY(-7px) perspective(900px) rotateX(2deg);
+    border-color: #9875ff88;
+    box-shadow: 0 15px 35px #7954e833;
+}
+
+.career-icon {
+    box-shadow: 0 0 20px #8b5cf644;
+    transition: .3s ease;
+}
+
+.career-card:hover .career-icon,
+.role-card:hover .career-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 0 25px #8b5cf6aa;
+}
+
+.career-btn {
+    box-shadow: 0 5px 20px #7954e855;
+    transition: .3s ease;
+}
+
+.career-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px #397bff88;
+}
+
+.roadmap-number {
+    box-shadow: 0 0 18px #8b5cf644;
+    flex-shrink: 0;
+}
+
+.skill-track {
+    border: 1px solid #ffffff15;
+}
+
+.skill-fill {
+    box-shadow: 0 0 15px #42cde488;
+    animation: careerSkillGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes careerSkillGlow {
+    from {
+        filter: brightness(.85);
+    }
+    to {
+        filter: brightness(1.3);
+    }
+}
+
+.career-result {
+    box-shadow: inset 0 0 20px #8b5cf622;
+}
+
+@media(max-width:750px) {
+    .career-hero {
+        padding: 22px;
+    }
+
+    .career-card:hover,
+    .career-panel:hover,
+    .role-card:hover {
+        transform: translateY(-3px);
+    }
+}
+/* NEXUS CAREER PAGE SIDEBAR FIX */
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.nav-menu .nav-link,
+.sidebar-bottom .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 16px;
+    margin: 0;
+    border-radius: 14px;
+    color: #ffffff;
+    background: linear-gradient(145deg, #263653, #151e32);
+    border: 1px solid rgba(255,255,255,.12);
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 6px 0 #0b1220;
+    transition: .3s ease;
+}
+
+.nav-menu .nav-link:nth-of-type(1) { border-left: 5px solid #38bdf8; }
+.nav-menu .nav-link:nth-of-type(2) { border-left: 5px solid #a78bfa; }
+.nav-menu .nav-link:nth-of-type(3) { border-left: 5px solid #34d399; }
+.nav-menu .nav-link:nth-of-type(4) { border-left: 5px solid #fb923c; }
+.nav-menu .nav-link:nth-of-type(5) { border-left: 5px solid #f472b6; }
+.nav-menu .nav-link:nth-of-type(6) { border-left: 5px solid #facc15; }
+.nav-menu .nav-link:nth-of-type(7) { border-left: 5px solid #818cf8; }
+
+.nav-menu .nav-link:hover,
+.sidebar-bottom .nav-link:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(145deg, #493b87, #253b61);
+    color: #ffffff;
+    box-shadow: 0 9px 0 #11142b, 0 14px 25px #6366f155;
+}
+
+.nav-menu .nav-link.active {
+    background: linear-gradient(110deg, #4338ca, #7c3aed);
+    color: #ffffff;
+    box-shadow: 0 6px 0 #29206e, 0 10px 22px #7c3aed66;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+}
 </style>
 </head>
 
@@ -151,12 +305,32 @@
 </header>
 
 <section class="career-hero">
-  <span class="career-label">✦ NEXT-GENERATION CAREER INTELLIGENCE</span>
-  <h1>Turn Your Ambition Into a Career. <span style="color:#b69aff">Build Your Future.</span></h1>
-  <p>Discover career possibilities, identify essential skills and create a learning roadmap designed to help you move forward with confidence.</p>
-  <button class="career-btn" onclick="document.getElementById('career-builder').scrollIntoView({behavior:'smooth'})">
-    Explore My Career <i data-lucide="arrow-up-right"></i>
-  </button>
+
+  <div class="career-hero-content">
+    <span class="career-label">
+      ✦ NEXT-GENERATION CAREER INTELLIGENCE
+    </span>
+
+    <h1>
+      Turn Your Ambition Into a Career.
+      <span style="color:#b69aff">Build Your Future.</span>
+    </h1>
+
+    <p>
+      Discover career possibilities, identify essential skills and create a learning roadmap designed to help you move forward with confidence.
+    </p>
+
+    <button class="career-btn"
+      onclick="document.getElementById('career-builder').scrollIntoView({behavior:'smooth'})">
+      Explore My Career
+      <i data-lucide="arrow-up-right"></i>
+    </button>
+  </div>
+
+  <div class="career-robot">
+    <img src="./ai-robot.png" alt="NEXUS AI Robot" style="width:300px; display:block;">
+  </div>
+
 </section>
 
 <section class="career-grid">

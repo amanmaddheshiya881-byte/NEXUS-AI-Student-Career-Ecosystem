@@ -4,735 +4,1810 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS | 3D Learning Hub</title>
+<title>NEXUS | Premium Learning Hub</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-/* ===== LEARNING HUB 3D DESIGN ===== */
-
-.learning-page {
-    padding-bottom: 60px;
-    perspective: 1200px;
-    overflow-x: hidden;
+:root {
+    --bg: #090d1d;
+    --panel: #141b32;
+    --text: #f5f7ff;
+    --muted: #aab5d0;
+    --purple: #a78bfa;
+    --cyan: #67e8f9;
+    --pink: #f0abfc;
+    --green: #6ee7b7;
+    --border: rgba(167,139,250,.22);
 }
 
-.learning-page * {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+body {
+    background:
+        radial-gradient(circle at 80% 10%, #542a9140, transparent 28%),
+        radial-gradient(circle at 15% 80%, #07598530, transparent 30%),
+        var(--bg);
+    color: var(--text);
+}
+
+.learning-page {
+    min-height: 100vh;
+    padding: 28px;
+    perspective: 1200px;
+}
+
+.learning-main {
+    max-width: 1450px;
+    margin: auto;
+}
+
+.learning-topbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:28px;
+}
+
+.learning-topbar h2 {
+    font-size:23px;
+    margin:0;
+}
+
+.learning-topbar p {
+    color:var(--muted);
+    margin:6px 0 0;
+    font-size:13px;
+}
+
+.top-badge {
+    padding:10px 16px;
+    border:1px solid var(--border);
+    background:#8b5cf622;
+    color:#d8b4fe;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
 }
 
 .learning-hero {
-    min-height: 330px;
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-    padding: 45px;
-    border-radius: 28px;
-    border: 1px solid #9272ff55;
+    position:relative;
+    overflow:hidden;
+    padding:42px;
+    min-height:270px;
+    border-radius:28px;
+    border:1px solid #a78bfa55;
     background:
-      radial-gradient(circle at 80% 30%,#7145e855,transparent 35%),
-      radial-gradient(circle at 20% 100%,#168bc455,transparent 40%),
-      linear-gradient(120deg,#11152e,#1b2050,#102c48);
-    box-shadow: 0 25px 65px #05081688,
-                inset 0 1px 1px #ffffff22;
-    margin-bottom: 32px;
+        radial-gradient(circle at 85% 20%, #c084fc55, transparent 30%),
+        radial-gradient(circle at 10% 100%, #06b6d455, transparent 35%),
+        linear-gradient(125deg,#17133d,#24205c 50%,#073b55);
+    box-shadow:0 25px 60px #0007,0 0 35px #7c3aed22;
+    transition:.4s ease;
 }
 
-.learning-hero::before,
-.learning-hero::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
-    filter: blur(2px);
-}
-
-.learning-hero::before {
-    width: 300px;
-    height: 300px;
-    right: 5%;
-    top: -140px;
-    background: #8b5cf633;
-    animation: floatGlow 7s ease-in-out infinite;
-}
-
-.learning-hero::after {
-    width: 220px;
-    height: 220px;
-    left: 40%;
-    bottom: -150px;
-    background: #06b6d433;
+.learning-hero:hover {
+    transform:translateY(-5px);
+    box-shadow:0 30px 65px #0008,0 0 40px #8b5cf655;
 }
 
 .hero-content {
-    max-width: 590px;
-    z-index: 2;
+    position:relative;
+    z-index:2;
+    max-width:720px;
 }
 
-.eyebrow {
-    color: #b9a4ff;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 3px;
+.hero-label {
+    color:#67e8f9;
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:800;
 }
 
 .learning-hero h1 {
-    font-size: clamp(30px,4vw,48px);
-    line-height: 1.15;
-    margin: 18px 0;
-    color: white;
-}
-
-.learning-hero h1 span {
-    background: linear-gradient(90deg,#b69aff,#65d9ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    font-size:clamp(30px,4vw,48px);
+    line-height:1.15;
+    margin:16px 0;
+    background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);
+    color:transparent;
+    background-clip:text;
+    -webkit-background-clip:text;
 }
 
 .learning-hero p {
-    color: #bdc7e1;
-    line-height: 1.8;
-    max-width: 520px;
+    color:#d6dcf5;
+    line-height:1.8;
+    max-width:650px;
 }
 
-.primary-btn {
-    border: 0;
-    border-radius: 12px;
-    padding: 14px 21px;
-    color: white;
-    background: linear-gradient(110deg,#8755ed,#397eea);
-    box-shadow: 0 8px 25px #7355e955;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: .3s;
+.hero-button,.course-button,.lesson-button {
+    border:0;
+    cursor:pointer;
+    color:white;
+    font-weight:700;
+    border-radius:12px;
+    padding:13px 20px;
+    background:linear-gradient(110deg,#9333ea,#6366f1,#0891b2);
+    box-shadow:0 9px 25px #7c3aed55;
+    transition:.3s ease;
 }
 
-.primary-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 13px 30px #7355e977;
+.hero-button:hover,.course-button:hover,.lesson-button:hover {
+    transform:translateY(-3px);
+    box-shadow:0 13px 30px #7c3aed88;
 }
 
-/* 3D floating illustration */
-
-.hero-visual {
-    width: 260px;
-    height: 230px;
-    flex-shrink: 0;
-    position: relative;
-    display: grid;
-    place-items: center;
-    transform-style: preserve-3d;
-    animation: heroFloat 5s ease-in-out infinite;
+.hero-decoration {
+    position:absolute;
+    right:8%;
+    top:25%;
+    font-size:100px;
+    opacity:.85;
+    filter:drop-shadow(0 15px 25px #0008);
+    transform:rotate(-12deg);
 }
-
-.hero-orbit {
-    position: absolute;
-    width: 210px;
-    height: 210px;
-    border: 1px solid #a78bfa66;
-    border-radius: 50%;
-    transform: rotateX(65deg) rotateZ(-20deg);
-    box-shadow: 0 0 30px #8b5cf633;
-}
-
-.hero-orbit.two {
-    width: 170px;
-    height: 170px;
-    border-color: #38bdf866;
-    transform: rotateX(65deg) rotateZ(35deg);
-}
-
-.hero-book {
-    width: 115px;
-    height: 145px;
-    border-radius: 10px 18px 18px 10px;
-    background: linear-gradient(135deg,#a78bfa,#5535b9 70%);
-    box-shadow: 12px 15px 0 #30205f,
-                18px 22px 30px #0008,
-                inset 4px 0 5px #ffffff55;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    color: white;
-    transform: rotateY(-22deg) rotateX(8deg);
-    z-index: 2;
-}
-
-.hero-book i {
-    width: 38px;
-    height: 38px;
-}
-
-.hero-book strong {
-    font-size: 13px;
-    letter-spacing: 2px;
-}
-
-.floating-icon {
-    position: absolute;
-    width: 53px;
-    height: 53px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #ffffff33;
-    border-radius: 15px;
-    color: white;
-    background: linear-gradient(145deg,#ffffff25,#ffffff08);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 12px 25px #0006;
-    animation: iconFloat 4s ease-in-out infinite;
-}
-
-.floating-icon.one {
-    top: 15px;
-    right: 10px;
-    color: #67e8f9;
-}
-
-.floating-icon.two {
-    bottom: 15px;
-    left: 8px;
-    color: #c4b5fd;
-    animation-delay: 1s;
-}
-
-.floating-icon.three {
-    top: 55px;
-    left: 0;
-    color: #fbbf24;
-    animation-delay: 2s;
-}
-
-@keyframes heroFloat {
-    0%,100% { transform: translateY(0) rotateY(-5deg); }
-    50% { transform: translateY(-13px) rotateY(5deg); }
-}
-
-@keyframes iconFloat {
-    0%,100% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(-12px) rotate(8deg); }
-}
-
-@keyframes floatGlow {
-    0%,100% { transform: translate(0,0); }
-    50% { transform: translate(-25px,25px); }
-}
-
-/* Stats */
-
-.learning-stats {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 19px;
-    margin-bottom: 40px;
-}
-
-.learning-card,
-.course-card,
-.subject-card {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(145deg,#ffffff0d,#ffffff04);
-    border: 1px solid #ffffff14;
-    border-radius: 20px;
-    padding: 23px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 12px 30px #0003,
-                inset 0 1px 0 #ffffff0c;
-}
-
-.learning-card {
-    transition: transform .35s, border-color .35s;
-}
-
-.learning-card:hover {
-    transform: translateY(-7px) rotateX(3deg);
-    border-color: #9775ff88;
-}
-
-.stat-icon {
-    width: 47px;
-    height: 47px;
-    border-radius: 15px;
-    display: grid;
-    place-items: center;
-    color: #c4b5fd;
-    background: linear-gradient(135deg,#8b5cf633,#38bdf822);
-    box-shadow: 0 6px 18px #8b5cf622;
-    margin-bottom: 17px;
-}
-
-.stat-icon i {
-    width: 22px;
-    height: 22px;
-}
-
-.learning-card h2 {
-    font-size: 28px;
-    margin: 7px 0;
-    color: white;
-}
-
-.muted {
-    color: #a7b1ca;
-    font-size: 13px;
-}
-
-/* Sections */
 
 .section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin: 38px 0 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:15px;
+    margin:38px 0 20px;
 }
 
 .section-heading h2 {
-    color: white;
-    font-size: 22px;
-    margin: 0;
+    margin:0;
+    font-size:24px;
 }
 
-/* Course cards */
+.section-heading p {
+    color:var(--muted);
+    font-size:13px;
+    margin:7px 0 0;
+}
 
-.course-grid,
-.subject-grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 22px;
+.learning-stats {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:17px;
+    margin-top:25px;
+}
+
+.stat-card,.course-card,.subject-card,.goal-panel {
+    background:linear-gradient(145deg,#242344dd,#111c35ee);
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:0 15px 35px #0005,inset 0 1px 0 #ffffff12;
+    transition:.35s ease;
+}
+
+.stat-card {
+    padding:21px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.stat-card:hover,.course-card:hover,.subject-card:hover,.goal-panel:hover {
+    transform:translateY(-7px);
+    border-color:#67e8f9aa;
+    box-shadow:0 20px 40px #0007,0 0 22px #8b5cf633;
+}
+
+.stat-icon {
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    font-size:23px;
+    background:#8b5cf633;
+}
+
+.stat-card h3 { margin:0 0 5px; font-size:23px; }
+.stat-card p { margin:0; color:var(--muted); font-size:12px; }
+
+.course-grid {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
 }
 
 .course-card {
-    transform-style: preserve-3d;
-    transition: transform .25s ease, border-color .3s, box-shadow .3s;
-    will-change: transform;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    transform-style:preserve-3d;
 }
 
-.course-card:hover {
-    border-color: #8b5cf688;
-    box-shadow: 0 25px 45px #0005,0 0 25px #8b5cf622;
-}
-
-.course-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.course-card::before {
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    right:-55px;
+    top:-55px;
+    background:var(--glow);
+    filter:blur(35px);
+    opacity:.5;
+    pointer-events:none;
 }
 
 .course-icon {
-    width: 53px;
-    height: 53px;
-    border-radius: 16px;
-    display: grid;
-    place-items: center;
-    font-size: 25px;
-    background: linear-gradient(145deg,#8b5cf633,#38bdf822);
-    box-shadow: 0 8px 20px #0003;
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+    margin-bottom:18px;
+    background:var(--glow);
+    border:1px solid #ffffff20;
+    box-shadow:0 8px 25px #0005;
 }
 
-.course-tag {
-    color: #c4b5fd;
-    background: #8b5cf622;
-    border: 1px solid #8b5cf644;
-    border-radius: 30px;
-    padding: 6px 12px;
-    font-size: 11px;
-    font-weight: 700;
+.course-card h3 { margin:0 0 9px; font-size:18px; }
+.course-card p { color:var(--muted); font-size:13px; line-height:1.7; min-height:65px; }
+
+.course-meta {
+    display:flex;
+    justify-content:space-between;
+    color:#c4b5fd;
+    font-size:11px;
+    margin:18px 0;
 }
 
-.course-card h3,
-.subject-card h3 {
-    color: white;
-    margin: 19px 0 8px;
-    font-size: 18px;
+.course-button { width:100%; }
+
+.subject-grid {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
 }
+
+.subject-card {
+    padding:20px;
+    cursor:pointer;
+}
+
+.subject-card .subject-icon { font-size:28px; }
+.subject-card h3 { margin:12px 0 6px; }
+.subject-card p { color:var(--muted); font-size:12px; line-height:1.6; }
+
+.goal-panel {
+    margin-top:25px;
+    padding:25px;
+    background:linear-gradient(120deg,#542b91aa,#173e66aa,#07505b88);
+}
+
+.goal-panel h3 { margin-top:0; }
+.goal-panel p { color:#d1d9ef; line-height:1.7; }
 
 .progress-track {
-    height: 8px;
-    background: #ffffff13;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 18px 0 10px;
+    height:10px;
+    border-radius:20px;
+    background:#ffffff18;
+    overflow:hidden;
+    margin-top:15px;
 }
 
 .progress-fill {
-    height: 100%;
-    border-radius: 20px;
-    background: linear-gradient(90deg,#a78bfa,#38bdf8);
-    box-shadow: 0 0 12px #8b5cf688;
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#a855f7,#6366f1,#06b6d4);
+    transition:width .4s ease;
 }
 
-.course-meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    color: #aab0c5;
-    font-size: 12px;
+/* COURSE LESSON MODAL */
+
+.lesson-modal {
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#050817dd;
+    backdrop-filter:blur(12px);
+    padding:20px;
+    align-items:center;
+    justify-content:center;
 }
 
-.course-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    margin-top: 16px;
-    color: white;
-    border: 1px solid #9a80ff55;
-    border-radius: 10px;
-    background: #8057e522;
-    cursor: pointer;
-    transition: .25s;
+.lesson-modal.show { display:flex; }
+
+.lesson-box {
+    width:min(900px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:linear-gradient(145deg,#202744,#10182d);
+    border:1px solid #a78bfa66;
+    border-radius:24px;
+    padding:26px;
+    box-shadow:0 25px 80px #000b,0 0 30px #8b5cf633;
 }
 
-.course-button:hover {
-    background: #8057e555;
-    transform: translateY(-2px);
+.lesson-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:17px;
+    margin-bottom:20px;
 }
 
-/* Subjects */
+.lesson-header h2 { margin:0; font-size:22px; }
 
-.subject-card {
-    transition: transform .3s,border-color .3s;
+.close-modal {
+    border:1px solid #ffffff25;
+    background:#ffffff12;
+    color:white;
+    border-radius:10px;
+    width:40px;
+    height:40px;
+    font-size:22px;
+    cursor:pointer;
 }
 
-.subject-card:hover {
-    transform: translateY(-7px) rotateX(3deg);
-    border-color: #38bdf877;
+.lesson-layout {
+    display:grid;
+    grid-template-columns:240px minmax(0,1fr);
+    gap:20px;
 }
 
-.subject-card p {
-    color: #aab0c5;
-    line-height: 1.7;
-    font-size: 13px;
+.lesson-list {
+    display:flex;
+    flex-direction:column;
+    gap:9px;
 }
 
-/* Goal panel */
-
-.goal-panel {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 22px;
-    margin-top: 35px;
+.lesson-item {
+    padding:12px;
+    border:1px solid #ffffff18;
+    background:#ffffff08;
+    color:#dbe4ff;
+    border-radius:10px;
+    text-align:left;
+    cursor:pointer;
 }
 
-.goal-number {
-    font-size: 36px;
-    font-weight: 800;
-    margin: 12px 0;
-    color: #c4b5fd;
+.lesson-item.active {
+    background:linear-gradient(100deg,#7c3aed88,#0891b244);
+    border-color:#a78bfa;
 }
 
-.goal-tip {
-    color: #c1c6d9;
-    line-height: 1.8;
-    font-size: 14px;
+.lesson-content {
+    min-height:300px;
+    padding:22px;
+    background:#ffffff08;
+    border:1px solid #ffffff15;
+    border-radius:16px;
 }
 
-/* Mobile */
-
-@media(max-width:950px) {
-    .learning-stats {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-    }
+.lesson-content h3 { color:#c4b5fd; margin-top:0; }
+.lesson-content p,.lesson-content li {
+    color:#d5def4;
+    line-height:1.8;
+    font-size:14px;
 }
 
-@media(max-width:650px) {
-    .learning-hero {
-        padding: 25px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.lesson-content pre {
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+    background:#080e1e;
+    border:1px solid #ffffff18;
+    color:#67e8f9;
+    padding:15px;
+    border-radius:12px;
+    font-size:13px;
+}
 
-    .hero-visual {
-        align-self: center;
-        transform: scale(.85);
-        margin-top: 5px;
-    }
+.lesson-actions {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:20px;
+}
 
-    .course-grid,
-    .subject-grid,
-    .goal-panel {
-        grid-template-columns: 1fr;
-    }
+.lesson-button:disabled {
+    opacity:.35;
+    cursor:not-allowed;
+    transform:none;
+}
 
-    .learning-stats {
-        gap: 12px;
-    }
+@media(max-width:1100px) {
+    .course-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .learning-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
 
-    .learning-card {
-        padding: 17px;
-    }
-
-    .section-heading h2 {
-        font-size: 18px;
-    }
+@media(max-width:700px) {
+    .learning-page { padding:15px; }
+    .learning-hero { padding:27px 22px; }
+    .hero-decoration { display:none; }
+    .course-grid,.subject-grid,.learning-stats { grid-template-columns:1fr; }
+    .lesson-layout { grid-template-columns:1fr; }
+    .lesson-list { display:grid; grid-template-columns:1fr 1fr; }
+    .lesson-box { padding:17px; }
+    .section-heading { align-items:start; flex-direction:column; }
 }
 
 @media(prefers-reduced-motion:reduce) {
-    *,*::before,*::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+    *,*::before,*::after { transition:none!important; }
+}
+
+/* =====================================
+   NEXUS LEARNING HUB - PREMIUM 3D UPGRADE
+===================================== */
+
+.learning-page {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+/* PREMIUM HERO */
+.learning-hero {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 25px 60px #0009,
+        0 0 35px #8b5cf655,
+        inset 0 2px 2px #ffffff30,
+        inset 0 -15px 30px #05081755;
+    transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.learning-hero:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    box-shadow:
+        0 35px 75px #000b,
+        0 0 50px #8b5cf677,
+        inset 0 2px 2px #ffffff40;
+}
+
+.hero-decoration {
+    transform: translateZ(55px) rotate(-12deg);
+    filter: drop-shadow(0 20px 25px #0009);
+}
+
+/* 3D STAT CARDS */
+.stat-card {
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow:
+        0 12px 25px #0006,
+        inset 0 1px 1px #ffffff22;
+}
+
+.stat-card:hover {
+    transform: translateY(-9px) rotateX(5deg) rotateY(-4deg);
+    box-shadow:
+        0 25px 40px #0009,
+        0 0 25px #8b5cf655;
+}
+
+.stat-icon {
+    transform: translateZ(18px);
+    box-shadow: 0 10px 22px #0006;
+    transition: .35s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: translateZ(35px) scale(1.12) rotate(-5deg);
+}
+
+/* PREMIUM COURSE CARDS */
+.course-card {
+    position: relative;
+    transform-style: preserve-3d;
+    border: 1px solid #a78bfa55;
+    box-shadow:
+        0 18px 35px #0007,
+        inset 0 1px 1px #ffffff25;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-12px) rotateX(5deg) rotateY(-3deg);
+    border-color: #67e8f9;
+    box-shadow:
+        0 30px 55px #000a,
+        0 0 30px #8b5cf655,
+        inset 0 1px 1px #ffffff35;
+}
+
+.course-icon {
+    transform: translateZ(25px);
+    transition: .4s ease;
+    box-shadow:
+        0 12px 25px #0007,
+        inset 0 1px 2px #ffffff40;
+}
+
+.course-card:hover .course-icon {
+    transform: translateZ(45px) rotate(-8deg) scale(1.12);
+}
+
+.course-card h3,
+.course-card p,
+.course-meta {
+    transform: translateZ(12px);
+}
+
+/* 3D BUTTONS */
+.course-button,
+.hero-button,
+.lesson-button {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(15px);
+    border: 1px solid #ffffff35;
+    box-shadow:
+        0 8px 0 #37206e,
+        0 14px 25px #0006,
+        0 0 18px #8b5cf655;
+    transition: .25s ease;
+}
+
+.course-button:hover,
+.hero-button:hover,
+.lesson-button:not(:disabled):hover {
+    transform: translateY(-5px) translateZ(20px);
+    box-shadow:
+        0 5px 0 #37206e,
+        0 18px 30px #0008,
+        0 0 25px #06b6d477;
+}
+
+.course-button:active,
+.hero-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #37206e;
+}
+
+/* CORE SUBJECTS */
+.subject-card {
+    position: relative;
+    transform-style: preserve-3d;
+    border: 1px solid #8b5cf655;
+    box-shadow:
+        0 15px 30px #0007,
+        inset 0 1px 1px #ffffff20;
+    transition: .4s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(3deg);
+    border-color: #67e8f9;
+    box-shadow:
+        0 25px 45px #0009,
+        0 0 25px #06b6d444;
+}
+
+.subject-icon {
+    display: inline-block;
+    transform: translateZ(25px);
+    transition: .35s ease;
+}
+
+.subject-card:hover .subject-icon {
+    transform: translateZ(40px) scale(1.18) rotate(8deg);
+}
+
+/* PROGRESS PANEL */
+.goal-panel {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    border: 1px solid #a78bfa88;
+    box-shadow:
+        0 20px 45px #0008,
+        inset 0 1px 2px #ffffff35;
+    transition: .4s ease;
+}
+
+.goal-panel:hover {
+    transform: translateY(-7px) rotateX(2deg);
+    box-shadow:
+        0 30px 55px #0009,
+        0 0 30px #06b6d444;
+}
+
+.progress-track {
+    box-shadow: inset 0 3px 8px #0008;
+}
+
+.progress-fill {
+    box-shadow:
+        0 0 12px #a855f7,
+        0 0 22px #06b6d4;
+}
+
+/* PREMIUM LESSON CLASSROOM */
+.lesson-box {
+    box-shadow:
+        0 30px 80px #000c,
+        0 0 35px #8b5cf655,
+        inset 0 1px 1px #ffffff30;
+}
+
+.lesson-content {
+    box-shadow:
+        0 12px 25px #0005,
+        inset 0 1px 1px #ffffff18;
+}
+
+.lesson-item {
+    transition: .25s ease;
+}
+
+.lesson-item:hover {
+    transform: translateX(5px);
+    border-color: #67e8f9;
+    box-shadow: 0 5px 18px #06b6d433;
+}
+
+.lesson-item.active {
+    box-shadow: 0 0 18px #8b5cf655;
+}
+
+/* SMOOTH ANIMATION */
+@media (prefers-reduced-motion: reduce) {
+    .learning-hero,
+    .stat-card,
+    .course-card,
+    .subject-card,
+    .goal-panel,
+    .course-button {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+/* ==========================================
+   NEXUS ULTRA PREMIUM 3D LEARNING EXPERIENCE
+========================================== */
+
+.learning-page {
+    background:
+        radial-gradient(ellipse at 15% 10%, #7138d455, transparent 35%),
+        radial-gradient(ellipse at 85% 40%, #0891b244, transparent 35%),
+        radial-gradient(ellipse at 50% 100%, #9333ea22, transparent 40%);
+}
+
+/* TOPBAR */
+.learning-topbar {
+    padding: 15px 20px;
+    border: 1px solid #a78bfa44;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#202044cc,#101a30cc);
+    box-shadow: 0 12px 30px #0007,inset 0 1px #ffffff22;
+}
+
+/* HERO 3D */
+.learning-hero {
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 80% 15%,#d946ef66,transparent 28%),
+        radial-gradient(circle at 10% 90%,#06b6d466,transparent 35%),
+        linear-gradient(130deg,#21134e,#252568,#07516a);
+    box-shadow:
+        0 30px 65px #0009,
+        0 0 35px #8b5cf655,
+        inset 0 2px 2px #ffffff44;
+}
+
+.learning-hero h1 {
+    text-shadow: 0 8px 25px #0005;
+}
+
+.hero-button {
+    padding: 15px 25px;
+}
+
+/* STATS PREMIUM COLORS */
+.stat-card:nth-child(1) {
+    border-top: 3px solid #a78bfa;
+    background: linear-gradient(145deg,#35235c,#151a35);
+}
+
+.stat-card:nth-child(2) {
+    border-top: 3px solid #f472b6;
+    background: linear-gradient(145deg,#492449,#171a35);
+}
+
+.stat-card:nth-child(3) {
+    border-top: 3px solid #38bdf8;
+    background: linear-gradient(145deg,#173e62,#151a35);
+}
+
+.stat-card:nth-child(4) {
+    border-top: 3px solid #fbbf24;
+    background: linear-gradient(145deg,#493719,#171a35);
+}
+
+/* COURSE CARD COLOR DEPTH */
+.course-card:nth-child(1) {
+    background: linear-gradient(145deg,#252c59,#10182f);
+    border-bottom: 3px solid #60a5fa;
+}
+
+.course-card:nth-child(2) {
+    background: linear-gradient(145deg,#44351d,#17182e);
+    border-bottom: 3px solid #facc15;
+}
+
+.course-card:nth-child(3) {
+    background: linear-gradient(145deg,#123d52,#111a32);
+    border-bottom: 3px solid #22d3ee;
+}
+
+.course-card:nth-child(4) {
+    background: linear-gradient(145deg,#492449,#17182f);
+    border-bottom: 3px solid #f472b6;
+}
+
+/* COURSE ICON 3D */
+.course-icon {
+    border-radius: 20px;
+    box-shadow:
+        0 12px 20px #0008,
+        inset 0 2px 3px #ffffff55;
+}
+
+/* SUBJECT COLOR DEPTH */
+.subject-card:nth-child(1) {
+    background: linear-gradient(145deg,#35265e,#151a34);
+}
+
+.subject-card:nth-child(2) {
+    background: linear-gradient(145deg,#173c55,#151a34);
+}
+
+.subject-card:nth-child(3) {
+    background: linear-gradient(145deg,#492449,#151a34);
+}
+
+.subject-card:nth-child(4) {
+    background: linear-gradient(145deg,#42321b,#151a34);
+}
+
+/* PROGRESS PANEL */
+.goal-panel {
+    background:
+        radial-gradient(circle at 90% 10%,#06b6d455,transparent 35%),
+        linear-gradient(120deg,#45247b,#1d315d,#07505b);
+    border: 1px solid #67e8f988;
+}
+
+/* HEADINGS */
+.section-heading h2 {
+    text-shadow: 0 4px 15px #8b5cf655;
+}
+
+/* 3D SHINE EFFECT */
+.course-card::after,
+.subject-card::after,
+.stat-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        125deg,
+        #ffffff15,
+        transparent 35%,
+        transparent 70%,
+        #ffffff08
+    );
+    pointer-events: none;
+}
+
+/* RESPONSIVE SAFETY */
+@media(max-width:700px) {
+    .learning-topbar {
+        flex-wrap: wrap;
+    }
+
+    .learning-hero:hover,
+    .course-card:hover,
+    .subject-card:hover,
+    .stat-card:hover {
+        transform: translateY(-3px);
+    }
+}
+.subject-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.subject-card p {
+    flex-grow: 1;
+}
+
+.subject-card .course-button {
+    width: 100%;
+    margin-top: 18px;
+}
+/* SUBJECT CARDS - FOUR IN ONE ROW */
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.subject-card {
+    min-width: 0;
+    min-height: 250px;
+    padding: 20px;
+}
+
+.subject-card .course-button {
+    width: 100%;
+    margin-top: 18px;
+}
+
+/* Mobile view */
+@media (max-width: 700px) {
+    .subject-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   NEXUS — FINAL PREMIUM 3D EXPERIENCE
+========================================= */
+
+.learning-page {
+    background:
+        radial-gradient(ellipse at 10% 10%, #7138d455, transparent 35%),
+        radial-gradient(ellipse at 90% 30%, #0891b244, transparent 35%),
+        linear-gradient(135deg, #070b19, #10152b 55%, #090d1d);
+}
+
+/* Premium topbar */
+.learning-topbar {
+    border: 1px solid #a78bfa66;
+    background: linear-gradient(135deg, #25204acc, #101a30ee);
+    box-shadow: 0 15px 35px #0008, inset 0 1px 1px #ffffff25;
+    backdrop-filter: blur(18px);
+}
+
+/* Hero glass effect */
+.learning-hero {
+    border: 1px solid #a78bfa99;
+    background:
+        radial-gradient(circle at 85% 15%, #d946ef66, transparent 30%),
+        radial-gradient(circle at 10% 90%, #06b6d466, transparent 35%),
+        linear-gradient(130deg, #21134e, #252568, #07516a);
+    box-shadow:
+        0 30px 65px #000a,
+        0 0 35px #8b5cf655,
+        inset 0 2px 2px #ffffff44;
+}
+
+/* Stats cards */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #a78bfa66;
+    border-radius: 22px;
+    backdrop-filter: blur(16px);
+    transform-style: preserve-3d;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 25px 45px #0009, 0 0 25px #8b5cf677;
+}
+
+/* Course cards */
+.course-card {
+    border: 1px solid #8b5cf677;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #25264bdd, #10182fee);
+    backdrop-filter: blur(18px);
+    transform-style: preserve-3d;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-12px) rotateX(5deg) rotateY(-3deg);
+    border-color: #67e8f9;
+    box-shadow:
+        0 30px 55px #000b,
+        0 0 30px #06b6d455,
+        inset 0 1px 2px #ffffff35;
+}
+
+.course-icon {
+    border: 1px solid #ffffff44;
+    box-shadow:
+        0 12px 25px #0008,
+        inset 0 2px 3px #ffffff55;
+}
+
+/* Subject cards */
+.subject-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+    padding: 23px;
+    border: 1px solid #a78bfa88;
+    border-radius: 23px;
+    background: linear-gradient(145deg, #28234f, #111a32);
+    backdrop-filter: blur(18px);
+    transform-style: preserve-3d;
+    transition: transform .4s ease, box-shadow .4s ease;
+    box-shadow:
+        0 18px 35px #0008,
+        inset 0 1px 2px #ffffff30;
+}
+
+.subject-card:nth-child(1) {
+    background: linear-gradient(145deg, #30255e, #111a32);
+    border-bottom: 3px solid #a78bfa;
+}
+
+.subject-card:nth-child(2) {
+    background: linear-gradient(145deg, #153f59, #111a32);
+    border-bottom: 3px solid #38bdf8;
+}
+
+.subject-card:nth-child(3) {
+    background: linear-gradient(145deg, #492449, #111a32);
+    border-bottom: 3px solid #f472b6;
+}
+
+.subject-card:nth-child(4) {
+    background: linear-gradient(145deg, #49351d, #111a32);
+    border-bottom: 3px solid #fbbf24;
+}
+
+.subject-card:hover {
+    transform: translateY(-12px) rotateX(5deg) rotateY(-3deg);
+    border-color: #67e8f9;
+    box-shadow:
+        0 30px 50px #000b,
+        0 0 28px #06b6d466,
+        inset 0 1px 2px #ffffff44;
+}
+
+.subject-icon {
+    display: inline-block;
+    font-size: 34px !important;
+    transform: translateZ(35px);
+    filter: drop-shadow(0 8px 12px #0008);
+    transition: .4s ease;
+}
+
+.subject-card:hover .subject-icon {
+    transform: translateZ(55px) scale(1.2) rotate(-8deg);
+}
+
+.subject-card h3 {
+    font-size: 19px;
+    transform: translateZ(20px);
+}
+
+.subject-card p {
+    flex-grow: 1;
+    min-height: 58px;
+    transform: translateZ(12px);
+}
+
+/* Premium buttons */
+.course-button,
+.hero-button,
+.lesson-button {
+    border: 1px solid #ffffff55;
+    border-radius: 13px;
+    background: linear-gradient(110deg, #9333ea, #4f46e5, #0891b2);
+    box-shadow:
+        0 6px 0 #31206b,
+        0 12px 24px #0007,
+        0 0 15px #8b5cf655;
+    transition: .25s ease;
+}
+
+.course-button:hover,
+.hero-button:hover,
+.lesson-button:not(:disabled):hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 5px 0 #31206b,
+        0 18px 30px #0009,
+        0 0 25px #06b6d477;
+}
+
+.course-button:active,
+.hero-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #31206b;
+}
+
+/* Goal panel */
+.goal-panel {
+    border: 1px solid #67e8f999;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 90% 10%, #06b6d455, transparent 35%),
+        linear-gradient(120deg, #45247b, #1d315d, #07505b);
+    box-shadow: 0 25px 50px #0009, inset 0 1px 2px #ffffff33;
+}
+
+/* Lesson classroom */
+.lesson-box {
+    border: 1px solid #a78bfa99;
+    background: linear-gradient(145deg, #252b4c, #10182d);
+    box-shadow: 0 30px 80px #000c, 0 0 35px #8b5cf655;
+}
+
+.lesson-content {
+    background: linear-gradient(145deg, #182440, #10182b);
+    border: 1px solid #67e8f944;
+    box-shadow: inset 0 1px 2px #ffffff18;
+}
+
+.lesson-item:hover {
+    transform: translateX(5px);
+    border-color: #67e8f9;
+}
+
+/* Responsive and mobile safety */
+@media (max-width: 700px) {
+    .subject-card,
+    .course-card,
+    .stat-card {
+        transform: none;
+    }
+
+    .subject-card:hover,
+    .course-card:hover,
+    .stat-card:hover {
+        transform: translateY(-4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subject-card,
+    .course-card,
+    .stat-card,
+    .learning-hero,
+    .goal-panel {
+        transition: none !important;
+    }
+}
+/* 🎓 FLOATING 3D CAP ANIMATION */
+
+.hero-decoration {
+    display: block;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    animation: floatingCap 3s ease-in-out infinite;
+    filter: drop-shadow(0 20px 25px #0009);
+}
+
+@keyframes floatingCap {
+    0%, 100% {
+        transform: translateY(0) rotate(-12deg) rotateY(0deg);
+    }
+
+    50% {
+        transform: translateY(-22px) rotate(-5deg) rotateY(12deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-decoration {
+        animation: none;
     }
 }
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
-<aside class="sidebar">
-    <div class="brand">
-        <span class="brand-icon">N</span>
-        <span>NEXUS</span>
-    </div>
+    <aside class="sidebar">
+        <a class="brand" href="index.html">
+            <span class="brand-icon">N</span>
+            <span>NEXUS<small>STUDENT ECOSYSTEM</small></span>
+        </a>
 
-    <div class="nav-menu">
-        <p class="muted">MAIN MENU</p>
-        <a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-        <a href="profile.html" class="nav-link"><i data-lucide="user-round"></i> My Profile</a>
-        <a href="learning.html" class="nav-link active"><i data-lucide="book-open"></i> Learning Hub</a>
-        <a href="career.html" class="nav-link"><i data-lucide="brain"></i> AI Career Guide</a>
-        <a href="analytics.html" class="nav-link"><i data-lucide="chart-no-axes-combined"></i> Analytics</a>
-        <a href="goals.html" class="nav-link"><i data-lucide="target"></i> My Goals</a>
-        <a href="projects.html" class="nav-link"><i data-lucide="folder-kanban"></i> Projects</a>
-    </div>
+        <p class="nav-label">WORKSPACE</p>
 
-    <div class="sidebar-bottom">
-        <a href="index.html" class="nav-link"><i data-lucide="arrow-left"></i> Back to Dashboard</a>
-    </div>
-</aside>
+        <nav>
+            <a href="index.html">◈ Dashboard</a>
+            <a class="active" href="learning.html">▤ Learning Hub</a>
+            <a href="career.html">✧ Career Intelligence</a>
+            <a href="goals.html">◇ Skill Development</a>
+            <a href="projects.html">▣ Projects</a>
+            <a href="analytics.html">▥ Analytics</a>
+            <a href="profile.html">👤 My Profile</a>
+            <a href="settings.html">⚙ Settings</a>
+            <a href="assistant.html">✦ AI Assistant</a>
+        </nav>
 
-<main class="main-content learning-page">
+        <div class="sidebar-bottom">
+            <div class="profile-mini">
+                <div class="avatar">
+                    <img src="./NEXUS/photo.jpeg" alt="Profile Photo">
+                </div>
+                <div class="profile-info">
+                    <strong>Aman Maddheshiya</strong>
+                    <small>✦ NEXUS MEMBER</small>
+                </div>
+            </div>
+            <button id="themeToggle">☀️ Switch Theme</button>
+        </div>
+    </aside>
 
-<header class="topbar">
-    <div>
-        <p class="muted">NEXUS / LEARNING</p>
-        <h2>Learning Hub</h2>
-    </div>
-    <span class="muted">Your learning space ✨</span>
-</header>
+    <main class="main-content learning-page">
+        <div class="learning-main">
 
-<!-- HERO -->
-<section class="learning-hero">
+    <header class="learning-topbar">
+        <div>
+            <h2>📚 Learning Hub</h2>
+            <p>Your personal space for learning and growth</p>
+        </div>
+        <span class="top-badge">✦ NEXUS LEARNING</span>
+    </header>
 
-    <div class="hero-content">
-        <span class="eyebrow">✦ YOUR FUTURE STARTS HERE</span>
-        <h1>Learn. Practice.<br><span>Grow Beyond Limits.</span></h1>
-        <p>Explore new subjects, develop powerful skills and build your future with an intelligent learning experience.</p>
+    <section class="learning-hero">
+        <div class="hero-content">
+            <span class="hero-label">✦ YOUR KNOWLEDGE JOURNEY STARTS HERE</span>
+            <h1>Learn Today.<br>Lead Tomorrow. 🚀</h1>
+            <p>
+                Explore programming, technology and computer science.
+                Learn step by step, practise concepts and build your future
+                with NEXUS.
+            </p>
+            <button class="hero-button" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+                Explore Courses →
+            </button>
+        </div>
+        <div class="hero-decoration">🎓</div>
+    </section>
 
-        <button class="primary-btn" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
-            Explore Courses →
-        </button>
-    </div>
+    <section class="learning-stats">
+        <article class="stat-card">
+            <div class="stat-icon">📘</div>
+            <div><h3>04</h3><p>Learning Courses</p></div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon">🧠</div>
+            <div><h3>20+</h3><p>Learning Topics</p></div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div><h3>04</h3><p>Core Subjects</p></div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div><h3 id="completedCount">0</h3><p>Completed Lessons</p></div>
+        </article>
+    </section>
 
-    <div class="hero-visual">
-        <div class="hero-orbit"></div>
-        <div class="hero-orbit two"></div>
-
-        <div class="hero-book">
-            <i data-lucide="book-open"></i>
-            <strong>LEARN</strong>
+    <section id="courses">
+        <div class="section-heading">
+            <div>
+                <h2>🚀 Explore Your Courses</h2>
+                <p>Choose a course and start learning step by step.</p>
+            </div>
         </div>
 
-        <div class="floating-icon one"><i data-lucide="brain-circuit"></i></div>
-        <div class="floating-icon two"><i data-lucide="graduation-cap"></i></div>
-        <div class="floating-icon three"><i data-lucide="sparkles"></i></div>
-    </div>
+        <div class="course-grid">
+            <article class="course-card" style="--glow:#2563eb55">
+                <div class="course-icon">💻</div>
+                <h3>C Programming</h3>
+                <p>Learn programming fundamentals, variables, loops, arrays and functions.</p>
+                <div class="course-meta"><span>BEGINNER</span><span>05 LESSONS</span></div>
+                <button class="course-button" onclick="openCourse('C Programming')">Start Learning →</button>
+            </article>
 
-</section>
+            <article class="course-card" style="--glow:#eab30855">
+                <div class="course-icon">🐍</div>
+                <h3>Python Programming</h3>
+                <p>Understand Python basics, conditions, loops, lists and functions.</p>
+                <div class="course-meta"><span>BEGINNER</span><span>05 LESSONS</span></div>
+                <button class="course-button" onclick="openCourse('Python Programming')">Start Learning →</button>
+            </article>
 
-<!-- STATS -->
-<section class="learning-stats">
+            <article class="course-card" style="--glow:#06b6d455">
+                <div class="course-icon">🗄️</div>
+                <h3>DBMS Fundamentals</h3>
+                <p>Explore databases, tables, keys, SQL and database concepts.</p>
+                <div class="course-meta"><span>BEGINNER</span><span>05 LESSONS</span></div>
+                <button class="course-button" onclick="openCourse('DBMS Fundamentals')">Start Learning →</button>
+            </article>
 
-    <div class="learning-card">
-        <div class="stat-icon"><i data-lucide="book-open"></i></div>
-        <p class="muted">My Courses</p>
-        <h2>04</h2>
-        <span class="muted">Learning tracks</span>
-    </div>
-
-    <div class="learning-card">
-        <div class="stat-icon"><i data-lucide="clock"></i></div>
-        <p class="muted">Study Hours</p>
-        <h2>00</h2>
-        <span class="muted">Hours recorded</span>
-    </div>
-
-    <div class="learning-card">
-        <div class="stat-icon"><i data-lucide="trophy"></i></div>
-        <p class="muted">Completed</p>
-        <h2>00</h2>
-        <span class="muted">Courses completed</span>
-    </div>
-
-    <div class="learning-card">
-        <div class="stat-icon"><i data-lucide="flame"></i></div>
-        <p class="muted">Study Streak</p>
-        <h2>00</h2>
-        <span class="muted">Days in a row</span>
-    </div>
-
-</section>
-
-<!-- COURSES -->
-<div class="section-heading" id="courses">
-    <h2>Continue Learning 🚀</h2>
-    <span class="muted">Your learning tracks</span>
-</div>
-
-<section class="course-grid">
-
-    <article class="course-card">
-        <div class="course-top">
-            <div class="course-icon">💻</div>
-            <span class="course-tag">BCA</span>
+            <article class="course-card" style="--glow:#ec489955">
+                <div class="course-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>Build your web foundation with HTML, CSS and JavaScript.</p>
+                <div class="course-meta"><span>BEGINNER</span><span>05 LESSONS</span></div>
+                <button class="course-button" onclick="openCourse('Web Development')">Start Learning →</button>
+            </article>
         </div>
-        <h3>C Programming</h3>
-        <p class="muted">Build programming fundamentals and logical thinking.</p>
-        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
-        <div class="course-meta"><span>Not started</span><span>0%</span></div>
-        <button class="course-button" onclick="openCourse('C Programming')">Start Learning →</button>
-    </article>
+    </section>
 
-    <article class="course-card">
-        <div class="course-top">
-            <div class="course-icon">🐍</div>
-            <span class="course-tag">CODING</span>
+    <section>
+        <div class="section-heading">
+            <div>
+                <h2>📖 Explore Core Subjects</h2>
+                <p>Revise important computer science subjects.</p>
+            </div>
         </div>
-        <h3>Python Programming</h3>
-        <p class="muted">Explore Python, data types and problem solving.</p>
-        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
-        <div class="course-meta"><span>Not started</span><span>0%</span></div>
-        <button class="course-button" onclick="openCourse('Python Programming')">Start Learning →</button>
-    </article>
 
-    <article class="course-card">
-        <div class="course-top">
-            <div class="course-icon">🗄️</div>
-            <span class="course-tag">DATABASE</span>
-        </div>
-        <h3>DBMS Fundamentals</h3>
-        <p class="muted">Understand databases and data management.</p>
-        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
-        <div class="course-meta"><span>Not started</span><span>0%</span></div>
-        <button class="course-button" onclick="openCourse('DBMS Fundamentals')">Start Learning →</button>
-    </article>
-
-    <article class="course-card">
-        <div class="course-top">
-            <div class="course-icon">🌐</div>
-            <span class="course-tag">WEB</span>
-        </div>
-        <h3>Web Development</h3>
-        <p class="muted">Master HTML, CSS and JavaScript fundamentals.</p>
-        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
-        <div class="course-meta"><span>Not started</span><span>0%</span></div>
-        <button class="course-button" onclick="openCourse('Web Development')">Start Learning →</button>
-    </article>
-
-</section>
-
-<!-- SUBJECTS -->
-<div class="section-heading">
-    <h2>Explore Subjects 📚</h2>
-    <span class="muted">Expand your knowledge</span>
-</div>
-
-<section class="subject-grid">
+        <div class="subject-grid">
 
     <article class="subject-card">
-        <div class="course-icon">📐</div>
+        <div class="subject-icon">📐</div>
         <h3>Mathematics</h3>
-        <p>Practice mathematical concepts, formulas and problem solving.</p>
-        <button class="course-button" onclick="showSubject('Mathematics')">Explore Subject →</button>
+        <p>Practice formulas, calculations and mathematical concepts.</p>
+        <button class="course-button"
+            onclick="showSubject('Mathematics')">
+            Start Learning →
+        </button>
     </article>
 
     <article class="subject-card">
-        <div class="course-icon">⚙️</div>
-        <h3>Operating Systems</h3>
-        <p>Learn processes, memory management and OS concepts.</p>
-        <button class="course-button" onclick="showSubject('Operating Systems')">Explore Subject →</button>
+        <div class="subject-icon">⚙️</div>
+        <h3>Operating System</h3>
+        <p>Understand processes, memory and operating system concepts.</p>
+        <button class="course-button"
+            onclick="showSubject('Operating System')">
+            Start Learning →
+        </button>
     </article>
 
     <article class="subject-card">
-        <div class="course-icon">📊</div>
+        <div class="subject-icon">📊</div>
         <h3>Management</h3>
-        <p>Understand planning, organizing and management principles.</p>
-        <button class="course-button" onclick="showSubject('Management')">Explore Subject →</button>
+        <p>Learn planning, organizing, staffing, directing and controlling.</p>
+        <button class="course-button"
+            onclick="showSubject('Management')">
+            Start Learning →
+        </button>
     </article>
 
     <article class="subject-card">
-        <div class="course-icon">🧠</div>
+        <div class="subject-icon">🖥️</div>
         <h3>Computer Fundamentals</h3>
-        <p>Discover computer systems, hardware and software basics.</p>
-        <button class="course-button" onclick="showSubject('Computer Fundamentals')">Explore Subject →</button>
+        <p>Explore computer basics, hardware, software and networks.</p>
+        <button class="course-button"
+            onclick="showSubject('Computer Fundamentals')">
+            Start Learning →
+        </button>
     </article>
 
-</section>
+</div>
+        </div>
+    </section>
 
-<!-- GOALS -->
-<section class="goal-panel">
+    <section class="goal-panel">
+        <h3>🎯 Keep Moving Forward</h3>
+        <p>Every lesson you complete is another step towards your goals. Stay consistent and keep learning.</p>
+        <div class="progress-track">
+            <div class="progress-fill" id="learningProgress"></div>
+        </div>
+        <p id="progressText">Your learning journey starts here — complete your first lesson!</p>
+    </section>
 
-    <div class="learning-card">
-        <span class="eyebrow">✦ DAILY CONSISTENCY</span>
-        <h2>Today's Study Goal 🎯</h2>
-        <div class="goal-number">2 Hours</div>
-        <p class="goal-tip">Create a focused study routine. Small steps every day can lead to big achievements.</p>
+        </div>
+    </main>
+</div>
+
+<!-- COURSE LESSON MODAL -->
+<div class="lesson-modal" id="lessonModal" onclick="closeModalOutside(event)">
+    <div class="lesson-box">
+        <div class="lesson-header">
+            <div>
+                <span class="hero-label">✦ NEXUS LEARNING CLASSROOM</span>
+                <h2 id="modalTitle">Course Name</h2>
+            </div>
+            <button class="close-modal" onclick="closeCourse()" aria-label="Close">×</button>
+        </div>
+
+        <div class="lesson-layout">
+            <div class="lesson-list" id="lessonList"></div>
+            <div>
+                <article class="lesson-content" id="lessonContent" aria-live="polite"></article>
+                <div class="lesson-actions">
+                    <button class="lesson-button" id="previousLesson" onclick="changeLesson(-1)">← Previous</button>
+                    <button class="lesson-button" id="completeLesson" onclick="completeCurrentLesson()">✓ Mark Complete</button>
+                    <button class="lesson-button" id="nextLesson" onclick="changeLesson(1)">Next →</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="learning-card">
-        <span class="eyebrow">✦ LEARNING MINDSET</span>
-        <h2>Keep Growing 🚀</h2>
-        <p class="goal-tip">Stay curious, practice regularly and keep building your skills. Your future is shaped by what you learn today.</p>
-    </div>
-
-</section>
-
-</main>
 </div>
 
 <script>
-lucide.createIcons();
+const courseData = {
+    "C Programming": [
+        {
+            title:"Introduction to C",
+            text:"C is a general-purpose programming language. It is used to create software and understand programming fundamentals.",
+            points:["C was developed by Dennis Ritchie.","C programs are written using instructions.","A compiler converts C code into an executable program."],
+            example:'#include <stdio.h>\nint main() {\n    printf("Hello World");\n    return 0;\n}'
+        },
+        {
+            title:"Variables and Data Types",
+            text:"A variable is a named memory location used to store data. A data type tells the computer what kind of value is stored.",
+            points:["int stores whole numbers.","float stores decimal numbers.","char stores a character."],
+            example:'int age = 18;\nfloat marks = 75.5;\nchar grade = \'A\';'
+        },
+        {
+            title:"Operators",
+            text:"Operators are symbols used to perform operations on values and variables.",
+            points:["Arithmetic: +, -, *, /, %","Relational: ==, !=, >, <","Logical: &&, ||, !"],
+            example:'int a = 10, b = 5;\nint sum = a + b;\nprintf("%d", sum);'
+        },
+        {
+            title:"Conditions and Loops",
+            text:"Conditions help a program make decisions. Loops repeat a block of code.",
+            points:["if and else are used for decisions.","for loop repeats a block a fixed number of times.","while loop repeats while its condition is true."],
+            example:'for(int i = 1; i <= 5; i++) {\n    printf("%d\\n", i);\n}'
+        },
+        {
+            title:"Arrays and Functions",
+            text:"An array stores multiple values of the same data type. A function is a reusable block of code.",
+            points:["Array indexing starts at 0 in C.","Functions help divide a program into smaller parts.","A function can accept arguments and return a value."],
+            example:'int marks[3] = {70, 80, 90};\nprintf("%d", marks[0]);'
+        }
+    ],
+
+    "Python Programming": [
+        {
+            title:"Introduction to Python",
+            text:"Python is a high-level programming language known for its readable and beginner-friendly syntax.",
+            points:["Python is used in web development.","It is also used in data analysis and automation.","Python code is executed by the Python interpreter."],
+            example:'print("Hello World")'
+        },
+        {
+            title:"Variables and Data Types",
+            text:"A variable stores a value. Python determines the type of a variable from the value assigned to it.",
+            points:["int: whole numbers","float: decimal numbers","str: text","bool: True or False"],
+            example:'name = "Aman"\nage = 18\nmarks = 75.5\nis_student = True'
+        },
+        {
+            title:"Conditions",
+            text:"Conditional statements allow a program to choose what to do based on a condition.",
+            points:["if checks a condition.","elif checks another condition.","else runs when previous conditions are false."],
+            example:'marks = 75\nif marks >= 40:\n    print("Pass")\nelse:\n    print("Fail")'
+        },
+        {
+            title:"Loops",
+            text:"Loops are used to repeat instructions. Python provides for and while loops.",
+            points:["for loop is commonly used to iterate over a sequence.","while loop runs while a condition remains true.","Indentation defines code blocks."],
+            example:'for i in range(1, 6):\n    print(i)'
+        },
+        {
+            title:"Lists and Functions",
+            text:"A list stores multiple items. A function is a reusable block of code created with the def keyword.",
+            points:["Lists are written using square brackets.","List positions start at 0.","Functions can accept parameters."],
+            example:'numbers = [10, 20, 30]\nprint(numbers[0])\n\ndef greet():\n    print("Welcome!")\n\ngreet()'
+        }
+    ],
+
+    "DBMS Fundamentals": [
+        {
+            title:"Introduction to DBMS",
+            text:"DBMS stands for Database Management System. It is software used to store, manage and retrieve data.",
+            points:["It helps organize data.","It makes searching and updating data easier.","Examples include MySQL and PostgreSQL."],
+            example:'Database → Tables → Rows and Columns'
+        },
+        {
+            title:"Database and Tables",
+            text:"A database is an organized collection of data. A table stores related information in rows and columns.",
+            points:["A row represents a record.","A column represents an attribute.","A table can contain many records."],
+            example:'Student Table\nID | Name | Course\n1  | Aman | BCA\n2  | Ravi | BCA'
+        },
+        {
+            title:"Keys in DBMS",
+            text:"Keys are attributes used to identify records and create relationships between tables.",
+            points:["Primary Key uniquely identifies a row.","Foreign Key connects related tables.","Candidate Key can uniquely identify a record."],
+            example:'Student(Student_ID, Name)\nStudent_ID = Primary Key'
+        },
+        {
+            title:"SQL Basics",
+            text:"SQL stands for Structured Query Language. It is used to communicate with relational databases.",
+            points:["SELECT retrieves data.","INSERT adds new records.","UPDATE changes records.","DELETE removes records."],
+            example:'SELECT * FROM Student;'
+        },
+        {
+            title:"Database Relationships",
+            text:"Relationships describe how records in different tables are connected.",
+            points:["One-to-One: one record relates to one record.","One-to-Many: one record relates to multiple records.","Many-to-Many: multiple records relate to multiple records."],
+            example:'One Department → Many Students'
+        }
+    ],
+
+    "Web Development": [
+        {
+            title:"Introduction to Web Development",
+            text:"Web development is the process of creating websites and web applications.",
+            points:["Frontend is the part users see.","Backend handles server-side operations.","A website can use both frontend and backend."],
+            example:'Frontend: HTML + CSS + JavaScript'
+        },
+        {
+            title:"HTML Basics",
+            text:"HTML stands for HyperText Markup Language. It defines the structure and content of a web page.",
+            points:["HTML uses tags.","Headings use h1 to h6.","Paragraphs use the p tag.","Links use the a tag."],
+            example:'<h1>Welcome</h1>\n<p>My first webpage</p>'
+        },
+        {
+            title:"CSS Styling",
+            text:"CSS stands for Cascading Style Sheets. It controls the appearance and layout of web pages.",
+            points:["CSS changes colors and fonts.","It controls spacing and layout.","It can make websites responsive."],
+            example:'h1 {\n    color: purple;\n    text-align: center;\n}'
+        },
+        {
+            title:"JavaScript Basics",
+            text:"JavaScript makes web pages interactive. It can respond to user actions and update page content.",
+            points:["Variables store values.","Functions perform tasks.","Events respond to clicks and other actions."],
+            example:'function welcome() {\n    alert("Welcome to NEXUS!");\n}'
+        },
+        {
+            title:"Building a Web Page",
+            text:"A basic website combines HTML for structure, CSS for design and JavaScript for interaction.",
+            points:["Create an index.html file.","Connect a CSS stylesheet.","Connect a JavaScript file.","Open the page in a browser."],
+            example:'<link rel="stylesheet" href="style.css">\n<script src="script.js"><\/script>'
+        }
+    ]
+};
+
+
+const subjectData = {
+    "Mathematics": [
+        {
+            title: "Basic Mathematics",
+            text: "गणित में संख्याओं और उनके बीच संबंधों का अध्ययन किया जाता है।",
+            points: ["Natural Numbers: 1, 2, 3...", "Whole Numbers: 0, 1, 2...", "Integers: Positive और Negative numbers", "Rational और Irrational numbers"],
+            example: "2 + 3 = 5\n10 - 4 = 6"
+        },
+        {
+            title: "Algebra and Equations",
+            text: "Algebra में अक्षरों और symbols की मदद से mathematical problems हल की जाती हैं।",
+            points: ["Variables और Constants", "Linear Equations", "Quadratic Equations", "Factorization"],
+            example: "2x + 4 = 10\n2x = 6\nx = 3"
+        },
+        {
+            title: "Matrices",
+            text: "Matrix numbers का rectangular arrangement होता है, जिसे rows और columns में लिखा जाता है।",
+            points: ["Types of Matrices", "Row और Column Matrix", "Square और Identity Matrix", "Matrix Addition और Multiplication"],
+            example: "A = [1  2]\n    [3  4]\n\nOrder = 2 × 2"
+        },
+        {
+            title: "Determinants",
+            text: "Determinant एक square matrix से जुड़ी numerical value होती है।",
+            points: ["Determinant of 2×2 Matrix", "Determinant of 3×3 Matrix", "Minors और Cofactors", "Properties of Determinants"],
+            example: "|1  2|\n|3  4|\n\n= (1×4) - (2×3)\n= -2"
+        },
+        {
+            title: "Differentiation",
+            text: "Differentiation किसी function के परिवर्तन की दर यानी rate of change बताता है।",
+            points: ["Basic Differentiation Rules", "Power Rule", "Product Rule", "Quotient Rule", "Chain Rule"],
+            example: "If y = x²\nThen dy/dx = 2x"
+        },
+        {
+            title: "Integration",
+            text: "Integration differentiation की reverse process है।",
+            points: ["Basic Integration", "Power Rule", "Definite Integration", "Indefinite Integration"],
+            example: "∫ x² dx = x³/3 + C"
+        },
+        {
+            title: "Differential Equations",
+            text: "Differential equation में किसी function और उसके derivatives के बीच संबंध होता है।",
+            points: ["Order और Degree", "Formation of Equations", "First Order Equations", "Simple Applications"],
+            example: "dy/dx = 2x\nIntegrating:\ny = x² + C"
+        },
+        {
+            title: "Advanced Calculus",
+            text: "Advanced Calculus में limits, continuity और theorems का अध्ययन किया जाता है।",
+            points: ["Limits और Continuity", "Mean Value Theorem", "Lagrange's Mean Value Theorem", "Taylor और Maclaurin Series"],
+            example: "f(x) = x²\nf'(x) = 2x\n\nLagrange's theorem:\nf'(c) = [f(b)-f(a)]/(b-a)"
+        }
+    ],
+
+    "Operating System": [
+        {
+            title: "Introduction to Operating System",
+            text: "Operating System एक system software है जो user और computer hardware के बीच interface का काम करता है।",
+            points: ["Meaning of OS", "Functions of OS", "Types of Operating Systems", "Examples: Windows, Linux, Android"],
+            example: "User → Operating System → Hardware"
+        },
+        {
+            title: "Process Management",
+            text: "Process किसी program का executing form होता है। OS processes को manage करता है।",
+            points: ["Program और Process", "Process States", "Process Control Block", "Context Switching"],
+            example: "New → Ready → Running → Waiting → Terminated"
+        },
+        {
+            title: "CPU Scheduling",
+            text: "CPU Scheduling तय करता है कि CPU किस process को कब execute करेगा।",
+            points: ["FCFS Scheduling", "SJF Scheduling", "Priority Scheduling", "Round Robin Scheduling"],
+            example: "Process P1 = 4 ms\nProcess P2 = 3 ms\nFCFS: P1 → P2"
+        },
+        {
+            title: "Deadlocks",
+            text: "Deadlock वह स्थिति है जिसमें processes एक-दूसरे के resources का इंतजार करते रहते हैं।",
+            points: ["Deadlock Meaning", "Mutual Exclusion", "Hold and Wait", "No Preemption", "Circular Wait"],
+            example: "P1 waits for Resource B\nP2 waits for Resource A\nBoth remain waiting."
+        },
+        {
+            title: "Memory Management",
+            text: "Memory Management computer की main memory को processes के बीच manage करता है।",
+            points: ["Memory Allocation", "Logical और Physical Address", "Contiguous Allocation", "Fragmentation"],
+            example: "Main Memory\n→ Operating System\n→ Process 1\n→ Process 2"
+        },
+        {
+            title: "Virtual Memory",
+            text: "Virtual Memory की मदद से system secondary storage का उपयोग करके programs को चलाने में मदद करता है।",
+            points: ["Paging", "Segmentation", "Page Fault", "Demand Paging", "Page Replacement"],
+            example: "Virtual Address → Page Table → Physical Address"
+        },
+        {
+            title: "File Management",
+            text: "File Management system में files और directories को व्यवस्थित और नियंत्रित करता है।",
+            points: ["File Concepts", "File Attributes", "File Operations", "Directory Structure", "File Allocation"],
+            example: "Create → Open → Read → Write → Close"
+        },
+        {
+            title: "I/O and Advanced OS",
+            text: "Operating System input-output devices और system resources को manage करता है।",
+            points: ["Device Management", "Interrupts", "Buffering", "Spooling", "Protection और Security"],
+            example: "Keyboard → OS → Application"
+        }
+    ],
+
+    "Management": [
+        {
+            title: "Introduction to Management",
+            text: "Management एक process है जिसमें लोगों और resources की मदद से निर्धारित goals प्राप्त किए जाते हैं।",
+            points: ["Meaning of Management", "Nature and Scope", "Importance of Management", "Levels of Management"],
+            example: "Management = Planning + Organizing + Staffing + Directing + Controlling"
+        },
+        {
+            title: "Principles of Management",
+            text: "Management principles वे guidelines हैं जो organization को सही तरीके से चलाने में मदद करती हैं।",
+            points: ["Henri Fayol", "Division of Work", "Unity of Command", "Unity of Direction", "Discipline"],
+            example: "One Employee → One Boss\n(Unity of Command)"
+        },
+        {
+            title: "Planning",
+            text: "Planning का अर्थ भविष्य के goals तय करना और उन्हें प्राप्त करने का तरीका निर्धारित करना है।",
+            points: ["Meaning of Planning", "Objectives", "Types of Plans", "Steps in Planning", "Advantages"],
+            example: "Goal → Alternatives → Best Plan → Action"
+        },
+        {
+            title: "Organizing",
+            text: "Organizing में काम, जिम्मेदारियों और resources को व्यवस्थित किया जाता है।",
+            points: ["Meaning of Organizing", "Division of Work", "Departmentation", "Delegation", "Centralization"],
+            example: "Manager\n├── HR Department\n├── Finance Department\n└── IT Department"
+        },
+        {
+            title: "Staffing",
+            text: "Staffing का अर्थ organization के लिए सही लोगों का चयन और नियुक्ति करना है।",
+            points: ["Human Resource Planning", "Recruitment", "Selection", "Training", "Performance Appraisal"],
+            example: "Recruitment → Selection → Training → Placement"
+        },
+        {
+            title: "Directing and Leadership",
+            text: "Directing employees को guide, motivate और supervise करने की प्रक्रिया है।",
+            points: ["Meaning of Directing", "Leadership", "Motivation", "Communication", "Supervision"],
+            example: "Manager → Guidance → Motivation → Employee Action"
+        },
+        {
+            title: "Controlling and Coordination",
+            text: "Controlling में actual performance को निर्धारित standards से compare किया जाता है।",
+            points: ["Setting Standards", "Measuring Performance", "Comparison", "Corrective Action", "Coordination"],
+            example: "Standard → Performance → Comparison → Correction"
+        },
+        {
+            title: "Advanced Management",
+            text: "Advanced Management में decision-making, business environment और organizational development का अध्ययन किया जाता है।",
+            points: ["Decision Making", "Management by Objectives", "Strategic Management", "Organizational Culture", "Change Management"],
+            example: "Problem → Information → Alternatives → Decision → Result"
+        }
+    ],
+
+    "Computer Fundamentals": [
+        {
+            title: "Introduction to Computer",
+            text: "Computer एक electronic device है जो data को process करके useful information देता है।",
+            points: ["Definition of Computer", "Characteristics", "Applications", "Limitations"],
+            example: "Input → Processing → Output → Storage"
+        },
+        {
+            title: "Computer Generations",
+            text: "Computer generations computer technology के विकास के अलग-अलग चरणों को दर्शाती हैं।",
+            points: ["First Generation: Vacuum Tubes", "Second Generation: Transistors", "Third Generation: Integrated Circuits", "Fourth Generation: Microprocessors", "Fifth Generation: AI-based systems"],
+            example: "Vacuum Tube → Transistor → IC → Microprocessor"
+        },
+        {
+            title: "Computer Hardware",
+            text: "Hardware computer के वे physical parts हैं जिन्हें हम देख और छू सकते हैं।",
+            points: ["Input Devices", "Output Devices", "CPU", "Memory Devices", "Storage Devices"],
+            example: "Keyboard = Input\nMonitor = Output\nCPU = Processing"
+        },
+        {
+            title: "Computer Software",
+            text: "Software instructions और programs का समूह है जो computer को कार्य करने के लिए निर्देश देता है।",
+            points: ["System Software", "Application Software", "Utility Software", "Operating System", "Programming Software"],
+            example: "Hardware + Software = Computer System"
+        },
+        {
+            title: "Number System",
+            text: "Number System में numbers को अलग-अलग bases के अनुसार represent किया जाता है।",
+            points: ["Decimal (Base 10)", "Binary (Base 2)", "Octal (Base 8)", "Hexadecimal (Base 16)", "Number Conversion"],
+            example: "Binary: 1010\nDecimal: 10"
+        },
+        {
+            title: "Memory and Storage",
+            text: "Computer Memory data और instructions को store करती है।",
+            points: ["RAM और ROM", "Cache Memory", "Primary Memory", "Secondary Memory", "HDD और SSD"],
+            example: "Memory Hierarchy:\nRegisters → Cache → RAM → SSD/HDD"
+        },
+        {
+            title: "Internet and Networking",
+            text: "Networking में computers और devices आपस में data और resources share करते हैं।",
+            points: ["LAN, MAN और WAN", "Internet और Intranet", "IP Address", "Router और Switch", "HTTP और HTTPS"],
+            example: "Computer A → Router → Internet → Computer B"
+        },
+        {
+            title: "Advanced Computer Concepts",
+            text: "इस chapter में आधुनिक computing technologies का परिचय दिया गया है।",
+            points: ["Database Basics", "Cloud Computing", "Artificial Intelligence", "Cybersecurity Basics", "Computer Ethics"],
+            example: "Cloud Computing = Internet के माध्यम से Computing Services"
+        }
+    ]
+};
+
+
+let currentCourse = "";
+let currentLesson = 0;
+let completedLessons = JSON.parse(localStorage.getItem("nexusCompletedLessons") || "[]");
 
 function openCourse(course) {
-    alert(course + " course selected! Course lessons will be added in the next development step.");
+    if (!courseData[course]) return;
+
+    currentCourse = course;
+    currentLesson = 0;
+    document.getElementById("modalTitle").textContent = course;
+    document.getElementById("lessonModal").classList.add("show");
+    document.body.style.overflow = "hidden";
+    renderLessons();
+    renderLesson();
+}
+
+function renderLessons() {
+    const list = document.getElementById("lessonList");
+    list.replaceChildren();
+
+    courseData[currentCourse].forEach((lesson,index) => {
+        const button = document.createElement("button");
+        button.className = "lesson-item";
+        button.textContent = (index + 1) + ". " + lesson.title;
+        button.onclick = () => {
+            currentLesson = index;
+            renderLesson();
+        };
+        list.appendChild(button);
+    });
+}
+
+function renderLesson() {
+    const lesson = courseData[currentCourse][currentLesson];
+    const content = document.getElementById("lessonContent");
+
+    content.replaceChildren();
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Lesson " + (currentLesson + 1) + ": " + lesson.title;
+    content.appendChild(heading);
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = lesson.text;
+    content.appendChild(paragraph);
+
+    const pointsHeading = document.createElement("h4");
+    pointsHeading.textContent = "Important Points";
+    content.appendChild(pointsHeading);
+
+    const ul = document.createElement("ul");
+    lesson.points.forEach(point => {
+        const li = document.createElement("li");
+        li.textContent = point;
+        ul.appendChild(li);
+    });
+    content.appendChild(ul);
+
+    const exampleHeading = document.createElement("h4");
+    exampleHeading.textContent = "Example";
+    content.appendChild(exampleHeading);
+
+    const pre = document.createElement("pre");
+    pre.textContent = lesson.example;
+    content.appendChild(pre);
+
+    const items = document.querySelectorAll(".lesson-item");
+    items.forEach((item,index) => {
+        item.classList.toggle("active",index === currentLesson);
+        if (completedLessons.includes(currentCourse + ":" + index)) {
+            item.textContent = "✓ " + (index + 1) + ". " + courseData[currentCourse][index].title;
+        } else {
+            item.textContent = (index + 1) + ". " + courseData[currentCourse][index].title;
+        }
+    });
+
+    document.getElementById("previousLesson").disabled = currentLesson === 0;
+    document.getElementById("nextLesson").disabled = currentLesson === courseData[currentCourse].length - 1;
+
+    const key = currentCourse + ":" + currentLesson;
+    const completeButton = document.getElementById("completeLesson");
+    completeButton.textContent = completedLessons.includes(key) ? "✓ Completed" : "✓ Mark Complete";
+
+    updateProgress();
+}
+
+function changeLesson(direction) {
+    const next = currentLesson + direction;
+    if (next < 0 || next >= courseData[currentCourse].length) return;
+    currentLesson = next;
+    renderLesson();
+}
+
+function completeCurrentLesson() {
+    const key = currentCourse + ":" + currentLesson;
+
+    if (!completedLessons.includes(key)) {
+        completedLessons.push(key);
+        localStorage.setItem("nexusCompletedLessons",JSON.stringify(completedLessons));
+    }
+
+    renderLesson();
+}
+
+function closeCourse() {
+    document.getElementById("lessonModal").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+function closeModalOutside(event) {
+    if (event.target.id === "lessonModal") closeCourse();
 }
 
 function showSubject(subject) {
-    alert(subject + " selected! Learning materials will be added in the next development step.");
+    const lessons = subjectData[subject];
+
+    if (!Array.isArray(lessons)) return;
+
+    courseData[subject] = lessons;
+    openCourse(subject);
 }
 
-/* Mouse based 3D tilt */
-const cards = document.querySelectorAll(".course-card");
+function updateProgress() {
+    const total = Object.values(courseData).reduce((sum,lessons) => sum + lessons.length,0);
+    const count = Math.min(completedLessons.length,total);
+    const percent = Math.round((count / total) * 100);
 
-cards.forEach(card => {
-    card.addEventListener("mousemove", event => {
-        if (window.matchMedia("(max-width: 650px)").matches) return;
+    document.getElementById("completedCount").textContent = count;
+    document.getElementById("learningProgress").style.width = percent + "%";
+    document.getElementById("progressText").textContent =
+        count + " of " + total + " lessons completed (" + percent + "%). Keep learning!";
+}
 
-        const rect = card.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const rotateY = ((x / rect.width) - 0.5) * 9;
-        const rotateX = ((0.5 - y / rect.height)) * 9;
-
-        card.style.transform =
-            `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-    });
+document.addEventListener("keydown",event => {
+    if (event.key === "Escape") closeCourse();
 });
+
+updateProgress();
+
+if (window.lucide) lucide.createIcons();
 </script>
 
 </body>
