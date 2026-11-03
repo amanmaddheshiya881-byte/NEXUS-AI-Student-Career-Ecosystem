@@ -94,6 +94,918 @@ body.light-mode .field input,body.light-mode .field select{background:#f6f8fc;co
 body.light-mode .theme-option{color:#172338}
 @media(max-width:900px){.main{padding:25px}.layout{grid-template-columns:190px minmax(0,1fr)}}
 @media(max-width:700px){.sidebar{width:65px;padding:20px 8px}.brand{padding:0 5px 30px}.brand h2,.brand small,.nav-label,.nav-link span,.sidebar-bottom{display:none}.brand-icon{width:42px}.nav-link{justify-content:center;padding:13px 8px}.main{margin-left:65px;width:calc(100% - 65px);padding:20px 13px}.layout{grid-template-columns:1fr}.settings-nav{position:static;display:flex;overflow-x:auto;gap:4px}.settings-tab{white-space:nowrap;width:auto;flex-shrink:0}.two-col{grid-template-columns:1fr}.content-card{padding:17px}}
+
+/* =====================================
+   NEXUS SETTINGS - ULTRA 3D PREMIUM
+===================================== */
+
+body {
+    background:
+        radial-gradient(ellipse at 85% 10%, #7138d526, transparent 35%),
+        radial-gradient(ellipse at 10% 85%, #1688cb20, transparent 35%),
+        var(--bg);
+}
+
+/* Premium sidebar */
+.sidebar {
+    background: linear-gradient(180deg, #111b30, #080e1b);
+    box-shadow: 12px 0 35px #0005;
+}
+
+.brand-icon {
+    box-shadow: 0 0 22px #648bff88, 0 7px 15px #0008;
+    transition: .3s ease;
+}
+
+.brand-icon:hover {
+    transform: rotateY(180deg) scale(1.08);
+}
+
+/* Navigation 3D buttons */
+.nav-link {
+    border: 1px solid transparent;
+    transition: .3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    transform: translateX(5px);
+    background: linear-gradient(110deg, #648bff35, #35d5e815);
+    border-color: #648bff55;
+    box-shadow: 0 7px 20px #648bff22;
+}
+
+/* Hero premium glass */
+.hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid #a78bfa66;
+    background:
+        radial-gradient(circle at 85% 20%, #8b5cf655, transparent 35%),
+        linear-gradient(125deg, #211747, #142b50, #103b4c);
+    box-shadow:
+        0 22px 50px #0008,
+        inset 0 1px 0 #ffffff30,
+        0 0 30px #8b5cf622;
+    transition: .35s ease;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 30%,
+        #ffffff12 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    animation: settingsShine 7s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes settingsShine {
+    50%, 100% { transform: translateX(100%); }
+}
+
+.hero h1 {
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Settings navigation panel */
+.settings-nav {
+    background: linear-gradient(145deg, #1c2943, #101827);
+    border: 1px solid #a78bfa35;
+    box-shadow: 0 15px 35px #0006, inset 0 1px 0 #ffffff15;
+}
+
+/* 3D settings tabs */
+.settings-tab {
+    position: relative;
+    transition: .3s ease;
+    border: 1px solid transparent;
+}
+
+.settings-tab:hover {
+    transform: translateX(5px);
+    background: linear-gradient(110deg, #648bff33, #35d5e822);
+    border-color: #648bff55;
+    box-shadow: 0 6px 18px #648bff22;
+}
+
+.settings-tab.active {
+    background: linear-gradient(110deg, #5542a5, #245c83);
+    border: 1px solid #a78bfa77;
+    color: white;
+    box-shadow: 0 6px 0 #11152c, 0 10px 22px #648bff33;
+}
+
+/* Floating glass content cards */
+.content-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1c2942, #101827 75%);
+    border: 1px solid #a78bfa35;
+    border-radius: 19px;
+    box-shadow:
+        0 10px 0 #080e1c,
+        0 20px 35px #0007,
+        inset 0 1px 0 #ffffff20;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-6px);
+    border-color: #a78bfa88;
+    box-shadow:
+        0 13px 0 #080e1c,
+        0 27px 45px #0009,
+        0 0 24px #8b5cf633;
+}
+
+/* Card headings */
+.card-head h2 {
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.section-icon {
+    background: linear-gradient(145deg, #7955d8, #253f70);
+    border: 1px solid #c4b5fd66;
+    box-shadow: 0 6px 0 #211747, 0 10px 20px #0006;
+    transition: .3s ease;
+}
+
+.content-card:hover .section-icon {
+    transform: translateY(-3px) rotateY(12deg);
+    box-shadow: 0 8px 0 #211747, 0 0 22px #8b5cf677;
+}
+
+/* Premium input fields */
+.field input,
+.field select {
+    background: linear-gradient(145deg, #0b1423, #111d32);
+    border: 1px solid #ffffff20;
+    border-radius: 11px;
+    transition: .3s ease;
+    box-shadow: inset 0 3px 8px #0005;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px #8b5cf622, 0 0 18px #8b5cf633;
+    transform: translateY(-2px);
+}
+
+/* 3D theme selection */
+.theme-option {
+    background: linear-gradient(145deg, #202d49, #101827);
+    border: 1px solid #ffffff20;
+    border-radius: 14px;
+    box-shadow: 0 7px 0 #080e1c, 0 13px 22px #0006;
+    transition: .3s ease;
+}
+
+.theme-option:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf6;
+    box-shadow: 0 10px 0 #080e1c, 0 18px 30px #0008;
+}
+
+.theme-option.selected {
+    border-color: #8b5cf6;
+    background: linear-gradient(145deg, #30245a, #172a48);
+    box-shadow: 0 7px 0 #15102f, 0 0 22px #8b5cf644;
+}
+
+/* Premium toggle switches */
+.toggle {
+    background: linear-gradient(145deg, #334155, #172033);
+    box-shadow: inset 0 3px 7px #0008, 0 3px 8px #0005;
+    transition: .3s ease;
+}
+
+.toggle:after {
+    box-shadow: 0 2px 5px #0006;
+}
+
+.toggle.on {
+    background: linear-gradient(110deg, #7655e8, #35cde8);
+    box-shadow: 0 0 15px #648bff66;
+}
+
+.toggle:hover {
+    transform: scale(1.08);
+}
+
+/* 3D action buttons */
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+    transition: .25s ease;
+}
+
+.primary-btn {
+    background: linear-gradient(110deg, #7655e8, #398fe8, #35cde8);
+    box-shadow: 0 5px 0 #243c80, 0 9px 18px #648bff33;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #243c80, 0 15px 25px #648bff55;
+}
+
+.secondary-btn:hover {
+    transform: translateY(-3px);
+    border-color: #8b5cf6;
+    box-shadow: 0 8px 20px #8b5cf633;
+}
+
+.danger-btn:hover {
+    transform: translateY(-3px);
+    background: #ff718022;
+    box-shadow: 0 8px 20px #ff718033;
+}
+
+/* Preference rows */
+.preference {
+    transition: .25s ease;
+    border-radius: 10px;
+}
+
+.preference:hover {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #ffffff08;
+}
+
+/* Information glass */
+.info-box {
+    background: linear-gradient(120deg, #648bff18, #35d5e815);
+    border: 1px solid #648bff55;
+    box-shadow: inset 0 1px 0 #ffffff12;
+}
+
+/* Smooth entrance */
+@media (prefers-reduced-motion: no-preference) {
+    .content-card {
+        animation: settingsAppear .6s ease both;
+    }
+
+    @keyframes settingsAppear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Light mode compatibility */
+body.light-mode .content-card,
+body.light-mode .settings-nav,
+body.light-mode .theme-option {
+    background: linear-gradient(145deg, #ffffff, #eaf0fb);
+    box-shadow: 0 8px 22px #263b6018;
+}
+
+body.light-mode .card-head h2 {
+    color: #172338;
+}
+
+body.light-mode .field input,
+body.light-mode .field select {
+    background: #f6f8fc;
+    color: #172338;
+}
+
+/* Mobile and accessibility */
+@media (max-width: 700px) {
+    .content-card:hover,
+    .theme-option:hover {
+        transform: translateY(-2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::after,
+    .content-card {
+        animation: none !important;
+    }
+}
+
+/* =========================================
+   NEXUS - FUTURISTIC 3D LUXURY UPGRADE
+========================================= */
+
+body {
+    perspective: 1400px;
+    background:
+        radial-gradient(ellipse at 15% 15%, #663cff22, transparent 35%),
+        radial-gradient(ellipse at 85% 80%, #00c8ff18, transparent 35%),
+        #080d18;
+}
+
+/* Subtle futuristic grid */
+.main {
+    position: relative;
+    isolation: isolate;
+}
+
+.main::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .16;
+    background-image:
+        linear-gradient(#688bff18 1px, transparent 1px),
+        linear-gradient(90deg, #688bff18 1px, transparent 1px);
+    background-size: 45px 45px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+/* Deep 3D hero */
+.hero {
+    transform-style: preserve-3d;
+    border-radius: 22px;
+    border: 1px solid #9b8aff77;
+    box-shadow:
+        0 2px 0 #b7a7ff33,
+        0 12px 0 #11142e,
+        0 24px 45px #0009,
+        inset 0 1px 0 #ffffff35,
+        inset 0 -20px 40px #7655e822;
+    transition: .4s ease;
+}
+
+.hero:hover {
+    transform: translateY(-5px) rotateX(1.5deg);
+    box-shadow:
+        0 3px 0 #b7a7ff55,
+        0 15px 0 #11142e,
+        0 35px 55px #000b,
+        0 0 35px #7655e833;
+}
+
+.hero h1 {
+    text-shadow: 0 0 25px #a78bfa44;
+}
+
+/* Advanced 3D cards */
+.content-card {
+    transform-style: preserve-3d;
+    isolation: isolate;
+    border-radius: 20px;
+    border: 1px solid #9b8aff35;
+    background:
+        linear-gradient(145deg, #202d48, #121c30 55%, #0d1728);
+    box-shadow:
+        0 2px 0 #ffffff12,
+        0 10px 0 #080e1b,
+        0 22px 38px #0008,
+        inset 0 1px 0 #ffffff20;
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.content-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+        120deg,
+        #ffffff13,
+        transparent 25%,
+        transparent 75%,
+        #8b5cf622
+    );
+    opacity: .6;
+    z-index: -1;
+}
+
+.content-card:hover {
+    transform: translateY(-7px) rotateX(2deg) rotateY(-1deg);
+    border-color: #9b8aff88;
+    box-shadow:
+        0 3px 0 #ffffff20,
+        0 14px 0 #080e1b,
+        0 32px 50px #000b,
+        0 0 30px #8b5cf633,
+        inset 0 1px 0 #ffffff30;
+}
+
+/* Holographic section icons */
+.section-icon {
+    transform-style: preserve-3d;
+    background: linear-gradient(145deg, #8967ff, #236caa);
+    border: 1px solid #c4b5fd88;
+    box-shadow:
+        0 4px 0 #27205c,
+        0 9px 18px #0008,
+        0 0 20px #8b5cf644;
+}
+
+.section-icon i {
+    filter: drop-shadow(0 2px 3px #0008);
+}
+
+.content-card:hover .section-icon {
+    transform: translateZ(15px) rotateY(15deg) rotateX(8deg);
+}
+
+/* Floating 3D settings navigation */
+.settings-nav {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 3px 0 #ffffff12,
+        0 12px 0 #080e1b,
+        0 24px 35px #0008;
+}
+
+.settings-tab.active {
+    transform: translateX(4px) translateZ(8px);
+    box-shadow:
+        0 4px 0 #211747,
+        0 9px 20px #648bff44,
+        inset 0 1px 0 #ffffff33;
+}
+
+/* 3D theme cards */
+.theme-option {
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 0 #ffffff15,
+        0 8px 0 #080e1b,
+        0 16px 25px #0007;
+}
+
+.theme-option::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent 25%, #ffffff20 50%, transparent 75%);
+    transform: translateX(-120%);
+    transition: transform .7s ease;
+}
+
+.theme-option:hover::after {
+    transform: translateX(120%);
+}
+
+.theme-option:hover {
+    transform: translateY(-6px) rotateX(4deg);
+}
+
+/* Premium input depth */
+.field input,
+.field select {
+    border-radius: 12px;
+    box-shadow:
+        inset 0 4px 10px #0007,
+        0 1px 0 #ffffff12;
+}
+
+.field input:focus,
+.field select:focus {
+    transform: translateY(-3px);
+    border-color: #a78bfa;
+    box-shadow:
+        0 0 0 3px #8b5cf622,
+        0 0 25px #8b5cf644,
+        inset 0 3px 8px #0005;
+}
+
+/* 3D neon buttons */
+.primary-btn {
+    border-radius: 10px;
+    box-shadow:
+        0 3px 0 #293b83,
+        0 8px 18px #648bff44,
+        inset 0 1px 0 #ffffff55;
+}
+
+.primary-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #293b83;
+}
+
+/* Glowing toggle */
+.toggle.on {
+    box-shadow:
+        0 0 10px #648bff77,
+        0 0 22px #35d5e844,
+        inset 0 1px 0 #ffffff44;
+}
+
+.toggle:after {
+    box-shadow: 0 2px 6px #0008;
+}
+
+/* Premium footer */
+.footer {
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px #648bff44;
+}
+
+/* Light mode compatibility */
+body.light-mode {
+    background: #edf2fa;
+}
+
+body.light-mode .content-card {
+    background: linear-gradient(145deg, #ffffff, #e9effb);
+    border-color: #8799c533;
+    box-shadow: 0 8px 0 #d5deed, 0 20px 35px #263b6020;
+}
+
+body.light-mode .content-card:hover {
+    box-shadow: 0 12px 0 #d5deed, 0 28px 40px #263b6030;
+}
+
+body.light-mode .card-head h2 {
+    color: #172338;
+}
+
+/* Mobile safety */
+@media (max-width: 700px) {
+    .content-card:hover,
+    .hero:hover,
+    .theme-option:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ==========================================
+   NEXUS HYPER PREMIUM 3D - LEVEL 3
+========================================== */
+
+/* Ambient neon background */
+body {
+    background:
+        radial-gradient(ellipse at 15% 20%, #743bff30, transparent 32%),
+        radial-gradient(ellipse at 85% 70%, #00d9ff20, transparent 32%),
+        radial-gradient(ellipse at 50% 100%, #1647a522, transparent 45%),
+        #080d18;
+}
+
+/* Advanced glass cards */
+.content-card,
+.settings-nav,
+.hero {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Animated neon card border */
+.content-card {
+    border: 1px solid transparent;
+    background:
+        linear-gradient(145deg, #1c2942, #101827) padding-box,
+        linear-gradient(120deg, #648bff, #9b5cff55, #35d5e8, #648bff) border-box;
+    background-size: 100% 100%, 250% 250%;
+    animation: nexusBorderFlow 9s linear infinite;
+}
+
+@keyframes nexusBorderFlow {
+    0% { background-position: 0 0, 0% 50%; }
+    50% { background-position: 0 0, 100% 50%; }
+    100% { background-position: 0 0, 0% 50%; }
+}
+
+/* Deep 3D card hover */
+.content-card:hover {
+    transform: translateY(-9px) rotateX(3deg) rotateY(-2deg) scale(1.008);
+    box-shadow:
+        0 3px 0 #a78bfa44,
+        0 14px 0 #080e1b,
+        0 35px 55px #000b,
+        0 0 35px #8b5cf655;
+}
+
+/* Floating hero */
+.hero {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 4px 0 #a78bfa44,
+        0 15px 0 #11142e,
+        0 30px 55px #000b,
+        inset 0 1px 0 #ffffff44;
+}
+
+.hero .eyebrow,
+.hero h1,
+.hero p {
+    transform: translateZ(15px);
+}
+
+/* Floating icon effect */
+.section-icon {
+    animation: nexusFloat 4s ease-in-out infinite;
+}
+
+@keyframes nexusFloat {
+    0%, 100% { transform: translateY(0) translateZ(8px); }
+    50% { transform: translateY(-5px) translateZ(15px); }
+}
+
+/* 3D theme preview */
+.theme-preview {
+    border: 1px solid #ffffff20;
+    box-shadow:
+        inset 0 4px 12px #0008,
+        0 4px 0 #080e1b,
+        0 10px 18px #0005;
+    transition: .35s ease;
+}
+
+.theme-option:hover .theme-preview {
+    transform: perspective(500px) rotateX(8deg) translateY(-3px);
+    box-shadow: 0 0 20px #648bff55;
+}
+
+/* Glowing navigation */
+.settings-tab.active {
+    box-shadow:
+        0 4px 0 #211747,
+        0 10px 25px #648bff55,
+        inset 0 1px 0 #ffffff55;
+}
+
+/* Neon focus ring */
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: #35d5e8;
+    box-shadow:
+        0 0 0 3px #35d5e822,
+        0 0 22px #35d5e855,
+        inset 0 2px 8px #0007;
+}
+
+/* 3D toggle */
+.toggle {
+    box-shadow: inset 0 3px 7px #0008, 0 4px 8px #0005;
+}
+
+.toggle.on {
+    background: linear-gradient(110deg, #7655e8, #35d5e8);
+    box-shadow: 0 0 12px #648bff88, 0 0 25px #35d5e855;
+}
+
+/* Glowing buttons */
+.primary-btn {
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 5px 0 #293b83,
+        0 12px 25px #648bff44,
+        inset 0 1px 0 #ffffff55;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px) scale(1.025);
+    filter: brightness(1.12);
+}
+
+.secondary-btn:hover,
+.danger-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Glass preference rows */
+.preference:hover {
+    background: linear-gradient(100deg, #648bff15, #35d5e80d);
+    box-shadow: inset 3px 0 #648bff;
+}
+
+/* Premium avatar */
+.avatar {
+    border: 2px solid #ffffff55;
+    box-shadow:
+        0 4px 0 #253c80,
+        0 8px 20px #648bff66,
+        0 0 25px #35d5e844;
+    transition: .35s ease;
+}
+
+.avatar:hover {
+    transform: rotateY(180deg) scale(1.1);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile performance */
+@media (max-width: 700px) {
+    .content-card:hover,
+    .hero:hover {
+        transform: translateY(-3px);
+    }
+
+    .content-card {
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-card,
+    .section-icon {
+        animation: none !important;
+    }
+}
+
+/* =================================
+   SETTINGS HERO 3D OBJECT
+================================= */
+
+.hero {
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+}
+
+.hero > .eyebrow,
+.hero > h1,
+.hero > p {
+    position: relative;
+    z-index: 3;
+    max-width: 65%;
+}
+
+.settings-3d-object {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    right: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    perspective: 900px;
+    z-index: 2;
+}
+
+/* Glowing center */
+.settings-core {
+    width: 105px;
+    height: 105px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #8b5cf6, #2563eb, #06b6d4);
+    border: 2px solid #ffffff80;
+    box-shadow:
+        0 0 25px #8b5cf6,
+        0 0 65px #3b82f688,
+        inset 0 0 20px #ffffff55,
+        0 15px 35px #0009;
+    transform: rotateX(12deg) rotateY(-15deg);
+    animation: coreFloat 4s ease-in-out infinite;
+}
+
+.settings-core span {
+    font-size: 48px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 0 18px #ffffff;
+}
+
+.settings-core small {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: white;
+}
+
+@keyframes coreFloat {
+    0%, 100% {
+        transform: translateY(0) rotateX(12deg) rotateY(-15deg);
+    }
+    50% {
+        transform: translateY(-12px) rotateX(-8deg) rotateY(15deg);
+    }
+}
+
+/* Rotating 3D rings */
+.settings-orbit {
+    position: absolute;
+    width: 190px;
+    height: 75px;
+    border: 2px solid #8b5cf6;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #8b5cf688, inset 0 0 12px #35d5e833;
+}
+
+.orbit-one {
+    transform: rotate(-35deg);
+    animation: orbitRotate 8s linear infinite;
+}
+
+.orbit-two {
+    width: 205px;
+    height: 95px;
+    border-color: #35d5e8;
+    transform: rotate(55deg);
+    animation: orbitReverse 10s linear infinite;
+}
+
+.orbit-three {
+    width: 160px;
+    height: 160px;
+    border-color: #a78bfa66;
+    transform: rotateX(65deg);
+    animation: orbitPulse 4s ease-in-out infinite;
+}
+
+@keyframes orbitRotate {
+    to { transform: rotate(325deg); }
+}
+
+@keyframes orbitReverse {
+    to { transform: rotate(-305deg); }
+}
+
+@keyframes orbitPulse {
+    50% { transform: rotateX(65deg) scale(1.12); }
+}
+
+/* Floating particles */
+.settings-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #35d5e8;
+    box-shadow: 0 0 15px #35d5e8, 0 0 30px #35d5e8;
+}
+
+.particle-one { top: 20px; left: 45px; }
+.particle-two { bottom: 25px; right: 35px; background: #a78bfa; }
+.particle-three { top: 65px; right: 12px; }
+.particle-four { bottom: 55px; left: 15px; background: #a78bfa; }
+
+/* Mobile */
+@media (max-width: 700px) {
+    .hero {
+        min-height: 390px;
+    }
+
+    .hero > .eyebrow,
+    .hero > h1,
+    .hero > p {
+        max-width: 100%;
+    }
+
+    .settings-3d-object {
+        width: 170px;
+        height: 170px;
+        top: auto;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%) scale(.75);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .settings-core,
+    .settings-orbit {
+        animation: none !important;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -122,6 +1034,21 @@ body.light-mode .theme-option{color:#172338}
 <div class="eyebrow">✦ PERSONAL CONTROL CENTER</div>
 <h1>Settings & Personalization<span style="color:#6f9aff">.</span></h1>
 <p>Make NEXUS your own. Customize your workspace, manage preferences, and control how your learning ecosystem works.</p>
+<div class="settings-3d-object" aria-hidden="true">
+    <div class="settings-orbit orbit-one"></div>
+    <div class="settings-orbit orbit-two"></div>
+    <div class="settings-orbit orbit-three"></div>
+
+    <div class="settings-core">
+        <span>N</span>
+        <small>NEXUS AI</small>
+    </div>
+
+    <div class="settings-particle particle-one"></div>
+    <div class="settings-particle particle-two"></div>
+    <div class="settings-particle particle-three"></div>
+    <div class="settings-particle particle-four"></div>
+</div>
 </section>
 
 <div class="layout">

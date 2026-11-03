@@ -271,6 +271,158 @@
     margin-top: auto;
     padding-top: 25px;
 }
+/* NEXUS FUTURISTIC AI ROBOT */
+
+.career-robot {
+    position: relative;
+    width: 350px;
+    min-width: 300px;
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+}
+
+.robot-glow {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(91, 113, 255, .42),
+        rgba(139, 92, 246, .18) 45%,
+        transparent 72%
+    );
+    filter: blur(28px);
+    z-index: -1;
+    animation: robotGlow 4s ease-in-out infinite alternate;
+}
+
+.nexus-ai-robot {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 310px;
+    max-height: 290px;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 15px 25px rgba(70, 100, 255, .30))
+        drop-shadow(0 0 22px rgba(56, 201, 232, .22));
+    animation: robotFloat 4s ease-in-out infinite;
+}
+
+.robot-caption {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #dceaff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.robot-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #42e6b0;
+    box-shadow: 0 0 12px #42e6b0;
+}
+
+@keyframes robotFloat {
+    0%, 100% { transform: translateY(0) rotateY(-5deg); }
+    50% { transform: translateY(-12px) rotateY(5deg); }
+}
+
+@keyframes robotGlow {
+    from { opacity: .55; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1.1); }
+}
+
+@media (max-width: 750px) {
+    .career-hero {
+        flex-direction: column;
+    }
+
+    .career-robot {
+        width: 100%;
+        min-width: 0;
+        min-height: 260px;
+    }
+
+    .nexus-ai-robot {
+        max-width: 250px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nexus-ai-robot,
+    .robot-glow {
+        animation: none;
+    }
+}
+
+/* NEXUS — FLOATING AI PARTICLES */
+
+.career-robot {
+    isolation: isolate;
+}
+
+.career-robot::before,
+.career-robot::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #55e6ff;
+    box-shadow:
+        0 0 10px #55e6ff,
+        0 0 25px #55e6ff,
+        0 0 45px rgba(85, 230, 255, .5);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.career-robot::before {
+    top: 18%;
+    left: 8%;
+    animation: nexusParticleOne 4s ease-in-out infinite;
+}
+
+.career-robot::after {
+    right: 8%;
+    bottom: 25%;
+    width: 9px;
+    height: 9px;
+    background: #b69aff;
+    box-shadow:
+        0 0 12px #b69aff,
+        0 0 30px #9875ff;
+    animation: nexusParticleTwo 5s ease-in-out infinite;
+}
+
+@keyframes nexusParticleOne {
+    0%, 100% { transform: translate(0, 0); opacity: .5; }
+    50% { transform: translate(15px, -25px); opacity: 1; }
+}
+
+@keyframes nexusParticleTwo {
+    0%, 100% { transform: translate(0, 0); opacity: .6; }
+    50% { transform: translate(-18px, 20px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .career-robot::before,
+    .career-robot::after {
+        animation: none;
+    }
+}
+
 </style>
 </head>
 
@@ -328,8 +480,19 @@
   </div>
 
   <div class="career-robot">
-    <img src="./ai-robot.png" alt="NEXUS AI Robot" style="width:300px; display:block;">
-  </div>
+    <div class="robot-glow"></div>
+
+    <img
+        src="./ai-robot.png"
+        alt="NEXUS Futuristic AI Robot"
+        class="nexus-ai-robot"
+    >
+
+    <div class="robot-caption">
+        <span class="robot-status"></span>
+        NEXUS AI INTELLIGENCE
+    </div>
+</div>
 
 </section>
 

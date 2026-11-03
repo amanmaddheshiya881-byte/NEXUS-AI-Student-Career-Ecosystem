@@ -180,6 +180,1380 @@
     margin: 0;
     flex-shrink: 0;
 }
+
+/* =====================================
+   NEXUS ANALYTICS - PREMIUM 3D UI
+===================================== */
+
+.analytics-page {
+    perspective: 1400px;
+}
+
+/* Premium animated background */
+.analytics-page {
+    background:
+        radial-gradient(ellipse at 80% 10%, #7138d52a, transparent 35%),
+        radial-gradient(ellipse at 10% 55%, #1688cb20, transparent 35%);
+}
+
+/* 3D Hero */
+.analytics-hero {
+    background:
+        radial-gradient(circle at 85% 30%, #8b5cf655, transparent 30%),
+        linear-gradient(125deg, #211747, #142c50, #103e4c);
+    border: 1px solid #a78bfa55;
+    box-shadow:
+        0 25px 55px #0007,
+        inset 0 1px 0 #ffffff20,
+        0 0 30px #8b5cf622;
+    transform-style: preserve-3d;
+    transition: .4s ease;
+}
+
+.analytics-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 65px #0009, 0 0 35px #8b5cf633;
+}
+
+/* 3D metric cards */
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #222d4a, #111a30);
+    border: 1px solid #a78bfa35;
+    border-radius: 20px;
+    box-shadow:
+        0 12px 0 #080e1c,
+        0 20px 35px #0006,
+        inset 0 1px 0 #ffffff18;
+    transform-style: preserve-3d;
+    transition: .35s ease;
+}
+
+.metric-card::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -55px;
+    top: -55px;
+    background: #8b5cf6;
+    filter: blur(65px);
+    opacity: .35;
+    pointer-events: none;
+}
+
+.metric-card:hover {
+    transform: translateY(-9px) rotateX(3deg) rotateY(-2deg);
+    border-color: #a78bfa99;
+    box-shadow:
+        0 18px 0 #080e1c,
+        0 28px 45px #0008,
+        0 0 25px #8b5cf633;
+}
+
+.metric-card h2 {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffffff, #b9a3ff, #42cde4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Glowing icons */
+.metric-icon {
+    background: linear-gradient(145deg, #7045ca55, #263f7455);
+    border: 1px solid #a78bfa55;
+    box-shadow: 0 0 20px #8b5cf633;
+    transform: translateZ(20px);
+}
+
+/* 3D chart panels */
+.analytics-panel {
+    background: linear-gradient(145deg, #202b47ed, #101a30f5);
+    border: 1px solid #8b9bd433;
+    border-radius: 21px;
+    box-shadow:
+        0 15px 35px #0006,
+        inset 0 1px 0 #ffffff14;
+    backdrop-filter: blur(18px);
+    transition: .35s ease;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-5px);
+    border-color: #a78bfa77;
+    box-shadow: 0 22px 45px #0008, 0 0 22px #8b5cf622;
+}
+
+/* Chart container */
+.chart-wrap {
+    padding: 10px;
+    border-radius: 15px;
+    background: #080e1c66;
+    border: 1px solid #ffffff0d;
+}
+
+/* Premium progress bars */
+.goal-track {
+    height: 10px;
+    background: #080e1c;
+    border: 1px solid #ffffff12;
+    box-shadow: inset 0 2px 5px #0008;
+}
+
+.goal-fill {
+    background: linear-gradient(90deg, #8b5cf6, #38bdf8, #34d399);
+    box-shadow: 0 0 15px #8b5cf688;
+    transition: width .8s ease;
+}
+
+/* Activity rows */
+.activity-row {
+    transition: .3s ease;
+    border-bottom: 1px solid #ffffff12;
+}
+
+.activity-row:hover {
+    padding-left: 9px;
+    background: #ffffff08;
+    border-radius: 8px;
+}
+
+.activity-dot {
+    box-shadow: 0 0 12px #a78bfa;
+}
+
+/* Insight card */
+.insight-card {
+    background: linear-gradient(120deg, #35245f88, #16435a88);
+    border: 1px solid #a78bfa55;
+    box-shadow: 0 12px 28px #0005;
+}
+
+/* Analytics heading */
+.analytics-section h2 {
+    background: linear-gradient(90deg, #ffffff, #b9a3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Sidebar hover */
+.sidebar .nav-link {
+    transition: .3s ease;
+}
+
+.sidebar .nav-link:hover {
+    transform: translateX(5px);
+    box-shadow: 0 0 18px #8b5cf633;
+}
+
+/* Mobile */
+@media (max-width: 750px) {
+    .analytics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric-card {
+        padding: 16px;
+    }
+
+    .metric-card h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 420px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   NEXUS ULTRA PREMIUM 3D ANALYTICS
+========================================= */
+
+.analytics-page {
+    isolation: isolate;
+    perspective: 1600px;
+}
+
+/* Futuristic ambient lighting */
+.analytics-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 85% 15%, #8b5cf626, transparent 28%),
+        radial-gradient(circle at 15% 65%, #06b6d426, transparent 30%),
+        radial-gradient(circle at 55% 95%, #6366f11c, transparent 28%);
+}
+
+/* Hero 3D depth */
+.analytics-hero {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 27px;
+    background:
+        radial-gradient(ellipse at 85% 20%, #a78bfa55, transparent 35%),
+        radial-gradient(ellipse at 10% 100%, #06b6d455, transparent 40%),
+        linear-gradient(135deg, #251747, #142b50, #102d43);
+    border: 1px solid #a78bfa66;
+    box-shadow:
+        0 25px 50px #0009,
+        inset 0 1px 0 #ffffff30,
+        inset 0 -20px 45px #050b1b55,
+        0 0 35px #8b5cf622;
+    transform-style: preserve-3d;
+    transition: .5s cubic-bezier(.2,.8,.2,1);
+}
+
+.analytics-hero:hover {
+    transform: translateY(-7px) rotateX(2deg);
+}
+
+/* Floating 3D metric cards */
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    background:
+        linear-gradient(145deg, #263554, #131d34 70%);
+    border: 1px solid #9b8aff44;
+    border-radius: 23px;
+    box-shadow:
+        0 9px 0 #080e1c,
+        0 19px 35px #0008,
+        inset 0 1px 0 #ffffff20;
+    transition: .4s ease;
+}
+
+.metric-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        125deg,
+        #ffffff12,
+        transparent 35%,
+        transparent 70%,
+        #8b5cf622
+    );
+    pointer-events: none;
+}
+
+.metric-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-3deg);
+    border-color: #a78bfa;
+    box-shadow:
+        0 13px 0 #080e1c,
+        0 28px 45px #0009,
+        0 0 30px #8b5cf644;
+}
+
+/* Icon floating depth */
+.metric-icon {
+    width: 49px;
+    height: 49px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #7955d8, #253f70);
+    border: 1px solid #c4b5fd77;
+    color: #ffffff;
+    box-shadow:
+        0 7px 0 #241b52,
+        0 12px 22px #0006,
+        0 0 22px #8b5cf655;
+    transform: translateZ(25px);
+}
+
+/* Large premium numbers */
+.metric-card h2 {
+    font-size: clamp(28px, 3vw, 36px);
+    letter-spacing: -1px;
+    text-shadow: 0 0 22px #a78bfa55;
+}
+
+/* Glass chart surfaces */
+.analytics-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, #202d4bed, #101a30f5);
+    border: 1px solid #a78bfa35;
+    border-radius: 23px;
+    box-shadow:
+        0 12px 30px #0007,
+        inset 0 1px 0 #ffffff18;
+    backdrop-filter: blur(20px);
+    transform-style: preserve-3d;
+    transition: .4s ease;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-6px);
+    border-color: #8b5cf688;
+    box-shadow:
+        0 22px 40px #0009,
+        0 0 25px #8b5cf622;
+}
+
+.analytics-panel h3 {
+    color: #ffffff;
+    letter-spacing: .3px;
+}
+
+/* Chart glow */
+.chart-wrap {
+    border-radius: 18px;
+    background: linear-gradient(145deg, #0a1224, #131c32);
+    border: 1px solid #8b5cf633;
+    box-shadow:
+        inset 0 5px 18px #0008,
+        0 0 18px #8b5cf611;
+    padding: 12px;
+}
+
+/* Premium progress */
+.goal-track {
+    height: 11px;
+    border-radius: 30px;
+    background: #080e1d;
+    box-shadow: inset 0 3px 8px #0009;
+}
+
+.goal-fill {
+    position: relative;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #8b5cf6, #38bdf8, #34d399);
+    box-shadow: 0 0 15px #8b5cf688;
+}
+
+/* Animated glow on goal bars */
+.goal-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffffff66,
+        transparent
+    );
+    animation: nexusShine 3s linear infinite;
+}
+
+@keyframes nexusShine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* Activity highlight */
+.activity-row {
+    border-radius: 10px;
+    padding: 15px 10px;
+    transition: .3s ease;
+}
+
+.activity-row:hover {
+    background: linear-gradient(90deg, #8b5cf622, #38bdf811);
+    transform: translateX(6px);
+}
+
+/* Insight glass */
+.insight-card {
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 100% 0%, #8b5cf644, transparent 55%),
+        linear-gradient(130deg, #302052, #123b50);
+    border: 1px solid #a78bfa66;
+    box-shadow:
+        0 15px 30px #0006,
+        inset 0 1px 0 #ffffff20;
+}
+
+/* Headings */
+.analytics-section h2 {
+    text-shadow: 0 0 22px #a78bfa44;
+}
+
+/* Sidebar 3D buttons */
+.sidebar .nav-link {
+    border-radius: 14px;
+    transition: .3s ease;
+}
+
+.sidebar .nav-link:hover {
+    transform: translateX(5px) translateY(-2px);
+    box-shadow: 0 8px 22px #8b5cf644;
+}
+
+/* Smooth entrance */
+@media (prefers-reduced-motion: no-preference) {
+    .metric-card {
+        animation: nexusAppear .7s ease both;
+    }
+
+    @keyframes nexusAppear {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Responsive */
+@media (max-width: 750px) {
+    .analytics-hero {
+        min-height: 190px;
+        padding: 23px;
+    }
+
+    .analytics-panel {
+        border-radius: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .goal-fill::after {
+        animation: none;
+    }
+}
+
+/* =====================================
+   NEXUS ULTRA 3D EXPERIENCE
+===================================== */
+
+.analytics-page {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+/* Premium background */
+.analytics-page {
+    background:
+        radial-gradient(ellipse at 15% 10%, rgba(112, 65, 255, .16), transparent 35%),
+        radial-gradient(ellipse at 85% 75%, rgba(0, 210, 255, .12), transparent 35%);
+}
+
+/* 3D Hero */
+.analytics-hero {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    background: linear-gradient(125deg,
+        rgba(95, 55, 190, .30),
+        rgba(20, 25, 65, .75),
+        rgba(0, 190, 255, .13));
+    border: 1px solid rgba(180, 160, 255, .28);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .35),
+        inset 0 1px 1px rgba(255, 255, 255, .18),
+        0 0 35px rgba(120, 80, 255, .12);
+    backdrop-filter: blur(22px);
+}
+
+/* Floating metric cards */
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    background: linear-gradient(145deg,
+        rgba(255,255,255,.10),
+        rgba(100,80,180,.07));
+    border: 1px solid rgba(190,170,255,.22);
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.16);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-4deg);
+    box-shadow:
+        0 28px 55px rgba(0,0,0,.4),
+        0 0 28px rgba(135,90,255,.24);
+}
+
+.metric-card::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -60%;
+    width: 50%;
+    height: 300%;
+    transform: rotate(25deg);
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255,255,255,.13),
+        transparent);
+    transition: left .7s ease;
+    pointer-events: none;
+}
+
+.metric-card:hover::after {
+    left: 130%;
+}
+
+/* 3D Panels */
+.analytics-panel {
+    position: relative;
+    background: linear-gradient(145deg,
+        rgba(255,255,255,.085),
+        rgba(30,25,70,.20));
+    border: 1px solid rgba(170,150,255,.20);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter: blur(20px);
+    transition: transform .3s ease, border-color .3s ease;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-5px);
+    border-color: rgba(145,115,255,.5);
+}
+
+/* Neon icons */
+.metric-card i,
+.metric-card .icon {
+    filter: drop-shadow(0 0 12px rgba(150,100,255,.65));
+    transition: transform .35s ease;
+}
+
+.metric-card:hover i,
+.metric-card:hover .icon {
+    transform: translateZ(25px) scale(1.13);
+}
+
+/* Glowing progress */
+.analytics-page .progress-bar,
+.analytics-page .progress-fill {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.analytics-page .progress-fill {
+    box-shadow: 0 0 14px rgba(130,90,255,.45);
+}
+
+.analytics-page .progress-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent);
+    animation: nexusShine 2.8s infinite;
+}
+
+@keyframes nexusShine {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+}
+
+/* Premium activity rows */
+.activity-row {
+    transition: transform .25s ease, background .25s ease;
+    border-radius: 14px;
+}
+
+.activity-row:hover {
+    transform: translateX(7px);
+    background: rgba(135,100,255,.10);
+}
+
+/* Entrance animation */
+.analytics-hero,
+.metric-card,
+.analytics-panel {
+    animation: nexusAppear .7s ease both;
+}
+
+@keyframes nexusAppear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile and accessibility */
+@media (max-width: 768px) {
+    .metric-card:hover,
+    .analytics-panel:hover {
+        transform: translateY(-3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .analytics-page *,
+    .analytics-page *::before,
+    .analytics-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* NEXUS 3D ANALYTICS ORBIT */
+
+.analytics-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.nexus-analytics-orbit {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    min-width: 260px;
+    display: grid;
+    place-items: center;
+    perspective: 900px;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 0 25px rgba(120, 75, 255, .25));
+}
+
+.orbit-core {
+    position: relative;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 48px;
+    color: white;
+    background: radial-gradient(circle at 35% 30%,
+        #ffffff, #a78bfa 22%, #6338d8 55%, #11143d 100%);
+    box-shadow:
+        0 0 25px #8b5cf6,
+        0 0 65px rgba(80, 130, 255, .65),
+        inset -10px -12px 25px rgba(0,0,0,.45);
+    animation: nexusCoreFloat 3s ease-in-out infinite;
+    z-index: 3;
+}
+
+.core-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 1px solid rgba(170,140,255,.5);
+    box-shadow: 0 0 25px rgba(130,90,255,.5);
+    animation: nexusPulse 2s ease-in-out infinite;
+}
+
+.orbit-ring {
+    position: absolute;
+    width: 220px;
+    height: 90px;
+    border: 2px solid rgba(145,110,255,.8);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(125,90,255,.55);
+    transform-style: preserve-3d;
+}
+
+.orbit-ring-one {
+    transform: rotateX(65deg) rotateZ(0deg);
+    animation: nexusOrbitOne 7s linear infinite;
+}
+
+.orbit-ring-two {
+    width: 235px;
+    height: 105px;
+    border-color: rgba(0,210,255,.75);
+    transform: rotateX(65deg) rotateZ(60deg);
+    animation: nexusOrbitTwo 9s linear infinite;
+}
+
+.orbit-ring-three {
+    width: 245px;
+    height: 115px;
+    border-color: rgba(200,120,255,.65);
+    transform: rotateX(65deg) rotateZ(-60deg);
+    animation: nexusOrbitThree 11s linear infinite;
+}
+
+.orbit-particle {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #62eaff;
+    box-shadow: 0 0 15px #62eaff, 0 0 30px #7c4dff;
+}
+
+.particle-one {
+    top: 25px;
+    left: 55px;
+    animation: nexusParticle 3s ease-in-out infinite;
+}
+
+.particle-two {
+    right: 30px;
+    bottom: 55px;
+    background: #c084fc;
+    animation: nexusParticle 4s ease-in-out infinite reverse;
+}
+
+.particle-three {
+    left: 35px;
+    bottom: 60px;
+    width: 7px;
+    height: 7px;
+    animation: nexusParticle 3.5s ease-in-out infinite;
+}
+
+@keyframes nexusOrbitOne {
+    to { transform: rotateX(65deg) rotateZ(360deg); }
+}
+
+@keyframes nexusOrbitTwo {
+    to { transform: rotateX(65deg) rotateZ(420deg); }
+}
+
+@keyframes nexusOrbitThree {
+    to { transform: rotateX(65deg) rotateZ(300deg); }
+}
+
+@keyframes nexusCoreFloat {
+    50% { transform: translateY(-10px) scale(1.05); }
+}
+
+@keyframes nexusPulse {
+    50% { transform: scale(1.16); opacity: .4; }
+}
+
+@keyframes nexusParticle {
+    50% { transform: translateY(-15px) scale(1.4); }
+}
+
+@media (max-width: 768px) {
+    .analytics-hero {
+        flex-direction: column;
+    }
+
+    .nexus-analytics-orbit {
+        width: 220px;
+        height: 220px;
+        min-width: 220px;
+        transform: scale(.85);
+    }
+}
+
+/* =====================================
+   NEXUS - PREMIUM ANALYTICS EXPERIENCE
+===================================== */
+
+.analytics-page {
+    color: #f4f3ff;
+    background:
+        radial-gradient(ellipse at 85% 5%, #7138d522, transparent 35%),
+        radial-gradient(ellipse at 10% 60%, #1688cb18, transparent 35%);
+}
+
+/* PREMIUM HERO */
+.analytics-hero {
+    position: relative !important;
+    display: block !important;
+    min-height: 245px !important;
+    padding: 35px !important;
+    box-sizing: border-box;
+    overflow: hidden !important;
+    border: 1px solid #a78bfa66 !important;
+    border-radius: 25px !important;
+    background:
+        radial-gradient(circle at 85% 30%, #a78bfa44, transparent 32%),
+        linear-gradient(120deg, #21163f, #172c50, #103b4c) !important;
+    box-shadow:
+        0 22px 50px #0007,
+        inset 0 1px 0 #ffffff25,
+        0 0 30px #8b5cf622;
+    transition: .35s ease;
+}
+
+.analytics-hero:hover {
+    box-shadow: 0 28px 60px #0009, 0 0 35px #8b5cf644;
+}
+
+.analytics-hero .analytics-label,
+.analytics-hero h1,
+.analytics-hero p {
+    position: relative;
+    z-index: 4;
+    max-width: calc(100% - 260px);
+}
+
+.analytics-hero h1 {
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.analytics-hero p {
+    color: #c5cce0;
+}
+
+/* 3D ORBIT */
+.nexus-analytics-orbit {
+    position: absolute !important;
+    width: 240px !important;
+    height: 240px !important;
+    min-width: 240px !important;
+    right: 15px !important;
+    top: 50% !important;
+    left: auto !important;
+    transform: translateY(-50%) !important;
+    z-index: 3;
+}
+
+/* PREMIUM METRIC CARDS */
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #a78bfa40 !important;
+    border-radius: 21px !important;
+    background: linear-gradient(145deg, #273554, #111b32) !important;
+    box-shadow:
+        0 10px 0 #080e1c,
+        0 20px 35px #0006,
+        inset 0 1px 0 #ffffff20;
+    transition: .35s ease;
+}
+
+.metric-card::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: -65px;
+    right: -55px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    filter: blur(65px);
+    opacity: .35;
+    pointer-events: none;
+}
+
+.metric-card:hover {
+    transform: translateY(-9px);
+    border-color: #a78bfa !important;
+    box-shadow: 0 14px 0 #080e1c, 0 28px 45px #0008,
+                0 0 25px #8b5cf644;
+}
+
+.metric-icon {
+    background: linear-gradient(145deg, #8056d9, #24416c) !important;
+    border: 1px solid #c4b5fd66;
+    color: white !important;
+    box-shadow: 0 0 22px #8b5cf655;
+}
+
+.metric-card h2 {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* GLASS PANELS */
+.analytics-panel {
+    border: 1px solid #a78bfa35 !important;
+    border-radius: 21px !important;
+    background: linear-gradient(145deg, #202d49ed, #101a30f5) !important;
+    box-shadow: 0 15px 35px #0006,
+                inset 0 1px 0 #ffffff18;
+    backdrop-filter: blur(18px);
+    transition: .3s ease;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-4px);
+    border-color: #a78bfa88 !important;
+    box-shadow: 0 22px 40px #0008, 0 0 22px #8b5cf622;
+}
+
+.analytics-panel h3 {
+    color: #ffffff;
+}
+
+/* CHART CONTAINERS */
+.chart-wrap {
+    border: 1px solid #8b5cf633;
+    border-radius: 17px;
+    background: #080e1c77;
+    padding: 12px;
+}
+
+/* SECTION HEADINGS */
+.analytics-section h2 {
+    color: #e9ddff;
+    font-weight: 800;
+    text-shadow: 0 0 18px #8b5cf644;
+}
+
+/* PROGRESS BARS */
+.goal-track {
+    height: 11px;
+    background: #080e1d;
+    border: 1px solid #ffffff15;
+    box-shadow: inset 0 3px 7px #0008;
+}
+
+.goal-fill {
+    background: linear-gradient(90deg, #8b5cf6, #38bdf8, #34d399) !important;
+    box-shadow: 0 0 15px #8b5cf688;
+}
+
+/* ACTIVITY */
+.activity-row {
+    border-radius: 11px;
+    transition: .25s ease;
+}
+
+.activity-row:hover {
+    padding-left: 10px;
+    background: #8b5cf61c;
+}
+
+.activity-dot {
+    box-shadow: 0 0 12px #a78bfa;
+}
+
+/* INSIGHT */
+.insight-card {
+    border: 1px solid #a78bfa66;
+    background:
+        radial-gradient(circle at 100% 0%, #8b5cf644, transparent 55%),
+        linear-gradient(130deg, #302052, #123b50);
+    box-shadow: 0 12px 30px #0006;
+}
+
+/* RESPONSIVE */
+@media (max-width: 650px) {
+    .analytics-hero {
+        min-height: 245px !important;
+        padding: 24px !important;
+    }
+
+    .analytics-hero .analytics-label,
+    .analytics-hero h1,
+    .analytics-hero p {
+        max-width: 100%;
+    }
+
+    .nexus-analytics-orbit {
+        width: 180px !important;
+        height: 180px !important;
+        min-width: 180px !important;
+        right: -65px !important;
+        opacity: .35;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .analytics-page *,
+    .analytics-page *::before,
+    .analytics-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* =====================================
+   NEXUS ULTRA 3D PREMIUM LAYER
+===================================== */
+
+/* Deep futuristic environment */
+.analytics-page {
+    perspective: 1800px;
+    transform-style: preserve-3d;
+}
+
+/* Hero cinematic depth */
+.analytics-hero {
+    transform-style: preserve-3d;
+    isolation: isolate;
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.55),
+        0 0 35px rgba(139,92,246,.22),
+        inset 0 1px 0 rgba(255,255,255,.22) !important;
+}
+
+.analytics-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        transparent 25%,
+        rgba(255,255,255,.09) 48%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    animation: nexusHeroShine 7s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes nexusHeroShine {
+    50%, 100% { transform: translateX(120%); }
+}
+
+/* Floating 3D orbit */
+.nexus-analytics-orbit {
+    filter:
+        drop-shadow(0 0 20px #8b5cf6aa)
+        drop-shadow(0 0 40px #38bdf855);
+}
+
+.orbit-core {
+    box-shadow:
+        0 0 25px #a78bfa,
+        0 0 60px #7c3aed,
+        0 0 100px #38bdf855,
+        inset -10px -12px 25px #0008;
+}
+
+.orbit-ring {
+    border-width: 2px;
+    box-shadow:
+        0 0 12px currentColor,
+        0 0 28px #8b5cf666,
+        inset 0 0 12px #8b5cf622;
+}
+
+/* 3D floating metric cards */
+.metric-card {
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    box-shadow:
+        0 12px 0 #080e1c,
+        0 25px 40px #0008,
+        inset 0 1px 0 #ffffff25 !important;
+}
+
+.metric-card:hover {
+    transform: translateY(-12px) rotateX(6deg) rotateY(-5deg) scale(1.015);
+}
+
+.metric-icon {
+    transform: translateZ(28px);
+    box-shadow:
+        0 8px 0 #211747,
+        0 14px 25px #0007,
+        0 0 25px #8b5cf677 !important;
+}
+
+/* 3D glass chart panels */
+.analytics-panel {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 15px 0 #080e1c,
+        0 25px 45px #0008,
+        inset 0 1px 0 #ffffff20 !important;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-7px) rotateX(2deg);
+}
+
+/* Animated neon border glow */
+.metric-card:hover,
+.analytics-panel:hover {
+    border-color: #b9a3ff !important;
+    box-shadow:
+        0 15px 0 #080e1c,
+        0 28px 50px #0009,
+        0 0 30px #8b5cf655 !important;
+}
+
+/* Floating chart surface */
+.chart-wrap {
+    box-shadow:
+        inset 0 5px 18px #0009,
+        0 0 25px #8b5cf622;
+}
+
+/* Premium progress shine */
+.goal-fill {
+    overflow: hidden;
+    position: relative;
+}
+
+.goal-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        transparent,
+        #ffffff88,
+        transparent
+    );
+    animation: nexusProgressShine 3s linear infinite;
+}
+
+@keyframes nexusProgressShine {
+    from { transform: translateX(-110%); }
+    to { transform: translateX(110%); }
+}
+
+/* Activity depth */
+.activity-row:hover {
+    transform: translateX(8px) translateZ(10px);
+    box-shadow: 0 5px 18px #8b5cf622;
+}
+
+/* Premium sidebar depth */
+.sidebar .nav-link {
+    transition: .3s ease;
+}
+
+.sidebar .nav-link:hover {
+    transform: translateX(6px) translateY(-3px);
+    box-shadow: 0 9px 20px #8b5cf644;
+}
+
+/* Smooth appearance */
+@media (prefers-reduced-motion: no-preference) {
+    .metric-card {
+        animation: nexusFloatIn .7s ease both;
+    }
+
+    @keyframes nexusFloatIn {
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Mobile safety */
+@media (max-width: 650px) {
+    .metric-card:hover,
+    .analytics-panel:hover {
+        transform: translateY(-3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .analytics-hero::before,
+    .goal-fill::after {
+        animation: none !important;
+    }
+}
+/* =====================================
+   NEXUS - ULTIMATE 3D PREMIUM UPGRADE
+===================================== */
+
+/* Premium 3D environment */
+.analytics-page {
+    perspective: 1800px;
+}
+
+/* Hero card depth */
+.analytics-hero {
+    position: relative !important;
+    transform-style: preserve-3d;
+    isolation: isolate;
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.25),
+        0 0 35px rgba(139,92,246,.25) !important;
+}
+
+/* Animated light reflection */
+.analytics-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(255,255,255,.12) 48%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    animation: nexusHeroLight 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes nexusHeroLight {
+    50%, 100% { transform: translateX(120%); }
+}
+
+/* 3D orbit glow */
+.nexus-analytics-orbit {
+    filter:
+        drop-shadow(0 0 22px #8b5cf6aa)
+        drop-shadow(0 0 45px #38bdf866);
+}
+
+.orbit-core {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 0 30px #a78bfa,
+        0 0 65px #7c3aed,
+        0 0 100px #38bdf855,
+        inset -12px -14px 25px #0009;
+}
+
+.orbit-ring {
+    border-width: 2px;
+    box-shadow:
+        0 0 15px #8b5cf6aa,
+        0 0 30px #38bdf855;
+}
+
+/* Premium 3D metric cards */
+.metric-card {
+    transform-style: preserve-3d;
+    transition: transform .4s ease, box-shadow .4s ease;
+    box-shadow:
+        0 12px 0 #080e1c,
+        0 24px 40px #0008,
+        inset 0 1px 0 #ffffff25 !important;
+}
+
+.metric-card:hover {
+    transform: translateY(-12px) rotateX(6deg) rotateY(-5deg);
+    box-shadow:
+        0 16px 0 #080e1c,
+        0 30px 50px #0009,
+        0 0 30px #8b5cf655 !important;
+}
+
+.metric-icon {
+    transform: translateZ(25px);
+    box-shadow:
+        0 7px 0 #211747,
+        0 12px 25px #0008,
+        0 0 25px #8b5cf677 !important;
+}
+
+/* Floating glass panels */
+.analytics-panel {
+    transform-style: preserve-3d;
+    transition: transform .35s ease, box-shadow .35s ease;
+    box-shadow:
+        0 14px 0 #080e1c,
+        0 25px 40px #0008,
+        inset 0 1px 0 #ffffff20 !important;
+}
+
+.analytics-panel:hover {
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow:
+        0 18px 0 #080e1c,
+        0 30px 50px #0009,
+        0 0 25px #8b5cf644 !important;
+}
+
+/* Neon section headings */
+.analytics-section h2 {
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Progress bar shine */
+.goal-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.goal-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        transparent,
+        #ffffff88,
+        transparent
+    );
+    animation: nexusBarShine 3s linear infinite;
+}
+
+@keyframes nexusBarShine {
+    from { transform: translateX(-110%); }
+    to { transform: translateX(110%); }
+}
+
+/* Premium insight glow */
+.insight-card {
+    box-shadow:
+        0 15px 35px #0007,
+        inset 0 1px 0 #ffffff25,
+        0 0 25px #8b5cf633;
+}
+
+/* Mobile safety */
+@media (max-width: 650px) {
+    .metric-card:hover,
+    .analytics-panel:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .analytics-hero::before,
+    .goal-fill::after {
+        animation: none !important;
+    }
+}
+/* FIX: METRIC CARD HOVER MOVEMENT */
+
+.analytics-page .metric-card {
+    animation: none !important;
+    transform: translateY(0) !important;
+    transition: transform .35s ease, box-shadow .35s ease !important;
+    cursor: pointer;
+}
+
+.analytics-page .metric-card:hover {
+    transform: translateY(-12px) rotateX(5deg) rotateY(-4deg) !important;
+    box-shadow:
+        0 16px 0 #080e1c,
+        0 30px 45px #0009,
+        0 0 28px #8b5cf655 !important;
+}
+
+/* Mobile par normal movement */
+@media (max-width: 650px) {
+    .analytics-page .metric-card:hover {
+        transform: translateY(-4px) !important;
+    }
+}
 </style>
 </head>
 
@@ -215,6 +1589,22 @@
  <span class="analytics-label">✦ STUDENT PERFORMANCE INTELLIGENCE</span>
  <h1>Measure Progress. Discover Potential.</h1>
  <p>Understand your learning patterns, explore performance trends and make smarter decisions for your academic and professional growth.</p>
+ 
+<div class="nexus-analytics-orbit">
+    <div class="orbit-ring orbit-ring-one"></div>
+    <div class="orbit-ring orbit-ring-two"></div>
+    <div class="orbit-ring orbit-ring-three"></div>
+
+    <div class="orbit-core">
+        <span>✦</span>
+        <div class="core-glow"></div>
+    </div>
+
+    <div class="orbit-particle particle-one"></div>
+    <div class="orbit-particle particle-two"></div>
+    <div class="orbit-particle particle-three"></div>
+</div>
+
 </section>
 
 <section class="analytics-grid">
@@ -309,50 +1699,162 @@
 </div>
 
 <script>
+
 lucide.createIcons();
 
-Chart.defaults.color = "#aab2c7";
-Chart.defaults.font.family = "Arial";
+Chart.defaults.color = "#b8c3dc";
+Chart.defaults.font.family = "Inter, Arial";
+Chart.defaults.font.size = 12;
 
-new Chart(document.getElementById("weeklyChart"),{
- type:"line",
- data:{
-  labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
-  datasets:[{
-   label:"Study Hours",
-   data:[1,2,1.5,3,2.5,4,2],
-   borderColor:"#9b7aff",
-   backgroundColor:"rgba(139,92,246,.15)",
-   fill:true,tension:.4,
-   pointRadius:4
-  }]
- },
- options:{
-  responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{display:false}},
-  scales:{
-   y:{beginAtZero:true,grid:{color:"rgba(255,255,255,.07)"}},
-   x:{grid:{display:false}}
-  }
- }
+/* PREMIUM CHART TOOLTIP */
+const premiumTooltip = {
+    backgroundColor: "#171d35",
+    titleColor: "#ffffff",
+    bodyColor: "#cbd5e1",
+    borderColor: "#a78bfa",
+    borderWidth: 1,
+    padding: 13,
+    cornerRadius: 12,
+    displayColors: true
+};
+
+/* CENTER TEXT PLUGIN */
+const centerTextPlugin = {
+    id: "centerText",
+    afterDraw(chart) {
+        if (chart.config.type !== "doughnut") return;
+
+        const {ctx, chartArea} = chart;
+        if (!chartArea) return;
+
+        const x = (chartArea.left + chartArea.right) / 2;
+        const y = (chartArea.top + chartArea.bottom) / 2;
+
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        ctx.font = "800 25px Inter";
+        ctx.fillStyle = "#ffffff";
+        ctx.shadowColor = "#a78bfa";
+        ctx.shadowBlur = 14;
+        ctx.fillText("100%", x, y - 5);
+
+        ctx.shadowBlur = 0;
+        ctx.font = "12px Inter";
+        ctx.fillStyle = "#aeb9d2";
+        ctx.fillText("Activity", x, y + 19);
+
+        ctx.restore();
+    }
+};
+
+Chart.register(centerTextPlugin);
+
+/* WEEKLY LEARNING CHART */
+const weeklyCanvas = document.getElementById("weeklyChart");
+const weeklyCtx = weeklyCanvas.getContext("2d");
+
+const weeklyGradient = weeklyCtx.createLinearGradient(0, 0, 0, 260);
+weeklyGradient.addColorStop(0, "rgba(139,92,246,0.45)");
+weeklyGradient.addColorStop(1, "rgba(56,189,248,0.01)");
+
+new Chart(weeklyCanvas, {
+    type: "line",
+    data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        datasets: [{
+            label: "Study Hours",
+            data: [1, 2, 1.5, 3, 2.5, 4, 2],
+            borderColor: "#a78bfa",
+            backgroundColor: weeklyGradient,
+            fill: true,
+            tension: 0.45,
+            borderWidth: 3,
+            pointRadius: 5,
+            pointHoverRadius: 9,
+            pointBackgroundColor: "#38bdf8",
+            pointBorderColor: "#ffffff",
+            pointBorderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            duration: 1600,
+            easing: "easeOutQuart"
+        },
+        interaction: {
+            intersect: false,
+            mode: "index"
+        },
+        plugins: {
+            legend: { display: false },
+            tooltip: premiumTooltip
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: "rgba(255,255,255,0.07)" },
+                ticks: { padding: 10 }
+            },
+            x: {
+                grid: { display: false },
+                ticks: { padding: 10 }
+            }
+        }
+    }
 });
 
-new Chart(document.getElementById("distributionChart"),{
- type:"doughnut",
- data:{
-  labels:["Programming","Web Development","Mathematics","Other"],
-  datasets:[{
-   data:[35,25,20,20],
-   backgroundColor:["#9470f5","#43c9e4","#46b89b","#e3a75c"],
-   borderColor:"#171a2b",borderWidth:3
-  }]
- },
- options:{
-  responsive:true,maintainAspectRatio:false,
-  cutout:"68%",
-  plugins:{legend:{position:"bottom",labels:{padding:15,boxWidth:9}}}
- }
+/* LEARNING DISTRIBUTION CHART */
+new Chart(document.getElementById("distributionChart"), {
+    type: "doughnut",
+    data: {
+        labels: [
+            "Programming",
+            "Web Development",
+            "Mathematics",
+            "Other"
+        ],
+        datasets: [{
+            data: [35, 25, 20, 20],
+            backgroundColor: [
+                "#9470f5",
+                "#43c9e4",
+                "#46b89b",
+                "#e3a75c"
+            ],
+            borderColor: "#151b30",
+            borderWidth: 4,
+            hoverOffset: 13,
+            spacing: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "72%",
+        animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 1800
+        },
+        plugins: {
+            tooltip: premiumTooltip,
+            legend: {
+                position: "bottom",
+                labels: {
+                    padding: 18,
+                    usePointStyle: true,
+                    pointStyle: "circle",
+                    color: "#cbd5e1"
+                }
+            }
+        }
+    }
 });
+
 </script>
 </body>
 </html>

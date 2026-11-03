@@ -95,6 +95,27 @@
             .profile-banner { align-items: flex-start; flex-direction: column; }
         }
         /* BIG NEXUS WATERMARK */
+        .nexus-identity-card {
+    position: relative;
+}
+
+.edit-profile-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a66cff, #397bff);
+    border: 2px solid #ffffff55;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #8b5cf6aa;
+    z-index: 20;
+}
 .nexus-identity-card .identity-card-mark {
     position: absolute;
     right: 35px;
@@ -283,6 +304,479 @@
     cursor: pointer;
     appearance: auto;
 }
+
+/* =========================================
+   NEXUS — ULTRA PREMIUM 3D PROFILE
+========================================= */
+
+.profile-page {
+    perspective: 1400px;
+}
+
+/* 3D DIGITAL IDENTITY */
+.nexus-identity-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 220px;
+    padding: 35px !important;
+    border-radius: 25px !important;
+    background:
+        radial-gradient(circle at 10% 20%, #9b5cff45, transparent 40%),
+        radial-gradient(circle at 90% 80%, #00d9ff35, transparent 40%),
+        linear-gradient(135deg, #17142f, #102b48 65%, #15152f) !important;
+    border: 1px solid #a78bfa70 !important;
+    box-shadow: 0 20px 55px #0008,
+                0 0 30px #8b5cf633,
+                inset 0 0 25px #ffffff08;
+    transform-style: preserve-3d;
+    transition: .45s ease;
+}
+
+.nexus-identity-card:hover {
+    transform: rotateX(2deg) rotateY(-2deg) translateY(-5px);
+    box-shadow: 0 28px 65px #0009,
+                0 0 45px #8b5cf655;
+}
+
+.identity-glow {
+    position: absolute;
+    inset: -50%;
+    z-index: -1;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        #8b5cf622,
+        #00d9ff22,
+        transparent
+    );
+    animation: profileGlow 12s linear infinite;
+}
+
+@keyframes profileGlow {
+    to { transform: rotate(360deg); }
+}
+
+.identity-photo-wrap {
+    position: relative;
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0;
+    transform: translateZ(35px);
+}
+
+.profile-avatar {
+    width: 105px !important;
+    height: 105px !important;
+    border-radius: 28px !important;
+    border: 3px solid #c4b5fd !important;
+    box-shadow: 0 0 20px #8b5cf6,
+                0 0 45px #397bff66;
+}
+
+.identity-online {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    right: auto;
+    top: auto;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #35e6a2;
+    border: 3px solid #17142f;
+    box-shadow: 0 0 14px #35e6a2;
+    z-index: 10;
+}
+
+.identity-details {
+    position: relative;
+    z-index: 2;
+    transform: translateZ(25px);
+}
+
+.identity-label {
+    color: #c4b5fd !important;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.identity-details h2 {
+    font-size: clamp(25px, 4vw, 35px) !important;
+    margin: 12px 0 !important;
+    color: white;
+    text-shadow: 0 0 20px #9b7bff66;
+}
+
+.identity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.identity-tags span {
+    padding: 8px 12px;
+    border-radius: 30px;
+    color: #e0d7ff;
+    background: #8b5cf626;
+    border: 1px solid #a78bfa55;
+    font-size: 9px;
+    backdrop-filter: blur(10px);
+}
+
+.identity-motto {
+    margin-top: 17px;
+    color: #a8dfff !important;
+    font-size: 11px !important;
+}
+
+/* PROFILE WATERMARK */
+.nexus-identity-card .identity-card-mark {
+    color: #ffffff12 !important;
+    text-shadow: 0 0 45px #8b5cf655;
+    transform: translateZ(10px);
+}
+
+/* GLASS INFORMATION CARDS */
+.profile-box {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg,
+        rgba(28, 37, 65, .96),
+        rgba(13, 22, 42, .96)) !important;
+    border: 1px solid #a78bfa35 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 12px 30px #0005,
+                inset 0 1px 0 #ffffff0b;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.profile-box:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf688 !important;
+    box-shadow: 0 18px 38px #0007,
+                0 0 22px #8b5cf622;
+}
+
+.profile-box h3 {
+    color: #e8e2ff;
+    font-size: 16px !important;
+}
+
+/* PREMIUM FORM FIELDS */
+.field input,
+.field select,
+.field textarea {
+    border: 1px solid #8292c044 !important;
+    border-radius: 11px !important;
+    background: #090f20 !important;
+    transition: .3s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #a78bfa !important;
+    box-shadow: 0 0 0 3px #8b5cf622,
+                0 0 18px #8b5cf633;
+}
+
+/* SKILL BARS */
+.skill-track {
+    background: #283450 !important;
+    box-shadow: inset 0 2px 5px #0008;
+}
+
+.skill-fill {
+    box-shadow: 0 0 12px #397bff,
+                0 0 22px #00d9ff66;
+}
+
+/* PREMIUM SAVE BUTTON */
+.save-btn {
+    padding: 14px 25px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(110deg,
+        #8b5cf6, #397bff, #00bfe9) !important;
+    box-shadow: 0 8px 22px #397bff55;
+    font-weight: 800 !important;
+    transition: .3s ease;
+}
+
+.save-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px #397bff88;
+}
+
+/* MOBILE SUPPORT */
+@media (max-width: 700px) {
+    .nexus-identity-card {
+        padding: 23px !important;
+    }
+
+    .identity-card-mark {
+        font-size: 110px !important;
+        right: 12px !important;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    .identity-glow {
+        animation: none;
+    }
+
+    .profile-box,
+    .nexus-identity-card,
+    .save-btn {
+        transition: none;
+    }
+}
+
+/* =====================================
+   NEXUS 3D STATS & ACHIEVEMENTS
+===================================== */
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 22px 0;
+    perspective: 1000px;
+}
+
+.profile-stat-card {
+    position: relative;
+    overflow: hidden;
+    padding: 24px 20px;
+    min-height: 165px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 90% 5%, #8b5cf633, transparent 45%),
+        linear-gradient(145deg, #202746, #101a32);
+    border: 1px solid #9b7bff55;
+    box-shadow: 0 12px 30px #0006,
+                inset 0 1px 0 #ffffff12;
+    transition: .35s ease;
+    transform-style: preserve-3d;
+}
+
+.profile-stat-card:nth-child(2) {
+    border-color: #397bff66;
+    background: linear-gradient(145deg, #192b4c, #10182e);
+}
+
+.profile-stat-card:nth-child(3) {
+    border-color: #ff9d6b66;
+    background: linear-gradient(145deg, #39243a, #17172d);
+}
+
+.profile-stat-card:hover {
+    transform: translateY(-8px) rotateX(4deg);
+    box-shadow: 0 22px 40px #0008,
+                0 0 25px #8b5cf644;
+}
+
+.profile-stat-card .stat-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: #ffffff12;
+    border: 1px solid #ffffff25;
+    font-size: 22px;
+    box-shadow: 0 0 18px #8b5cf633;
+}
+
+.profile-stat-card p {
+    margin-top: 17px;
+    color: #aebbd5;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.profile-stat-card h2 {
+    margin-top: 7px;
+    color: #fff;
+    font-size: 25px;
+    text-shadow: 0 0 15px #8b5cf655;
+}
+
+.profile-stat-card small {
+    display: block;
+    margin-top: 6px;
+    color: #9ba8c4;
+    font-size: 10px;
+}
+
+/* ACHIEVEMENT PANEL */
+
+.profile-achievements {
+    margin: 20px 0;
+    padding: 25px !important;
+}
+
+.profile-achievements h3 {
+    margin-top: 10px;
+    margin-bottom: 22px;
+}
+
+.achievement-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.achievement-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 115px;
+    padding: 15px 8px;
+    text-align: center;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #252747, #121b32);
+    border: 1px solid #a78bfa44;
+    box-shadow: 0 8px 20px #0005;
+    transition: .3s ease;
+}
+
+.achievement-badge:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: #b69aff;
+    box-shadow: 0 12px 25px #8b5cf644;
+}
+
+.achievement-badge span {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 23px;
+    background: #8b5cf622;
+    border: 1px solid #a78bfa55;
+    box-shadow: 0 0 18px #8b5cf633;
+}
+
+.achievement-badge strong {
+    color: #dce5ff;
+    font-size: 10px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .profile-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .achievement-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+// NEXUS PROFILE PHOTO UPLOAD
+const photoUpload = document.getElementById("photoUpload");
+const profilePhoto = document.getElementById("profilePhoto");
+
+const savedPhoto = localStorage.getItem("nexusProfilePhoto");
+
+if (savedPhoto) {
+    profilePhoto.src = savedPhoto;
+}
+
+photoUpload.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image.");
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("Please choose an image smaller than 2 MB.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        profilePhoto.src = event.target.result;
+        localStorage.setItem("nexusProfilePhoto", event.target.result);
+        alert("Profile photo updated successfully!");
+    };
+
+    reader.readAsDataURL(file);
+});
+
+// EDIT PROFILE BUTTON
+document.getElementById("editProfileBtn").addEventListener("click", function () {
+    document.getElementById("name").focus();
+    document.getElementById("profileForm").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+
+.photo-upload-btn,
+.edit-profile-btn {
+    position: absolute;
+    top: 12px;
+right: 12px;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a66cff, #397bff);
+    border: 2px solid #ffffff55;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #8b5cf6aa;
+    z-index: 12;
+}
+
+.edit-profile-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 22px #397bff;
+}
+.photo-edit-btn {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c084fc, #397bff);
+    border: 3px solid #17142f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 15;
+    box-shadow: 0 0 15px #a66cff;
+}
     </style>
 </head>
 <body>
@@ -318,15 +812,31 @@
             <p style="color:#8993a9;font-size:12px;margin-top:8px;">Manage your academic and professional identity.</p>
 
             <section class="profile-banner nexus-identity-card">
-
+<button type="button" class="edit-profile-btn" id="editProfileBtn" title="Edit Profile">
+    ✏️
+</button>
     <div class="identity-glow"></div>
 
     <div class="identity-photo-wrap">
-        <div class="profile-avatar">
-            <img src="./NEXUS/photo.jpeg" alt="Profile Photo">
-        </div>
-        <span class="identity-online"></span>
+
+    <div class="profile-avatar">
+        <img id="profilePhoto" src="./NEXUS/photo.jpeg" alt="Profile Photo">
     </div>
+
+    <span class="identity-online"></span>
+
+    <label for="photoUpload" class="photo-edit-btn" title="Change Photo">
+        ✏️
+    </label>
+
+    <input
+        type="file"
+        id="photoUpload"
+        accept="image/*"
+        hidden
+    >
+
+</div>
 
     <div class="identity-details">
         <span class="identity-label">✦ NEXUS DIGITAL IDENTITY</span>
@@ -349,7 +859,59 @@
     <div class="identity-card-mark">N</div>
 
 </section>
+<!-- NEXUS 3D PROFILE STATS -->
+<section class="profile-stats">
 
+    <div class="profile-stat-card">
+        <span class="stat-icon">⚡</span>
+        <p>EXPERIENCE POINTS</p>
+        <h2>1,250 XP</h2>
+        <small>Your learning journey</small>
+    </div>
+
+    <div class="profile-stat-card">
+        <span class="stat-icon">🏆</span>
+        <p>CURRENT LEVEL</p>
+        <h2>Level 05</h2>
+        <small>Rising Developer</small>
+    </div>
+
+    <div class="profile-stat-card">
+        <span class="stat-icon">🔥</span>
+        <p>LEARNING STREAK</p>
+        <h2>07 Days</h2>
+        <small>Keep learning daily</small>
+    </div>
+
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="profile-box profile-achievements">
+    <span class="skills-subtitle">YOUR MILESTONES</span>
+    <h3>🏅 Achievement Badges</h3>
+
+    <div class="achievement-list">
+        <div class="achievement-badge">
+            <span>💻</span>
+            <strong>Code Explorer</strong>
+        </div>
+
+        <div class="achievement-badge">
+            <span>📚</span>
+            <strong>Quick Learner</strong>
+        </div>
+
+        <div class="achievement-badge">
+            <span>🚀</span>
+            <strong>Future Builder</strong>
+        </div>
+
+        <div class="achievement-badge">
+            <span>🎯</span>
+            <strong>Goal Setter</strong>
+        </div>
+    </div>
+</section>
             <section class="profile-box" style="margin-bottom:18px;">
                 <h3>Profile Completion</h3>
                 <strong id="completionText">25%</strong>
@@ -483,9 +1045,9 @@
                 </div>
 
                 <div style="margin-top:20px;">
-                    <button type="submit" class="save-btn">Save My Profile →</button>
-                    <span id="saveMessage" style="color:#69dbad;font-size:11px;margin-left:12px;"></span>
-                </div>
+    <button type="submit" class="save-btn">Save My Profile →</button>
+    <span id="saveMessage" style="color:#69dbad;font-size:11px;margin-left:12px;"></span>
+</div>
             </form>
         </div>
     </main>

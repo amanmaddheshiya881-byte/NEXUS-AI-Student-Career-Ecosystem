@@ -606,7 +606,255 @@
     transform: translateY(-2px);
     filter: drop-shadow(0 0 10px #60a5fa);
 }
+/* ===== NEXUS 3D ACHIEVEMENT OBJECT ===== */
 
+.goal-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 310px;
+}
+
+.goal-hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-width: 0;
+}
+
+.goal-3d-object {
+    position: relative;
+    width: 300px;
+    min-width: 260px;
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    isolation: isolate;
+}
+
+.trophy-glow {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        #a78bfa88,
+        #06b6d455 50%,
+        transparent 72%
+    );
+    filter: blur(25px);
+    animation: goalGlow 4s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+.goal-3d-trophy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+    animation: goalTrophyFloat 4s ease-in-out infinite;
+}
+
+.trophy-cup {
+    font-size: 105px;
+    line-height: 1.2;
+    filter:
+        drop-shadow(0 12px 12px #0008)
+        drop-shadow(0 0 20px #fbbf2488);
+    transform: rotateY(-12deg);
+}
+
+.trophy-base {
+    width: 75px;
+    height: 13px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #8b5cf6, #38bdf8, #8b5cf6);
+    box-shadow: 0 8px 22px #38bdf855;
+    margin-top: -3px;
+}
+
+.goal-orbit {
+    position: absolute;
+    width: 240px;
+    height: 85px;
+    border: 1px solid #67e8f966;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.goal-orbit-one {
+    transform: rotate(-25deg);
+    animation: goalOrbitOne 9s linear infinite;
+}
+
+.goal-orbit-two {
+    width: 255px;
+    height: 100px;
+    border-color: #c084fc88;
+    transform: rotate(55deg);
+    animation: goalOrbitTwo 12s linear infinite;
+}
+
+.goal-orbit-three {
+    width: 190px;
+    height: 190px;
+    border-color: #fbbf2433;
+    animation: goalOrbitOne 15s linear infinite reverse;
+}
+
+.goal-object-caption {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #dceaff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.goal-object-caption span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 12px #34d399;
+}
+
+@keyframes goalTrophyFloat {
+    0%, 100% {
+        transform: translateY(0) rotateY(-8deg);
+    }
+    50% {
+        transform: translateY(-13px) rotateY(8deg);
+    }
+}
+
+@keyframes goalGlow {
+    from { opacity: .55; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes goalOrbitOne {
+    from { rotate: 0deg; }
+    to { rotate: 360deg; }
+}
+
+@keyframes goalOrbitTwo {
+    from { rotate: 0deg; }
+    to { rotate: -360deg; }
+}
+
+@media(max-width:850px) {
+    .goal-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .goal-3d-object {
+        align-self: center;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .goal-3d-trophy,
+    .goal-orbit,
+    .trophy-glow {
+        animation: none !important;
+    }
+}
+/* NEXUS — FLOATING 3D GOAL ICONS */
+
+.goal-card {
+    transform-style: preserve-3d;
+}
+
+.goal-icon {
+    animation: goalIconFloat 3.5s ease-in-out infinite;
+    will-change: transform;
+}
+
+.goal-card:nth-child(2) .goal-icon {
+    animation-delay: .4s;
+}
+
+.goal-card:nth-child(3) .goal-icon {
+    animation-delay: .8s;
+}
+
+.goal-card:nth-child(4) .goal-icon {
+    animation-delay: 1.2s;
+}
+
+@keyframes goalIconFloat {
+    0%, 100% {
+        transform: translateY(0) rotateY(0deg);
+    }
+    50% {
+        transform: translateY(-7px) rotateY(12deg);
+    }
+}
+
+.goal-card:hover .goal-icon {
+    animation-play-state: paused;
+    transform: translateY(-5px) scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .goal-icon {
+        animation: none;
+    }
+}
+/* NEXUS — PREMIUM GOAL TASK GLOW */
+
+.goal-task {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.goal-task::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(139, 92, 246, .12),
+        rgba(56, 201, 232, .12),
+        transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform .6s ease;
+    pointer-events: none;
+}
+
+.goal-task:hover::before {
+    transform: translateX(110%);
+}
+
+.goal-task:hover {
+    transform: translateY(-4px) translateZ(8px);
+    border-color: #67e8f9aa;
+    box-shadow:
+        0 14px 30px #0006,
+        0 0 20px #06b6d433;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .goal-task::before {
+        transition: none;
+    }
+}
 </style>
 </head>
 
@@ -636,10 +884,30 @@
 </header>
 
 <section class="goal-hero">
- <span class="goal-label">✦ PERSONAL PRODUCTIVITY INTELLIGENCE</span>
- <h1>Dream Big. Set Goals. Make It Happen. 🚀</h1>
- <p>Transform your ambitions into achievable milestones. Plan your learning, track your progress and celebrate every step forward.</p>
- <button class="goal-btn" onclick="document.getElementById('goalName').focus()">+ Create Your First Goal</button>
+
+ <div class="goal-hero-content">
+  <span class="goal-label">✦ PERSONAL PRODUCTIVITY INTELLIGENCE</span>
+  <h1>Dream Big. Set Goals. Make It Happen. 🚀</h1>
+  <p>Transform your ambitions into achievable milestones. Plan your learning, track your progress and celebrate every step forward.</p>
+  <button class="goal-btn" onclick="document.getElementById('goalName').focus()">+ Create Your First Goal</button>
+ </div>
+
+ <div class="goal-3d-object">
+  <div class="goal-orbit goal-orbit-one"></div>
+  <div class="goal-orbit goal-orbit-two"></div>
+  <div class="goal-orbit goal-orbit-three"></div>
+
+  <div class="goal-3d-trophy">
+   <div class="trophy-glow"></div>
+   <div class="trophy-cup">🏆</div>
+   <div class="trophy-base"></div>
+  </div>
+
+  <div class="goal-object-caption">
+   <span></span> NEXUS ACHIEVEMENT SYSTEM
+  </div>
+ </div>
+
 </section>
 
 <section class="goal-stats">

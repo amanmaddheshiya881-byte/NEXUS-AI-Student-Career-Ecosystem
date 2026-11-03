@@ -111,6 +111,662 @@ button{cursor:pointer}
 @media(max-width:1100px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.main{padding:28px}}
 @media(max-width:760px){.sidebar{width:65px;padding:20px 8px}.brand{padding:0 5px 30px}.brand h2,.brand small,.nav-label,.nav-link span,.sidebar-bottom{display:none}.brand-icon{width:42px}.nav-link{justify-content:center;padding:13px 8px}.main{margin-left:65px;width:calc(100% - 65px);padding:22px 14px}.stats{grid-template-columns:repeat(2,1fr)}.project-grid{grid-template-columns:1fr}.hero{padding:23px}.topbar{margin-bottom:22px}.status-pill{display:none}}
 @media(max-width:420px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats{gap:9px}.stat{padding:14px}.stat h2{font-size:23px}}
+
+/* ==========================================
+   NEXUS PROJECT WORKSPACE
+   ULTRA 3D COLORFUL PREMIUM EDITION
+========================================== */
+
+body {
+    background:
+        radial-gradient(ellipse at 10% 10%, #753bff25, transparent 35%),
+        radial-gradient(ellipse at 90% 80%, #00d9ff1c, transparent 35%),
+        radial-gradient(ellipse at 50% 50%, #1744a014, transparent 55%),
+        #080d18;
+}
+
+/* Premium sidebar */
+.sidebar {
+    background: linear-gradient(180deg, #111b32, #080d19);
+    box-shadow: 12px 0 35px #0007;
+}
+
+.brand-icon {
+    box-shadow: 0 0 25px #648bff88, 0 6px 15px #0008;
+    transition: .4s ease;
+}
+
+.brand-icon:hover {
+    transform: rotateY(180deg) scale(1.1);
+}
+
+.nav-link {
+    transition: .3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    transform: translateX(5px);
+    border: 1px solid #648bff55;
+    box-shadow: 0 6px 20px #648bff22;
+}
+
+/* Premium hero */
+.hero {
+    isolation: isolate;
+    min-height: 260px;
+    border: 1px solid #9b8aff66;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 85% 20%, #8b5cf655, transparent 35%),
+        radial-gradient(circle at 65% 100%, #06b6d433, transparent 45%),
+        linear-gradient(125deg, #211747, #142b50, #103b4c);
+    box-shadow:
+        0 3px 0 #a78bfa33,
+        0 13px 0 #0b1020,
+        0 28px 50px #0009,
+        inset 0 1px 0 #ffffff35;
+    transition: .35s ease;
+}
+
+.hero:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 3px 0 #a78bfa55,
+        0 16px 0 #0b1020,
+        0 35px 55px #000b,
+        0 0 35px #8b5cf633;
+}
+
+.hero h1 {
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 25px #8b5cf633;
+}
+
+/* Hero ambient glow */
+.hero:before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: 20px;
+    bottom: -140px;
+    border-radius: 50%;
+    background: #648bff22;
+    filter: blur(35px);
+    pointer-events: none;
+}
+
+/* 3D stats cards */
+.stat {
+    position: relative;
+    overflow: hidden;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #202d48, #101827 75%);
+    border: 1px solid #8b9cff33;
+    box-shadow:
+        0 3px 0 #ffffff12,
+        0 9px 0 #080e1b,
+        0 20px 30px #0008,
+        inset 0 1px 0 #ffffff20;
+    transition: .35s ease;
+}
+
+.stat:after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -55px;
+    top: -55px;
+    border-radius: 50%;
+    background: #648bff30;
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+.stat:hover {
+    transform: translateY(-8px) rotateX(5deg) scale(1.02);
+    border-color: #8b5cf688;
+    box-shadow:
+        0 4px 0 #a78bfa55,
+        0 13px 0 #080e1b,
+        0 28px 40px #000a,
+        0 0 25px #648bff33;
+}
+
+.stat-icon {
+    background: linear-gradient(145deg, #7555df, #245f9b);
+    color: white;
+    border: 1px solid #c4b5fd66;
+    box-shadow: 0 5px 0 #202052, 0 9px 18px #0008;
+    transition: .3s ease;
+}
+
+.stat:hover .stat-icon {
+    transform: translateY(-4px) rotateY(18deg);
+}
+
+/* Colorful project cards */
+.project-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 19px;
+    background: linear-gradient(145deg, #202d48, #111a2b 70%);
+    border: 1px solid #8b9cff44;
+    box-shadow:
+        0 2px 0 #ffffff15,
+        0 9px 0 #080e1b,
+        0 20px 32px #0008,
+        inset 0 1px 0 #ffffff20;
+    transform-style: preserve-3d;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+/* Holographic shine */
+.project-card:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        #ffffff12 48%,
+        transparent 75%
+    );
+    transform: translateX(-120%);
+    transition: transform .8s ease;
+}
+
+.project-card:hover:before {
+    transform: translateX(120%);
+}
+
+.project-card:hover {
+    transform: translateY(-9px) rotateX(3deg) rotateY(-2deg);
+    border-color: #9b8affaa;
+    box-shadow:
+        0 3px 0 #a78bfa55,
+        0 14px 0 #080e1b,
+        0 32px 45px #000b,
+        0 0 28px #8b5cf644;
+}
+
+/* Different colorful project card accents */
+.project-card:nth-child(4n+1) {
+    border-top: 2px solid #8b5cf6;
+}
+
+.project-card:nth-child(4n+2) {
+    border-top: 2px solid #06b6d4;
+}
+
+.project-card:nth-child(4n+3) {
+    border-top: 2px solid #ec68c5;
+}
+
+.project-card:nth-child(4n+4) {
+    border-top: 2px solid #35d69a;
+}
+
+/* Project icon 3D */
+.project-symbol {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #7555df, #286a9f);
+    border: 1px solid #c4b5fd66;
+    color: white;
+    box-shadow:
+        0 5px 0 #252052,
+        0 10px 20px #0008,
+        0 0 18px #8b5cf644;
+    transition: .35s ease;
+}
+
+.project-card:hover .project-symbol {
+    transform: translateY(-5px) rotateY(20deg) rotateX(8deg);
+    box-shadow: 0 8px 0 #252052, 0 15px 25px #0009;
+}
+
+/* Project titles and descriptions */
+.project-card h3 {
+    color: #f5f3ff;
+    letter-spacing: .2px;
+}
+
+.project-desc {
+    color: #a9b8d0;
+}
+
+/* Colorful tags */
+.tag {
+    border: 1px solid #8b5cf633;
+    background: linear-gradient(110deg, #7045ce30, #287fa52a);
+    color: #c5d5ff;
+    border-radius: 7px;
+}
+
+.status {
+    border: 1px solid currentColor;
+    box-shadow: 0 0 12px #ffffff0b;
+}
+
+/* Card action buttons */
+.icon-btn {
+    border-radius: 9px;
+    background: #ffffff08;
+    transition: .25s ease;
+}
+
+.icon-btn:hover {
+    transform: translateY(-3px) scale(1.08);
+    background: linear-gradient(135deg, #7655e8, #267fae);
+    color: white;
+    border-color: #a78bfa;
+    box-shadow: 0 5px 15px #648bff55;
+}
+
+/* Premium filters */
+.filter {
+    border-radius: 9px;
+    transition: .25s ease;
+    background: linear-gradient(145deg, #1b2942, #101827);
+}
+
+.filter:hover {
+    transform: translateY(-3px);
+    border-color: #8b5cf6;
+    color: white;
+}
+
+.filter.active {
+    background: linear-gradient(110deg, #7655e8, #267fae);
+    border-color: #a78bfa;
+    box-shadow: 0 5px 0 #211747, 0 9px 18px #648bff44;
+    color: white;
+}
+
+/* Premium search */
+.search input {
+    border-radius: 12px;
+    background: linear-gradient(145deg, #1c2942, #0c1525);
+    box-shadow: inset 0 3px 9px #0007;
+    transition: .3s ease;
+}
+
+.search input:focus {
+    border-color: #35d5e8;
+    box-shadow: 0 0 0 3px #35d5e822, 0 0 20px #35d5e844;
+}
+
+/* Premium create button */
+.primary-btn {
+    border-radius: 11px;
+    background: linear-gradient(110deg, #7655e8, #397fe9, #21b8cf);
+    box-shadow:
+        0 5px 0 #293b83,
+        0 10px 22px #648bff44,
+        inset 0 1px 0 #ffffff55;
+    transition: .25s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px) scale(1.025);
+    filter: brightness(1.13);
+    box-shadow:
+        0 8px 0 #293b83,
+        0 16px 28px #648bff66;
+}
+
+.primary-btn:active {
+    transform: translateY(2px);
+}
+
+/* Premium modal */
+.modal {
+    background: linear-gradient(145deg, #202d48, #101827);
+    border: 1px solid #9b8aff77;
+    border-radius: 20px;
+    box-shadow:
+        0 3px 0 #ffffff22,
+        0 20px 0 #080e1b,
+        0 35px 90px #000c,
+        0 0 35px #8b5cf633;
+}
+
+.modal-head h2 {
+    background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.field input,
+.field textarea,
+.field select {
+    border-radius: 11px;
+    background: linear-gradient(145deg, #0b1423, #17243a);
+    box-shadow: inset 0 3px 9px #0007;
+    transition: .25s ease;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px #8b5cf622, 0 0 18px #8b5cf644;
+}
+
+/* Empty workspace */
+.empty {
+    background: linear-gradient(145deg, #1c2942, #101827);
+    border: 1px dashed #8b5cf688;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px #0006;
+}
+
+.empty i {
+    filter: drop-shadow(0 0 12px #8b5cf6);
+}
+
+/* Footer */
+.footer {
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px #648bff44;
+}
+
+/* Mobile performance */
+@media(max-width:760px) {
+    .project-card:hover,
+    .stat:hover,
+    .hero:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Reduced motion accessibility */
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *:before,
+    *:after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ===== NEXUS ULTRA 3D COLOR BOOST ===== */
+
+.projects-page {
+    background:
+        radial-gradient(ellipse at 15% 15%, #6425c533, transparent 35%),
+        radial-gradient(ellipse at 85% 75%, #00cfff1c, transparent 35%),
+        #080d19 !important;
+}
+
+/* Hero colorful depth */
+.hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #8b5cf688 !important;
+    box-shadow:
+        0 12px 0 #11142d,
+        0 25px 45px #0008,
+        0 0 35px #704cff33 !important;
+    transition: .4s ease;
+}
+
+.hero:hover {
+    transform: perspective(1000px) rotateX(1deg) translateY(-5px);
+    box-shadow:
+        0 15px 0 #11142d,
+        0 30px 55px #0009,
+        0 0 45px #00d9ff44 !important;
+}
+
+/* 3D Stat Cards */
+.stat {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #647cff55 !important;
+    box-shadow:
+        0 8px 0 #101a31,
+        0 15px 30px #0007 !important;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.stat:hover {
+    transform: translateY(-9px) rotateX(5deg) rotateY(-3deg);
+    box-shadow:
+        0 12px 0 #171b42,
+        0 25px 35px #0009,
+        0 0 28px #8b5cf655 !important;
+}
+
+.stat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        #ffffff12 45%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform .7s ease;
+    pointer-events: none;
+}
+
+.stat:hover::after {
+    transform: translateX(120%);
+}
+
+/* Colorful project cards */
+.project-card {
+    border: 1px solid #8b5cf666 !important;
+    box-shadow:
+        0 9px 0 #11152b,
+        0 18px 35px #0008 !important;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.015);
+    box-shadow:
+        0 13px 0 #171b42,
+        0 28px 40px #0009,
+        0 0 30px #00d9ff44 !important;
+}
+
+/* Premium 3D Create Button */
+.primary-btn {
+    background: linear-gradient(110deg, #7947ff, #347fff, #00c9d9) !important;
+    border: 1px solid #ffffff55 !important;
+    box-shadow:
+        0 6px 0 #253d9c,
+        0 12px 25px #4169ee55 !important;
+    transition: .3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-5px) scale(1.035);
+    box-shadow:
+        0 9px 0 #253d9c,
+        0 18px 30px #00cfff55 !important;
+}
+
+/* Neon filter buttons */
+.filter:hover {
+    border-color: #a78bfa !important;
+    box-shadow: 0 0 16px #8b5cf655;
+    transform: translateY(-3px);
+}
+
+/* Glowing search field */
+.search input:focus {
+    border-color: #22d3ee !important;
+    box-shadow: 0 0 0 3px #22d3ee22,
+                0 0 22px #22d3ee33 !important;
+    outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero, .stat, .project-card, .primary-btn, .filter {
+        transition: none !important;
+    }
+}
+
+/* ===== NEXUS ULTRA PREMIUM 3D ===== */
+
+.projects-page {
+    background:
+        radial-gradient(ellipse at 10% 10%, #792cff25, transparent 35%),
+        radial-gradient(ellipse at 90% 30%, #00d9ff20, transparent 35%),
+        radial-gradient(ellipse at 50% 100%, #ff38c515, transparent 40%),
+        #070b16 !important;
+    perspective: 1200px;
+}
+
+/* Premium hero */
+.hero {
+    isolation: isolate;
+    background:
+        linear-gradient(125deg, #241b52, #102e50 55%, #123e55) !important;
+    border: 1px solid #a78bfa99 !important;
+    box-shadow:
+        0 12px 0 #11152d,
+        0 25px 55px #0009,
+        0 0 35px #8b5cf644,
+        inset 0 1px 1px #ffffff44 !important;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background: linear-gradient(
+        115deg,
+        transparent 45%,
+        #ffffff13 50%,
+        transparent 55%
+    );
+    animation: nexusShine 7s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes nexusShine {
+    from { transform: translateX(-30%) rotate(15deg); }
+    to { transform: translateX(30%) rotate(15deg); }
+}
+
+/* 3D glass cards */
+.stat,
+.project-card {
+    background:
+        linear-gradient(145deg, #202d49ee, #101827f5) !important;
+    border: 1px solid #829cff66 !important;
+    backdrop-filter: blur(18px);
+    transform-style: preserve-3d;
+    box-shadow:
+        0 9px 0 #0b1222,
+        0 20px 35px #0008,
+        inset 0 1px 1px #ffffff22 !important;
+}
+
+.stat:hover,
+.project-card:hover {
+    transform: translateY(-10px) rotateX(4deg) rotateY(-3deg);
+    border-color: #22d3ee !important;
+    box-shadow:
+        0 13px 0 #101b35,
+        0 28px 45px #000a,
+        0 0 25px #22d3ee55 !important;
+}
+
+/* Neon icon glow */
+.stat i,
+.stat svg,
+.project-symbol {
+    filter:
+        drop-shadow(0 0 7px #a78bfa)
+        drop-shadow(0 0 14px #22d3ee55);
+}
+
+/* Premium gradient buttons */
+.primary-btn {
+    background: linear-gradient(
+        115deg,
+        #9147ff,
+        #4169ff,
+        #00c6dc
+    ) !important;
+    border: 1px solid #ffffff66 !important;
+    box-shadow:
+        0 6px 0 #273b9d,
+        0 15px 28px #554cff66 !important;
+    font-weight: 800 !important;
+}
+
+.primary-btn:hover {
+    filter: brightness(1.18);
+    transform: translateY(-5px) scale(1.04);
+}
+
+/* Premium search */
+.search input {
+    background: linear-gradient(110deg, #19263e, #101827) !important;
+    border: 1px solid #667eea66 !important;
+    box-shadow: inset 0 3px 12px #0005 !important;
+}
+
+.search input:focus {
+    border-color: #22d3ee !important;
+    box-shadow: 0 0 20px #22d3ee55 !important;
+}
+
+/* Colorful active filter */
+.filter.active {
+    background: linear-gradient(120deg, #8b5cf6, #2563eb) !important;
+    border-color: #c4b5fd !important;
+    box-shadow: 0 5px 0 #30246f,
+                0 0 22px #8b5cf677 !important;
+}
+
+/* Smooth animations */
+.stat,
+.project-card,
+.hero,
+.primary-btn,
+.filter {
+    transition: transform .35s ease,
+                box-shadow .35s ease,
+                border-color .35s ease !important;
+}
+
+@media (max-width: 650px) {
+    .stat:hover,
+    .project-card:hover {
+        transform: translateY(-4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::before {
+        animation: none;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -149,6 +805,26 @@ button{cursor:pointer}
       <div class="hero-note">Think bigger. Build smarter. Ship better.</div>
       <button class="primary-btn" id="addTop"><i data-lucide="plus"></i> Create New Project</button>
     </div>
+    <div class="workspace-3d-object">
+    <div class="workspace-orbit orbit-a"></div>
+    <div class="workspace-orbit orbit-b"></div>
+
+    <div class="workspace-cube">
+        <div class="cube-face cube-front">
+            <span>✦</span>
+            <small>NEXUS</small>
+        </div>
+        <div class="cube-face cube-back"></div>
+        <div class="cube-face cube-right"></div>
+        <div class="cube-face cube-left"></div>
+        <div class="cube-face cube-top"></div>
+        <div class="cube-face cube-bottom"></div>
+    </div>
+
+    <div class="workspace-object-label">
+        <span></span> PROJECT INTELLIGENCE
+    </div>
+</div>
   </section>
 
   <section class="stats">
