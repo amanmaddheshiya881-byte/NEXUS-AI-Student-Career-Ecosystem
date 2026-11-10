@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function loadData(key, fallback) {
         try {
             const value = localStorage.getItem(key);
-            return value ? JSON.parse(value) : fallback;
+            return value !== null ? JSON.parse(value) : fallback;
         } catch (error) {
             return fallback;
         }
@@ -41,12 +41,43 @@ document.addEventListener("DOMContentLoaded", () => {
         ].join("-");
     }
 
-    // 2. NOTIFICATIONS
+    const today = getDate();
+
+    // 2. INITIAL DATA
+    let xp = Math.max(0, Number(loadData(STORAGE.xp, 0)) || 0);
+    let streak = Math.max(0, Number(loadData(STORAGE.streak, 0)) || 0);
+    let lastActive = loadData(STORAGE.lastActive, "");
+    let activities = loadData(STORAGE.activities, []);
+
+    if (!Array.isArray(activities)) activities = [];
+
+    let savedGoals = loadData(STORAGE.goals, {
+        date: today,
+        completed: [],
+        rewarded: []
+    });
+
+    if (
+        !savedGoals ||
+        savedGoals.date !== today ||
+        !Array.isArray(savedGoals.completed)
+    ) {
+        savedGoals = {
+            date: today,
+            completed: [],
+            rewarded: []
+        };
+    }
+
+    if (!Array.isArray(savedGoals.rewarded)) {
+        savedGoals.rewarded = [];
+    }
+
+    // 3. NOTIFICATIONS
     let notificationTimer;
 
     function showNotification(message) {
-        let notification =
-            document.getElementById("nexusNotification");
+        let notification = document.getElementById("nexusNotification");
 
         if (!notification) {
             notification = document.createElement("div");
@@ -65,27 +96,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
-    // 3. LIVE CLOCK
+    // 4. LIVE CLOCK
     const clock = document.getElementById("nexusClock");
 
     function updateClock() {
-        if (clock) {
-            clock.textContent = new Date().toLocaleString("en-IN", {
-                weekday: "short",
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit"
-            });
-        }
+        if (!clock) return;
+
+        clock.textContent = new Date().toLocaleString("en-IN", {
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
     }
 
     updateClock();
     setInterval(updateClock, 1000);
 
-    // 4. THEME
+    // 5. THEME
     const themeButton = document.getElementById("themeToggle");
     const savedTheme = loadData(STORAGE.theme, "dark");
 
@@ -120,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. SEARCH
+    // 6. SEARCH
     const searchInput = document.getElementById("nexusSearch");
 
     if (searchInput) {
@@ -136,9 +167,92 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. RECENT ACTIVITY
+    // 7. ACHIEVEMENTS
+    function renderAchievements() {
+        const container = document.getElementById("nexusBadges");
+        if (!container) return;
+
+        const achievements = [
+            {
+                name: "First Steps",
+                icon: "🌱",
+                description: "Complete your first daily goal",
+                unlocked: savedGoals.completed.length >= 1
+            },
+            {
+                name: "Rising Star",
+                icon: "⚡",
+                description: "Earn 50 XP",
+                unlocked: xp >= 50
+            },
+            {
+                name: "Century Club",
+                icon: "🏆",
+                description: "Earn 100 XP",
+                unlocked: xp >= 100
+            },
+            {
+                name: "3 Day Streak",
+                icon: "🔥",
+                description: "Maintain a 3-day learning streak",
+                unlocked: streak >= 3
+            },
+            {
+                name: "Weekly Champion",
+                icon: "💎",
+                description: "Maintain a 7-day learning streak",
+                unlocked: streak >= 7
+            }
+        ];
+
+        container.replaceChildren();
+
+        achievements.forEach(item => {
+            const card = document.createElement("div");
+            card.className = `achievement-card ${
+                item.unlocked ? "unlocked" : "locked"
+            }`;
+
+            const icon = document.createElement("span");
+            icon.className = "achievement-icon";
+            icon.textContent = item.unlocked ? item.icon : "🔒";
+
+            const content = document.createElement("div");
+
+            const title = document.createElement("strong");
+            title.textContent = item.name;
+
+            const description = document.createElement("p");
+            description.textContent = item.description;
+
+            const status = document.createElement("small");
+            status.textContent = item.unlocked
+                ? "✓ Unlocked"
+                : "Not unlocked yet";
+
+            content.append(title, description, status);
+            card.append(icon, content);
+            container.appendChild(card);
+        });
+    }
+
+    // 8. GAMIFICATION
+    function updateGamification() {
+        const xpDisplay = document.querySelector(".xp-stat h2");
+        const streakDisplay = document.querySelector(".streak-stat h2");
+        const levelDisplay = document.querySelector(".level-stat h2");
+
+        const level = Math.floor(xp / 100) + 1;
+
+        if (xpDisplay) xpDisplay.textContent = xp + " XP";
+        if (streakDisplay) streakDisplay.textContent = streak + " Days";
+        if (levelDisplay) levelDisplay.textContent = "Level " + level;
+
+        renderAchievements();
+    }
+
+    // 9. RECENT ACTIVITY
     const activityList = document.getElementById("activityList");
-    let activities = loadData(STORAGE.activities, []);
 
     function renderActivities() {
         if (!activityList) return;
@@ -163,122 +277,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         saveData(STORAGE.activities, activities);
         renderActivities();
+
+        if (lastActive !== today) {
+            streak = lastActive === getDate(-1) ? streak + 1 : 1;
+            lastActive = today;
+
+            saveData(STORAGE.streak, streak);
+            saveData(STORAGE.lastActive, lastActive);
+
+            updateGamification();
+        }
     }
 
     renderActivities();
 
-    // 7. WELCOME BUTTON
-    const welcomeButton = document.getElementById("welcomeButton");
-
-    if (welcomeButton) {
-        welcomeButton.addEventListener("click", () => {
-            showNotification("Welcome to NEXUS! 🚀");
-            addActivity("Opened NEXUS ecosystem");
-
-            document.getElementById("commandCenter")
-                ?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-        });
-    }
-
-    // 8. CAREER SUGGESTION
-    const careerButton = document.getElementById("careerButton");
-    const careerResult = document.getElementById("careerResult");
-
-    const careerIdeas = [
-        "Web Developer 💻",
-        "Python Developer 🐍",
-        "Software Engineer 🚀",
-        "Data Analyst 📊",
-        "UI/UX Designer 🎨",
-        "AI & Machine Learning Explorer 🤖"
-    ];
-
-    if (careerButton && careerResult) {
-        careerButton.addEventListener("click", () => {
-            const idea =
-                careerIdeas[Math.floor(Math.random() * careerIdeas.length)];
-
-            careerResult.textContent = "Sample Career Idea: " + idea;
-
-            showNotification("Career idea generated!");
-            addActivity("Generated career idea: " + idea);
-        });
-    }
-
-    // 9. XP AND STREAK
-    let xp = Math.max(0, Number(loadData(STORAGE.xp, 0)) || 0);
-    let streak = Math.max(0, Number(loadData(STORAGE.streak, 0)) || 0);
-    let lastActive = loadData(STORAGE.lastActive, "");
-
-    const today = getDate();
-
-    if (lastActive !== today) {
-        streak = lastActive === getDate(-1) ? streak + 1 : 1;
-        lastActive = today;
-
-        saveData(STORAGE.streak, streak);
-        saveData(STORAGE.lastActive, lastActive);
-    }
-
-    // 10. UPDATE EXISTING HTML REWARDS
-    function updateGamification() {
-        const xpDisplay = document.querySelector(".xp-stat h2");
-        const streakDisplay = document.querySelector(".streak-stat h2");
-        const levelDisplay = document.querySelector(".level-stat h2");
-
-        const level = Math.floor(xp / 100) + 1;
-
-        if (xpDisplay) {
-            xpDisplay.textContent = xp + " XP";
-        }
-
-        if (streakDisplay) {
-            streakDisplay.textContent = streak + " Days";
-        }
-
-        if (levelDisplay) {
-            levelDisplay.textContent = "Level " + level;
-        }
-
-        const achievementArea =
-            document.querySelector(".unlocked-section");
-
-        if (achievementArea) {
-            let badgeArea = document.getElementById("nexusBadges");
-
-            if (!badgeArea) {
-                badgeArea = document.createElement("div");
-                badgeArea.id = "nexusBadges";
-                achievementArea.appendChild(badgeArea);
-            }
-
-            const badges = [];
-
-            if (xp >= 10) badges.push("🌱 First Steps");
-            if (xp >= 50) badges.push("⚡ Rising Star");
-            if (xp >= 100) badges.push("🏆 Century Club");
-            if (streak >= 3) badges.push("🔥 3 Day Streak");
-            if (streak >= 7) badges.push("💎 Weekly Champion");
-
-            badgeArea.replaceChildren();
-
-            if (badges.length === 0) {
-                badgeArea.textContent =
-                    "Complete your goals to unlock badges!";
-            } else {
-                badges.forEach(badge => {
-                    const span = document.createElement("span");
-                    span.className = "nexus-badge";
-                    span.textContent = badge;
-                    badgeArea.appendChild(span);
-                });
-            }
-        }
-    }
-
+    // 10. XP REWARDS
     function awardXP(points, reason) {
         xp += points;
 
@@ -289,32 +302,45 @@ document.addEventListener("DOMContentLoaded", () => {
         addActivity(reason);
     }
 
-    updateGamification();
-
     // 11. DAILY GOALS
     const goals = document.querySelectorAll(".nexus-goal");
     const goalCounter = document.getElementById("goalCounter");
 
-    let savedGoals = loadData(STORAGE.goals, {
-        date: today,
-        completed: []
-    });
-
-    if (
-        !savedGoals ||
-        savedGoals.date !== today ||
-        !Array.isArray(savedGoals.completed)
-    ) {
-        savedGoals = {
-            date: today,
-            completed: []
-        };
-
-        saveData(STORAGE.goals, savedGoals);
-    }
-
     goals.forEach((goal, index) => {
         goal.checked = savedGoals.completed.includes(index);
+
+        goal.addEventListener("change", () => {
+            const wasCompleted = savedGoals.completed.includes(index);
+
+            if (goal.checked && !wasCompleted) {
+                savedGoals.completed.push(index);
+
+                if (!savedGoals.rewarded.includes(index)) {
+                    savedGoals.rewarded.push(index);
+                    awardXP(10, "Completed a daily goal");
+                }
+
+                showNotification("Daily goal completed! 🎉");
+
+            } else if (!goal.checked && wasCompleted) {
+                savedGoals.completed =
+                    savedGoals.completed.filter(item => item !== index);
+
+                showNotification("Goal updated");
+            }
+
+            saveData(STORAGE.goals, savedGoals);
+            updateGoals();
+
+            if (
+                savedGoals.completed.length === goals.length &&
+                goals.length > 0
+            ) {
+                showNotification("All daily goals completed! 🏆");
+            }
+
+            updateGamification();
+        });
     });
 
     // 12. PROGRESS TRACKER
@@ -372,36 +398,50 @@ document.addEventListener("DOMContentLoaded", () => {
         updateProgress();
     }
 
-    goals.forEach((goal, index) => {
-        goal.addEventListener("change", () => {
-            const wasCompleted =
-                savedGoals.completed.includes(index);
-
-            if (goal.checked && !wasCompleted) {
-                savedGoals.completed.push(index);
-                awardXP(10, "Completed a daily goal");
-            } else if (!goal.checked && wasCompleted) {
-                savedGoals.completed =
-                    savedGoals.completed.filter(item => item !== index);
-
-                showNotification("Goal updated");
-            }
-
-            saveData(STORAGE.goals, savedGoals);
-            updateGoals();
-
-            if (
-                savedGoals.completed.length === goals.length &&
-                goals.length > 0
-            ) {
-                showNotification("All daily goals completed! 🎉");
-            }
-        });
-    });
-
     updateGoals();
 
-    // 13. 3D CARD EFFECT
+    // 13. WELCOME BUTTON
+    const welcomeButton = document.getElementById("welcomeButton");
+
+    if (welcomeButton) {
+        welcomeButton.addEventListener("click", () => {
+            showNotification("Welcome to NEXUS! 🚀");
+            addActivity("Opened NEXUS ecosystem");
+
+            document.getElementById("commandCenter")
+                ?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+        });
+    }
+
+    // 14. CAREER SUGGESTION
+    const careerButton = document.getElementById("careerButton");
+    const careerResult = document.getElementById("careerResult");
+
+    const careerIdeas = [
+        "Web Developer 💻",
+        "Python Developer 🐍",
+        "Software Engineer 🚀",
+        "Data Analyst 📊",
+        "UI/UX Designer 🎨",
+        "AI & Machine Learning Explorer 🤖"
+    ];
+
+    if (careerButton && careerResult) {
+        careerButton.addEventListener("click", () => {
+            const idea =
+                careerIdeas[Math.floor(Math.random() * careerIdeas.length)];
+
+            careerResult.textContent = "Sample Career Idea: " + idea;
+
+            showNotification("Career idea generated!");
+            addActivity("Generated career idea: " + idea);
+        });
+    }
+
+    // 15. 3D CARD EFFECT
     const supportsFinePointer =
         window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -430,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // 14. SIDEBAR NAVIGATION
+    // 16. SIDEBAR NAVIGATION
     const navLinks = document.querySelectorAll(".sidebar nav a");
 
     const currentPage =
@@ -446,7 +486,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 15. INITIALIZATION
+    // 17. INITIALIZATION
+    updateGamification();
+
     console.log("NEXUS Premium Dashboard initialized successfully 🚀");
     showNotification("NEXUS Command Center is ready!");
 
