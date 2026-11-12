@@ -493,3 +493,30 @@ document.addEventListener("DOMContentLoaded", () => {
     showNotification("NEXUS Command Center is ready!");
 
 });
+// NEXUS Dark / Light Theme Toggle
+const themeToggle = document.getElementById("themeToggle");
+
+// पहले से सेव की गई Theme लोड करें
+const savedTheme = localStorage.getItem("nexusTheme");
+
+if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+} else {
+    document.body.classList.remove("light-theme");
+}
+
+// Theme Button पर Click
+if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+
+        document.body.classList.toggle("light-theme");
+
+        const isLight = document.body.classList.contains("light-theme");
+
+        localStorage.setItem(
+            "nexusTheme",
+            isLight ? "light" : "dark"
+        );
+
+    });
+}

@@ -2733,56 +2733,80 @@ footer {
     }
 }
 
-/* NEXUS — Premium Interest Selector */
+/* =================================
+   NEXUS LIGHT THEME
+================================= */
 
-#interest {
-    width: 100%;
-    min-height: 190px;
-    padding: 12px;
-    border: 1px solid rgba(146, 117, 255, 0.35);
-    border-radius: 16px;
-    background: linear-gradient(
-        145deg,
-        rgba(25, 35, 60, 0.96),
-        rgba(12, 21, 39, 0.98)
-    );
-    color: #eaf1ff;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.8;
-    outline: none;
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transition: border-color .3s ease, box-shadow .3s ease;
-    scrollbar-width: thin;
-    scrollbar-color: #9275ff #17243b;
+body.light-theme {
+    --bg: #F3F6FC;
+    --sidebar: #FFFFFF;
+
+    --panel: #FFFFFF;
+    --panel-2: #EAF0FA;
+
+    --text: #172033;
+    --muted: #64748B;
+    --border: rgba(30, 41, 59, 0.14);
+
+    --shadow-soft: 0 12px 35px rgba(15, 23, 42, 0.08);
+    --shadow-premium: 0 20px 55px rgba(15, 23, 42, 0.12);
 }
 
-#interest:focus {
-    border-color: #29d7e8;
-    box-shadow:
-        0 0 0 3px rgba(41, 215, 232, 0.10),
-        0 10px 30px rgba(146, 117, 255, 0.12);
+/* Apply theme colors across the page */
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-#interest option {
-    padding: 9px 12px;
-    background: #17243b;
-    color: #eaf1ff;
+body.light-theme .sidebar {
+    background: var(--sidebar);
+    border-color: var(--border);
 }
 
-#interest option:checked {
-    background: #5946a8;
-    color: #ffffff;
+body.light-theme .card,
+body.light-theme .performance-card {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border);
 }
 
-/* Label styling */
-label[for="interest"] {
-    display: block;
-    margin-bottom: 10px;
-    color: #c7b7ff;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .3px;
+body.light-theme p,
+body.light-theme .muted {
+    color: var(--muted);
+}
+
+/* NEXUS LIGHT THEME FIX */
+
+body.light-theme {
+    background: #f3f6fc;
+    color: #172033;
+}
+
+body.light-theme .sidebar {
+    background: rgba(255, 255, 255, 0.96);
+    border-right: 1px solid #dce3ef;
+}
+
+body.light-theme .brand {
+    color: #172033;
+}
+
+body.light-theme .sidebar nav a {
+    color: #334155;
+    background: linear-gradient(145deg, #ffffff, #eaf0fa);
+    border-color: #dce3ef;
+    box-shadow: 0 5px 0 #dce3ef, 0 8px 15px rgba(15, 23, 42, .06);
+}
+
+body.light-theme .card,
+body.light-theme .performance-card {
+    background: #ffffff;
+    color: #172033;
+    border-color: #dce3ef;
+}
+
+body.light-theme p,
+body.light-theme .muted {
+    color: #64748b;
 }
