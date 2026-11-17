@@ -2810,3 +2810,97 @@ body.light-theme p,
 body.light-theme .muted {
     color: #64748b;
 }
+/* NEXUS DASHBOARD — DARK THEME CORRECTION */
+
+body,
+body.light-theme {
+    --bg: #080D19;
+    --sidebar: #0D1526;
+    --panel: #131D30;
+    --panel-2: #19263D;
+    --text: #F5F7FC;
+    --muted: #A4B0C3;
+    --border: rgba(148, 163, 184, 0.17);
+
+    background:
+        radial-gradient(ellipse at 5% 15%, rgba(135,70,255,.16), transparent 30%),
+        radial-gradient(ellipse at 95% 10%, rgba(40,175,255,.12), transparent 32%),
+        #080D19 !important;
+
+    color: #F5F7FC !important;
+}
+
+body.light-theme .sidebar {
+    background: #0D1526 !important;
+    border-color: rgba(148,163,184,.17) !important;
+}
+
+body.light-theme .brand,
+body.light-theme .profile-mini strong,
+body.light-theme .panel h2 {
+    color: #F5F7FC !important;
+}
+
+body.light-theme .sidebar nav a {
+    color: #E2E8F0 !important;
+    background: linear-gradient(145deg, #263653, #151E32) !important;
+}
+
+body.light-theme .card,
+body.light-theme .panel,
+body.light-theme .performance-card,
+body.light-theme .reward-card,
+body.light-theme .activity-panel {
+    color: #F5F7FC !important;
+    background: linear-gradient(145deg, #19263D, #0D1526) !important;
+    border-color: rgba(148,163,184,.2) !important;
+}
+
+body.light-theme p,
+body.light-theme .muted {
+    color: #A4B0C3 !important;
+}
+
+/* Dashboard spacing */
+.main-content {
+    min-width: 0;
+}
+
+.performance-grid,
+.cards {
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .performance-grid,
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .app {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .main-content {
+        padding: 22px 16px;
+    }
+
+    .performance-grid,
+    .cards,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
