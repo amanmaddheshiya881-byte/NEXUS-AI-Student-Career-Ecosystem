@@ -14,3 +14,4 @@ venv/
 # Local database test files
 backend/test_db.py
 backend/test_connection.py
+.env
